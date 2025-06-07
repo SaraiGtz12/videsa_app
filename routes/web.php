@@ -19,6 +19,7 @@ Route::get('/registrar_cliente', [Vistas_Controller::class, 'RegistrarCliente'])
 Route::get('/agregar_servicio', [Vistas_Controller::class, 'RegistrarServicio'])->name('AgregarServicio');
 Route::get('/services_complete', [Vistas_Controller::class, 'VistaServiciosCompletados'])->name('ServiciosCompletados');
 Route::get('/agregarUsuarios', [Vistas_Controller::class, 'VistaAgregarUsuarios'])->name('AgregarUsuarios');
+Route::get('/formulario', [Vistas_Controller::class, 'VistaFormulario'])->name('Formualrio');
 
 
 //RUTAS PARA PLANTILLAS PDF

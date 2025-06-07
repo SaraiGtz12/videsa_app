@@ -42,4 +42,7 @@ class Vistas_Controller extends Controller
         $roles = Rol::all();
         return view('Dashboard.AgregarUsuarios', compact('roles'));
     }
+    public function VistaFormulario(){
+        return view('Dashboard.Formulario');
+    }
 }

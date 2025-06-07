@@ -78,6 +78,7 @@
                         <h6 class="collapse-header">Opciones:</h6>
                         <a class="collapse-item" href="{{route('AgregarUsuarios')}}">Usuarios</a>
                         <a class="collapse-item" href="{{route('RegistrarCliente')}}">Clientes</a>
+                        <a class="collapse-item" href="{{route('Formualrio')}}">Formulario de muestreo</a>
                     </div>
                 </div>
             </li>
@@ -371,6 +372,7 @@
                     @yield('ServiciosRegistrados')
                     @yield('ServiciosCompletados')
                     @yield('AgregarUsuarios')
+                    @yield('Formulario')
                 </div>
                 <!-- /.container-fluid -->
 
