@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('mediciones_nom085', function (Blueprint $table) {
             $table->id();
-            $table->integer(id_medicion);
+            $table->integer('id_medicion');
             $table->float('nox')->nullable();
             $table->float('co_ppmv');
             $table->float('o2');
