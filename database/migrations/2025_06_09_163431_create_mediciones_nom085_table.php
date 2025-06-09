@@ -19,10 +19,8 @@ return new class extends Migration
             $table->float('o2');
             $table->float('co2');
             $table->float('temp');
-            $table->unsignedBigInteger('detalles_medicion_nom085_id');
+            $table->foreignId('detalles_medicion_nom085_id')->nullable()->constrained('detalles_mediciones_nom085')->onDelete('set null');
             $table->timestamps();
-
-            $table->foreign('detalles_medicion_nom085_id')->references('id')->on('detalles_mediciones_nom085')->onDelete('set null');
         });
     }
 
