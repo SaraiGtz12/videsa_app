@@ -40,3 +40,4 @@ Route::post('/register_user', [UsersController::class, 'RegistrarUsuarios'])->na
 Route::get('/getMuestreadores', [FormsController::class, 'getMuestreadores']);
 
 Route::post('/generarPDF', [PdfController::class, 'generarPDF'])->name('generarPDF');
+Route::get('/prueba_puntos', [Nom_085_Campo_Controller::class, 'distribucion_puntos_estratificacion'])->name('Prueba');
