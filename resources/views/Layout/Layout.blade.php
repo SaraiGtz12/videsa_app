@@ -87,6 +87,7 @@
                         <a class="collapse-item" href="{{route('AgregarUsuarios')}}">Usuarios</a>
                         <a class="collapse-item" href="{{route('RegistrarCliente')}}">Clientes</a>
                         <a class="collapse-item" href="{{route('AgregarEmpresa')}}">Empresa</a>
+                        <a class="collapse-item" href="{{route('AgregarNorma')}}">Normas</a>
                         <a class="collapse-item" href="{{route('Formualrio')}}">Formulario de muestreo</a>
                         
                     </div>
@@ -384,6 +385,7 @@
                     @yield('AgregarUsuarios')
                     @yield('Formulario')
                     @yield('AgregarEmpresa')
+                    @yield('AgregarNorma')
                 </div>
                 <!-- /.container-fluid -->
 

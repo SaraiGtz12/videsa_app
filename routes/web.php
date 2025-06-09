@@ -10,6 +10,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\nom085_Controller;
 
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\NormaController;
 
 
 #--- Ruta Login ---#
@@ -25,6 +26,7 @@ Route::get('/services_complete', [Vistas_Controller::class, 'VistaServiciosCompl
 Route::get('/agregarUsuarios', [Vistas_Controller::class, 'VistaAgregarUsuarios'])->name('AgregarUsuarios');
 Route::get('/formulario', [Vistas_Controller::class, 'VistaFormulario'])->name('Formualrio');
 Route::get('/agregarEmpresa', [Vistas_Controller::class, 'AgregarEmpresa'])->name('AgregarEmpresa');
+Route::get('/agregarNorma', [Vistas_Controller::class, 'AgregarNorma'])->name('AgregarNorma');
 
 
 
@@ -51,3 +53,7 @@ Route::get('/prueba_puntos', [Nom, 'distribucion_puntos_estratificacion'])->name
 Route::post('/registrar_nom85mg', [nom085_Controller::class, 'registrar_nom085_mg'])->name('registrar_nom085_mg');
 Route::get('/empresa/nueva', [EmpresaController::class, 'create'])->name('empresa.create');
 Route::post('/empresa/guardar', [EmpresaController::class, 'store'])->name('empresa.store');
+
+
+
+Route::post('/norma/store', [NormaController::class, 'store'])->name('empresa.store');
