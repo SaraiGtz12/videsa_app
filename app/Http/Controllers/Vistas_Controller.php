@@ -26,7 +26,8 @@ class Vistas_Controller extends Controller
 
     public function RegistrarServicio(){
           $clientes = Cliente::all();
-        return view('Dashboard.AgregarServicio', compact('clientes'));
+          $normas = Norma::select('id', 'nombre')->where('activa', 1)->get();
+        return view('Dashboard.AgregarServicio', compact('clientes','normas'));
     }
 
     public function Buscar(){

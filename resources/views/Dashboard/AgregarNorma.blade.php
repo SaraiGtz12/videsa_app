@@ -128,8 +128,6 @@
      <script>
         const RUTA_UPDATE_NORMA = "{{ route('norma.update') }}";
          const CSRF_TOKEN = "{{ csrf_token() }}";
-         
-
     </script>
 
     <script src="{{ asset('js/normas/normas.js') }}"></script>

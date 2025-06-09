@@ -4,7 +4,8 @@
         <div class="text-center">
             <h3>Registrar Orden de Servicio</h3>
         </div>
-        <form action="">
+        <form action="{{ route('servicio.guardar') }}" method="POST">
+                @csrf
             <div class="card mb-2">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Datos del Cliente</h6>
@@ -84,5 +85,10 @@
 @endsection
 
 @section('Scripts')
+    <script>
+        const normas = @json($normas);
+    </script>
     <script src="{{asset('js/Formularios/script.js')}}"></script>
+    
+
 @endsection

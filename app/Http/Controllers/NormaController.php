@@ -49,5 +49,7 @@ class NormaController extends Controller
         return redirect()->back()->with('success', 'Norma actualizada correctamente.');
     }
 
+    
+
 
 }
