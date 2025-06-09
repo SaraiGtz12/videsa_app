@@ -38,3 +38,5 @@ Route::post('/register_user', [UsersController::class, 'RegistrarUsuarios'])->na
 
 //Rutas para la optención de datos
 Route::get('/getMuestreadores', [FormsController::class, 'getMuestreadores']);
+
+Route::post('/generarPDF', [PdfController::class, 'generarPDF'])->name('generarPDF');

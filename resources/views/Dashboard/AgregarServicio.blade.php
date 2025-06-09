@@ -5,8 +5,7 @@
             <h3>Registrar Orden de Servicio</h3>
         </div>
         <form action="">
-            <div class="card mb-2">
-                <!--Datos Cliente-->
+            <!-- <div class="card mb-2">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Datos del Cliente</h6>
                 </div>
@@ -65,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="card mb-2">
                 <!--Datos Servicio-->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -108,20 +107,7 @@
                                 <input type="text" name="Muestreador" id="Muestreador" class="form-control" required>
                             </div>
                         </div>
-                        <!--
-                        <div class="col">
-                            <div class="mb-2">
-                                <span>Cantidad de Muestreadores</span>
-                                <input type="number" name="NumMuetreador" id="NumMuetreador" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="d-grid mb-2 mt-4">
-                                <span></span>
-                                <button class="btn btn-info" type="button" id="BuscarMuestreador">Buscar Muestreador</button>
-                            </div>
-                        </div>
-                        -->
+                  
                     </div>
                     <div id="Muestreadores"></div>
                     

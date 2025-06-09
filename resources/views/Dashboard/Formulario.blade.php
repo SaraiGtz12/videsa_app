@@ -5,7 +5,8 @@
         <div class="text-center">
             <h3>Formulario de Muestreo</h3>
         </div>
-        <form action="">
+        <form action="{{ route('generarPDF') }}" method="POST">
+             @csrf
             <div class="card mb-2">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Datos del Cliente</h6>
@@ -22,7 +23,7 @@
                         <div class="col">
                             <div class="mb-12">
                                 <span>Seleccionar Empresa a evaluar</span>
-                                <select class="form-select select2" style="width: 100%;">
+                                <select class="form-select select2" name="empresa" style="width: 100%;">
                                     <option value="" selected disabled>Seleccionar Empresa</option>
                                     <option value="Cliente1">Cliente 1</option>
                                     <option value="Cliente2">Cliente 2</option>
@@ -210,7 +211,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @for ($i = 1; $i <= 60; $i++)
+                                            @for ($i = 1; $i <= 10; $i++)
                                             <tr>
                                                 <td>{{ $i }}</td>
                                                 <td><input type="number" step="0.01" name="nox[]" class="form-control form-control-sm"></td>
@@ -227,7 +228,7 @@
                         </div>
                     </div>
                     <div class="d-grid mt-4">
-                        <input type="submit" value="Guardar" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
         </form>
     </div>

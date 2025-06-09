@@ -247,7 +247,7 @@
 
         <div style="text-align: center; margin-top: 30px;">
             <p>Firma Electrónica</p>
-             {!! $qr !!}
+         
             <p>Escanea para verificar</p>
         </div>
 
@@ -378,6 +378,58 @@
     <div style="page-break-before: always;"></div>
     <!-- paginas 3 -->
     @include('pdf.recursos.headerGeneral')
+
+
+     <table width="100%" cellpadding="10">
+        <tr>
+            <td width="60%" valign="top">
+                <table border="1" cellpadding="5" cellspacing="0" width="100%">
+                    <thead>
+                        <tr >
+                            <th>No.</th>
+                            <th>Nox (ppmv)</th>
+                            <th>CO (ppmv)</th>
+                            <th>O2 (%)</th>
+                            <th>CO (%)</th>
+                            <th>TEMP (°C)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($filas as $fila)
+                        <tr>
+                            <td>{{ $fila['no'] }}</td>
+                            <td>{{ $fila['nox'] ?? '-' }}</td>
+                            <td>{{ $fila['co'] ?? '-' }}</td>
+                            <td>{{ $fila['o2'] ?? '-' }}</td>
+                            <td>{{ $fila['co2'] ?? '-' }}</td>
+                            <td>{{ $fila['temp'] ?? '-' }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </td>
+            <td width="40%" valign="top" style="vertical-align: top;">
+                <div style="margin-bottom: 10px;">
+                    <img src="{{ $imgNox }}" alt="Gráfico NOX" style="width: 100%; height: auto;">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <img src="{{ $imgCo }}" alt="Gráfico CO" style="width: 100%; height: auto;">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <img src="{{ $imgO2 }}" alt="Gráfico O2" style="width: 100%; height: auto;">
+                </div>
+                <div>
+                    <img src="{{ $imgCo2 }}" alt="Gráfico CO2" style="width: 100%; height: auto;">
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+
+
+
+
     @include('pdf.recursos.footerGeneral')              
     <div style="page-break-before: always;"></div>
      <!-- paginas 4 -->
@@ -387,64 +439,6 @@
     <!-- paginas 5 -->
     @include('pdf.recursos.headerGeneral')
 
-        <div style="margin-top: 20px">
-                <!-- Diseño con tabla para compatibilidad en PDF -->
-                <table style="width: 100%; border-collapse: collapse;">
-                    <tr>
-                        <td style="width: 50%; vertical-align: top;">
-                            <!-- Tabla de ANALITO -->
-                            <table style="width: 100%; margin-top: 40px; border-collapse: collapse; border: 1px solid black;">
-                                <thead>
-                                    <tr>
-                                        <th colspan="5" style="text-align: center; border: 1px solid black; padding: 8px;">ANALITO</th>
-                                    </tr>
-                                    <tr>
-                                        <th style="border: 1px solid black; padding: 6px;">No.</th>
-                                        <th style="border: 1px solid black; padding: 6px;">CO (ppmv)</th>
-                                        <th style="border: 1px solid black; padding: 6px;">O2%</th>
-                                        <th style="border: 1px solid black; padding: 6px;">CO2 %</th>
-                                        <th style="border: 1px solid black; padding: 6px;">TEMP, °C</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($analito_no as $i => $no)
-                                        <tr>
-                                            <td style="border: 1px solid black; padding: 6px;">{{ $no }}</td>
-                                            <td style="border: 1px solid black; padding: 6px;">{{ $analito_CO[$i] }}</td>
-                                            <td style="border: 1px solid black; padding: 6px;">{{ $analito_O2[$i] }}</td>
-                                            <td style="border: 1px solid black; padding: 6px;">{{ $analito_CO2[$i] }}</td>
-                                            <td style="border: 1px solid black; padding: 6px;">{{ $analito_temp[$i] }}</td>
-                                        </tr>
-                                    @endforeach
-                                    <tr>
-                                        <td style="border: 1px solid black; padding: 6px; font-weight: bold;">Promedio</td>
-                                        <td style="border: 1px solid black; padding: 6px;">
-                                            {{ number_format(array_sum($analito_CO) / count($analito_CO), 2) }}
-                                        </td>
-                                        <td style="border: 1px solid black; padding: 6px;">
-                                            {{ number_format(array_sum($analito_O2) / count($analito_O2), 2) }}
-                                        </td>
-                                        <td style="border: 1px solid black; padding: 6px;">
-                                            {{ number_format(array_sum($analito_CO2) / count($analito_CO2), 2) }}
-                                        </td>
-                                        <td style="border: 1px solid black; padding: 6px;">
-                                            {{ number_format(array_sum($analito_temp) / count($analito_temp), 2) }}
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </td>
-                        <td style="width: 50%; vertical-align: top; padding-left: 20px;">
-                            <!-- Gráficas -->
-                            <img src="{{ $grafica_co }}" width="300" style="display: block; margin-bottom: 20px;">
-                            <img src="{{ $grafica_o2 }}" width="300" style="display: block; margin-bottom: 20px;">
-                            <img src="{{ $grafica_co2 }}" width="300" style="display: block;">
-                        </td>
-                    </tr>
-                </table>
-          
-        </div>
     @include('pdf.recursos.footerGeneral')  
     <div style="page-break-before: always;"></div>
 
@@ -456,14 +450,7 @@
     @include('pdf.recursos.headerGeneral')
     @include('pdf.recursos.footerGeneral')  
     </main>
-<script>
-    const analitoData = {
-        no: @json($analito_no),
-        co: @json($analito_CO),
-        o2: @json($analito_O2),
-        co2: @json($analito_CO2)
-    };
-</script>
+
 <script src="{{ asset('js/pdf/grafica-resultados.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
