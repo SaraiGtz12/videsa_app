@@ -20,25 +20,22 @@ class PdfController extends Controller
             'temp' => 'required|array',
         ]);
 
-        $nox = $request->input('nox');  // arrays con valores
+        $nox = $request->input('nox');  
         $co = $request->input('co');
         $o2 = $request->input('o2');
         $co2 = $request->input('co2');
         $temp = $request->input('temp');
 
-        // URLs para gráficos con QuickChart
         $urlNox = $this->buildChartUrl('NOX', $nox, 'blue');
         $urlCo = $this->buildChartUrl('CO', $co, 'red');
         $urlO2 = $this->buildChartUrl('O2', $o2, 'green');
         $urlCo2 = $this->buildChartUrl('CO2', $co2, 'orange');
 
-        // Convertir URLs a imágenes base64
         $imgNox = $this->getBase64FromUrl($urlNox);
         $imgCo = $this->getBase64FromUrl($urlCo);
         $imgO2 = $this->getBase64FromUrl($urlO2);
         $imgCo2 = $this->getBase64FromUrl($urlCo2);
 
-        // Preparar filas para la tabla
         $filas = [];
         $numFilas = count($nox);
 
@@ -59,6 +56,8 @@ class PdfController extends Controller
             'fecha_evaluacion' => $request->fecha_evaluacion,
             'recepcion' => now()->format('Y-m-d'),
             'fecha_informe' => now()->format('Y-m-d'),
+            
+            'equipo_evaluado' => $request->equipo_evaluado,
 
             'filas' => $filas,
             'imgNox' => $imgNox,
@@ -119,7 +118,6 @@ class PdfController extends Controller
     {
         $imageData = @file_get_contents($url);
         if ($imageData === false) {
-            // Manejo de error, en caso de falla retorna una imagen vacía o un placeholder
             return '';
         }
         return 'data:image/png;base64,' . base64_encode($imageData);
