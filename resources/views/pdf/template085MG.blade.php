@@ -162,7 +162,7 @@
                 <th colspan="6" style = "text-align: center">Equipo evaluado</th>
             </tr>
             <tr>
-                <td colspan="6" style = "text-align: center">Plancha 3</td>
+                <td colspan="6" style = "text-align: center">{{$equipo_evaluado}}</td>
             </tr>
             <tr>
                 <td>Capacidad térmica</td>

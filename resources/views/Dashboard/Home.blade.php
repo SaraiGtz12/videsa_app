@@ -99,36 +99,60 @@
 
 <div class="row">
 
-    <!-- Area Chart -->
     <div class="col-xl-8 col-lg-7">
         <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
-            <div
-                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                        aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header">Dropdown Header:</div>
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div>
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Reportes Generados</h6>
             </div>
-            <!-- Card Body -->
             <div class="card-body">
-                <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
+                <div class="table-responsive" style="max-height: 400px; max-width: 200px overflow-y: auto;">
+                    <table class="table table-bordered table-hover" id="tablaReportes" width="100%" cellspacing="0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>No.</th>
+                                <th>Norma</th>
+                                <th>Orden de Servicio</th>
+                                <th>Número de Informe</th>
+                                <th>Responsable</th>
+                                <th>Estatus</th>
+                                <th>Acciones</th>
+                            </tr>
+                            <tr>
+                                <th><input type="text" placeholder="Buscar" /></th>
+                                <th><input type="text" placeholder="Buscar" /></th>
+                                <th><input type="text" placeholder="Buscar" /></th>
+                                <th><input type="text" placeholder="Buscar" /></th>
+                                <th><input type="text" placeholder="Buscar" /></th>
+                                <th><input type="text" placeholder="Buscar" /></th>
+                                <th></th> 
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>085MG</td>
+                                <td>25-1208</td>
+                                <td>FF085MG/200304-51</td>
+                                <td>Ing. Jorge Sinaid Hernandez</td>
+                                <td><span class="badge badge-success">Completado</span></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm btn-circle" title="Ver">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm btn-circle" title="Eliminar">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+
+
 
     <!-- Pie Chart -->
     <div class="col-xl-4 col-lg-5">
@@ -174,3 +198,34 @@
 </div>
 
 @endsection
+
+<script>
+$(document).ready(function() {
+    $('#tablaReportes thead tr:eq(1) th').each(function(i) {
+        $('input', this).on('keyup change', function() {
+            if ($('#tablaReportes').DataTable().column(i).search() !== this.value) {
+                $('#tablaReportes').DataTable().column(i).search(this.value).draw();
+            }
+        });
+    });
+
+    $('#tablaReportes').DataTable({
+        orderCellsTop: true,
+        fixedHeader: true,
+        language: {
+            search: "Buscar general:",
+            lengthMenu: "Mostrar _MENU_ registros",
+            zeroRecords: "No se encontraron resultados",
+            info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+            infoEmpty: "No hay registros disponibles",
+            infoFiltered: "(filtrado de _MAX_ registros totales)",
+            paginate: {
+                first: "Primero",
+                last: "Último",
+                next: "Siguiente",
+                previous: "Anterior"
+            }
+        }
+    });
+});
+</script>
