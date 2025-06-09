@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('orden_trabajo_id')->nullable();
             $table->unsignedBigInteger('equipo_id')->nullable();
-            $table->string(combustible_utilizado);
+            $table->string('combustible_utilizado');
             $table->integer('capacidad_termica');
             $table->integer('altura_msnm');
             $table->float('precision_estatica');
