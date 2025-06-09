@@ -8,6 +8,9 @@ use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ServiceOrdersController;
 use App\Http\Controllers\UsersController;
 
+use App\Http\Controllers\EmpresaController;
+
+
 #--- Ruta Login ---#
 Route::get('/', [Vistas_Controller::class, 'Login'])->name('login');
 Route::post('/check_login', [LoginController::class, 'IniciarSesion'])->name('IniciarSesion');
@@ -20,6 +23,8 @@ Route::get('/agregar_servicio', [Vistas_Controller::class, 'RegistrarServicio'])
 Route::get('/services_complete', [Vistas_Controller::class, 'VistaServiciosCompletados'])->name('ServiciosCompletados');
 Route::get('/agregarUsuarios', [Vistas_Controller::class, 'VistaAgregarUsuarios'])->name('AgregarUsuarios');
 Route::get('/formulario', [Vistas_Controller::class, 'VistaFormulario'])->name('Formualrio');
+Route::get('/agregarEmpresa', [Vistas_Controller::class, 'AgregarEmpresa'])->name('AgregarEmpresa');
+
 
 
 //RUTAS PARA PLANTILLAS PDF
@@ -41,3 +46,7 @@ Route::get('/getMuestreadores', [FormsController::class, 'getMuestreadores']);
 
 Route::post('/generarPDF', [PdfController::class, 'generarPDF'])->name('generarPDF');
 Route::get('/prueba_puntos', [Nom_085_Campo_Controller::class, 'distribucion_puntos_estratificacion'])->name('Prueba');
+
+
+Route::get('/empresa/nueva', [EmpresaController::class, 'create'])->name('empresa.create');
+Route::post('/empresa/guardar', [EmpresaController::class, 'store'])->name('empresa.store');

@@ -45,4 +45,7 @@ class Vistas_Controller extends Controller
     public function VistaFormulario(){
         return view('Dashboard.Formulario');
     }
+    public function AgregarEmpresa(){
+        return view('Dashboard.AgregarEmpresa');
+    }
 }

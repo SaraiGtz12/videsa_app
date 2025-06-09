@@ -5,66 +5,27 @@
             <h3>Registrar Orden de Servicio</h3>
         </div>
         <form action="">
-            <!-- <div class="card mb-2">
+            <div class="card mb-2">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Datos del Cliente</h6>
                 </div>
                 <div class="card-body">
-                    <div class="mb-2">
-                        <span class="form-label">Razón Social</span>
-                        <input type="text" name="RazonSocial" id="RazonSocial" class="form-control" required>
-                    </div>
+                  
                     <div class="row">
                         <div class="col">
-                            <div class="mb-2">
-                                <span class="form-label">Calle y Número</span>
-                                <input type="text" name="Calle" id="Calle" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="mb-2">
-                                <span class="form-label">Referencias</span>
-                                <input type="text" name="Referencias" id="Referencias" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="mb-2">
-                                <span class="form-label">Colonia</span>
-                                <input type="text" name="Colonia" id="Colonia" class="form-control" required>
-                            </div>
-                            <div class="mb-2">
-                                <span class="form-label">Nombre del Responsable</span>
-                                <input type="text" name="Responsable" id="Responsable" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="mb-2">
-                                <span class="form-label">Municipio</span>
-                                <input type="text" name="Municipio" id="Municipio" class="form-control" required>
-                            </div>
-                            <div class="mb-2">
-                                <span class="form-label">Cargo del Responsable</span>
-                                <input type="text" name="CargoResponsable" id="CargoResponsable" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="mb-2">
-                                <span class="form-label">Estado</span>
-                                <input type="text" name="Estado" id="Estado" class="form-control" required>
-                            </div>
-                            <div class="mb-2">
-                                <span class="form-label">Telefono</span>
-                                <div class="input-group">
-                                    <span class="input-group-text" id="telefonoGroup">+52</span>
-                                    <input type="tel" name="Telefono" id="Telefono" class="form-control" aria-describedby="telefonoGroup " required>
-                                </div>
+                            <div class="mb-12">
+                                <span>Seleccionar Empresa</span>
+                                <select class="form-select select2" name="empresa" style="width: 100%;">
+                                    <option value="" selected disabled>Seleccionar Empresa</option>
+                                    <option value="Cliente1">Cliente 1</option>
+                                    <option value="Cliente2">Cliente 2</option>
+                                </select>
                             </div>
                         </div>
                     </div>
+                   
                 </div>
-            </div> -->
+            </div>
             <div class="card mb-2">
                 <!--Datos Servicio-->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
