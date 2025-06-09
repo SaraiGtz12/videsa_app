@@ -14,21 +14,40 @@ class UsersController extends Controller
 {
     public function RegistrarUsuarios(Request $request){
         Log::info("Función Cargada");
-        $request->validate([
-            "nombreP" => "required|string",
-            "apellidos" => "required|string",
-            "rolP" => "required|integer",
-            "rfcUsuario" => "required|string|unique:users,rfc",
-            "UsuarioP" => "required|email|unique:users,correo",
-            "ContrasenaP" => "required|string",
-        ]);
+        try{
+            $request->validate([
+                "nombreP" => "required|string",
+                "apellidos" => "required|string",
+                "rolP" => "required|integer",
+                "rfcUsuario" => "required|string|unique:usuarios,rfc",
+                "UsuarioP" => "required|email|unique:usuarios,correo",
+                "ContrasenaP" => "required|string",
+            ]);
+        }catch(Exception $e){
+            Log::error('Error en la validación: '.$e->getMessage());
+        }
 
         try{
+            // Procesamiento
+            $primer_nombre = explode(' ', trim($request->nombreP))[0];
+            $primer_letra_nombre = substr($primer_nombre, 0, 1); 
+            $primer_apellido = explode(' ', trim($request->apellidos))[0];
+            $username =$primer_letra_nombre.''.$primer_apellido;
+            $username = strtolower($username);
+
+            $responsable = 0;
+
+            if($request->rolP == 1 || $request->rolP == 2){
+                $responsable = 1;
+            }
+
             $usuario = new User();
             $usuario->correo = $request->UsuarioP;
+            $usuario->nombre_usuario = $username;
+            $usuario->nombre = $request->nombreP.' '.$request->apellidos;
             $usuario->contrasena = Hash::make($request->ContrasenaP);
             $usuario->id_rol = $request->rolP;
-            $usuario->es_firmante = 0;
+            $usuario->es_firmante = $responsable;
             $usuario->rfc = $request->rfcUsuario;
             $usuario->activo = 1;
             $usuario->save();

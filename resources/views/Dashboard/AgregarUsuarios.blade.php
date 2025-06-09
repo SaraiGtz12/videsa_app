@@ -16,7 +16,7 @@
         <div class="text-center">
             <h3>Registrar Usuarios</h3>
         </div>
-        <form action="{{route('RegistrarUsuario')}}" method="post">
+        <form action="{{route('RegistrarUsuario')}}" method="post" autocomplete="off">
             @csrf
             <div class="card mb-2">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -44,7 +44,7 @@
                                 <select name="rolP" id="rolP" class="form-select" required>
                                     <option value="">Selecciona un rol</option>
                                     @foreach ($roles as $rol)
-                                        <option value="{{$rol->id_rol}}">{{$rol->nombre}}</option>
+                                        <option value="{{$rol->id}}">{{$rol->nombre}}</option>
                                     @endforeach
                                 </select>
                             </div>

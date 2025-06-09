@@ -1836,7 +1836,8 @@ pre code {
 .table-primary,
 .table-primary>td,
 .table-primary>th {
-    background-color: #cdd8f6
+    background-color: #7da0ff;
+    color: #fff;
 }
 
 .table-primary tbody+tbody,

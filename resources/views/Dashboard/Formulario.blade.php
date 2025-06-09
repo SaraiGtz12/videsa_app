@@ -1,5 +1,5 @@
 @extends('../Layout/Layout')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 @section('Formulario')
     <div class="container rounded shadow p-4 mb-4 bg-white">
         <div class="text-center">
@@ -97,11 +97,9 @@
                             </div>
                         </div>
                     </div>
-              
-                  
                 </div>
             </div>
-             <div class="card mb-2">
+            <div class="card mb-2">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Otros datos</h6>
                 </div>
@@ -120,7 +118,7 @@
                             </div>
                         </div>
                         <div class="col">
-                           <div class="mb-2">
+                            <div class="mb-2">
                                 <span>Número de puntos para medición de gases</span>
                                 <input type="text" name="num_medicion_gases" id="num_medicion_gases" class="form-control" required>
                             </div>
@@ -172,7 +170,7 @@
                             </div>
                         </div>
                     </div>
-                     <div class="row">
+                    <div class="row">
                         <div class="col">
                             <div class="mb-2">
                                 <span>Número de diametros en A</span>
@@ -189,6 +187,12 @@
                             <div class="mb-2">
                                 <span>Número de diametros en C</span>
                                 <input type="text" name="num_d_c" id="num_d_c" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2">
+                                <span>Extención del Puerto</span>
+                                <input type="number" name="extencion_puerto" id="extencion_puerto" class="form-control" required>
                             </div>
                         </div>
                     </div>
