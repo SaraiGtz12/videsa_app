@@ -23,11 +23,14 @@
                         <div class="col">
                             <div class="mb-12">
                                 <span>Seleccionar Empresa a evaluar</span>
-                                <select class="form-select select2" name="empresa" style="width: 100%;">
+                                <select class="form-select select2" name="empresa" style="width: 100%;" required>
                                     <option value="" selected disabled>Seleccionar Empresa</option>
-                                    <option value="Cliente1">Cliente 1</option>
-                                    <option value="Cliente2">Cliente 2</option>
+                                    @foreach ($clientes as $cliente)
+                                        <option value="{{ $cliente->id }}">{{ $cliente->razon_social}}</option>
+                                    @endforeach
                                 </select>
+
+
                             </div>
                         </div>
                     </div>

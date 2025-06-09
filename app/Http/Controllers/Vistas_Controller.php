@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Rol;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Cliente;
 
 class Vistas_Controller extends Controller
 {
@@ -43,7 +44,8 @@ class Vistas_Controller extends Controller
         return view('Dashboard.AgregarUsuarios', compact('roles'));
     }
     public function VistaFormulario(){
-        return view('Dashboard.Formulario');
+         $clientes = Cliente::all();
+        return view('Dashboard.Formulario', compact('clientes'));
     }
     public function AgregarEmpresa(){
         return view('Dashboard.AgregarEmpresa');
