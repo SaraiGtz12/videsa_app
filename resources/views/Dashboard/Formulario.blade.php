@@ -5,8 +5,8 @@
         <div class="text-center">
             <h3>Formulario de Muestreo</h3>
         </div>
-        <form action="{{ route('generarPDF') }}" method="POST">
-             @csrf
+        <form action="{{ route('registrar_nom085_mg') }}" method="POST">
+            @csrf
             <div class="card mb-2">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Datos del Cliente</h6>
