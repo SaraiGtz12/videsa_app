@@ -26,21 +26,25 @@ class LoginController extends Controller
             if($usuario = User::where('correo', $request->input('UserEmailTxt'))->first()){
                 Log::info('usuario Encontrado');
                 Log::info($usuario);
-                try{
+                if($usuario->activo == 1){
+                    try{
                     Log::info("correo");
-                    if(Hash::check($request->input('UserPasswordTxt'), $usuario->contrasena)){
-                        Log::info('Contraseña validada');
-                        Auth::login($usuario);
-                        $request->session()->regenerate();
+                        if(Hash::check($request->input('UserPasswordTxt'), $usuario->contrasena)){
+                            Log::info('Contraseña validada');
+                            Auth::login($usuario);
+                            $request->session()->regenerate();
 
-                        return to_route('Home');
-                    }else{
-                        return redirect()->back()->withErrors(['Error'=>"La contraseña no coincide"]);
+                            return to_route('Home');
+                        }else{
+                            return redirect()->back()->withErrors(['Error'=>"La contraseña no coincide"]);
+                        }
+
+                    }catch(Exception $e){
+                        Log::error('Algo salio mal con la contraseña: '.$e->getMessage());
+                        return redirect()->back()->withErrors(['Error'=>"La contraseña No coincide"]);
                     }
-
-                }catch(Exception $e){
-                    Log::error('Algo salio mal con la contraseña: '.$e->getMessage());
-                    return redirect()->back()->withErrors(['Error'=>"La contraseña No coincide"]);
+                }else{
+                    return redirect()->back()->withErrors(['Inactivo'=>"¡Lo sentimos, tu cuenta ha sido desactivada!"]);
                 }
             }else{
                 Log::info('usuario No Encontrado');
@@ -54,7 +58,7 @@ class LoginController extends Controller
                         $item->nombre = "Fredy Jair Ventura";
                         $item->correo = $request->UserEmailTxt;
                         $item->contrasena = Hash::make($request->UserPasswordTxt);
-                        $item->tipo_rol = "admin";
+                        $item->id_rol = "admin";
                         $item->es_firmante = 1;
                         $item->rfc ="testuser";
                         $item->activo = 1;
