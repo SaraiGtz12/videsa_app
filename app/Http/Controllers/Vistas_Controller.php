@@ -23,8 +23,8 @@ class Vistas_Controller extends Controller
     }
 
     public function RegistrarServicio(){
-        
-        return view('Dashboard.AgregarServicio');
+          $clientes = Cliente::all();
+        return view('Dashboard.AgregarServicio', compact('clientes'));
     }
 
     public function Buscar(){
