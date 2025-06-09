@@ -116,7 +116,7 @@ class Nom_085_Campo_Controller extends Controller
 				'temp' => 0
 			];
 
-			foreach($dataCampo as $muestra) {
+			foreach($data_campo as $muestra) {
 				$sumas['nox'] += $muestra['nox'];
 				$sumas['co'] += $muestra['co'];
 				$sumas['o2'] += $muestra['o2'];
@@ -134,32 +134,32 @@ class Nom_085_Campo_Controller extends Controller
     }
 
     private function calcular_estratificacion($concentraciones){
-        $ConcentracionPpm1 = $concentraciones[0]['concentracion1'];
-        $ConcentracionPpm2 = $concentraciones[0]['concentracion2'];
-        $ConcentracionPpm3 = $concentraciones[0]['concentracion3'];
+        $concentracion_ppm1 = $concentraciones[0]['concentracion1'];
+        $concentracion_ppm2 = $concentraciones[0]['concentracion2'];
+        $concentracion_ppm3 = $concentraciones[0]['concentracion3'];
 
-        $ConcentracionPromedio = number_format(($ConcentracionPpm1 + $ConcentracionPpm2 + $ConcentracionPpm3) / 3, 2);
+        $concentracion_promedio = number_format(($concentracion_ppm1 + $concentracion_ppm2 + $concentracion_ppm3) / 3, 2);
 
-        $estratificacion1 = number_format(($ConcentracionPromedio == 0) ? 0 : abs(($ConcentracionPromedio - $ConcentracionPpm1) / $ConcentracionPromedio) * 100, 2);
-        $estratificacion2 = number_format(($ConcentracionPromedio == 0) ? 0 : abs(($ConcentracionPromedio - $ConcentracionPpm2) / $ConcentracionPromedio) * 100, 2);
-        $estratificacion3 = number_format(($ConcentracionPromedio == 0) ? 0 : abs(($ConcentracionPromedio - $ConcentracionPpm3) / $ConcentracionPromedio) * 100, 2);
+        $estratificacion1 = number_format(($concentracion_promedio == 0) ? 0 : abs(($concentracion_promedio - $concentracion_ppm1) / $concentracion_promedio) * 100, 2);
+        $estratificacion2 = number_format(($concentracion_promedio == 0) ? 0 : abs(($concentracion_promedio - $concentracion_ppm2) / $concentracion_promedio) * 100, 2);
+        $estratificacion3 = number_format(($concentracion_promedio == 0) ? 0 : abs(($concentracion_promedio - $concentracion_ppm3) / $concentracion_promedio) * 100, 2);
 
-        $ppm1 = number_format(abs($ConcentracionPromedio - $ConcentracionPpm1), 2);
-        $ppm2 = number_format(abs($ConcentracionPromedio - $ConcentracionPpm2), 2);
-        $ppm3 = number_format(abs($ConcentracionPromedio - $ConcentracionPpm3), 2);
+        $ppm1 = number_format(abs($concentracion_promedio - $concentracion_ppm1), 2);
+        $ppm2 = number_format(abs($concentracion_promedio - $concentracion_ppm2), 2);
+        $ppm3 = number_format(abs($concentracion_promedio - $concentracion_ppm3), 2);
 
         return [
             'concentraciones' => [
-                'concentracion1' => $ConcentracionPpm1,
-                'concentracion2' => $ConcentracionPpm2,
-                'concentracion3' => $ConcentracionPpm3,
-                'promedio' => $ConcentracionPromedio
+                'concentracion_1' => $concentracion_ppm_1,
+                'concentracion_2' => $concentracion_ppm_2,
+                'concentracion_3' => $concentracion_ppm_3,
+                'promedio' => $concentracion_promedio
             ],
             'estratificacion' => [
-                'estratificacion1' => $estratificacion1,
-                'estratificacion2' => $estratificacion2,
-                'estratificacion3' => $estratificacion3,
-                'estratMaxima' => max($estratificacion1, $estratificacion2, $estratificacion3)
+                'estratificacion_1' => $estratificacion_1,
+                'estratificacion_2' => $estratificacion_2,
+                'estratificacion_3' => $estratificacion_3,
+                'estratMaxima' => max($estratificacion_1, $estratificacion_2, $estratificacion_3)
             ],
             'ppm' => [
                 'ppm1' => $ppm1,
@@ -195,21 +195,16 @@ class Nom_085_Campo_Controller extends Controller
     }
 
     //$diametro_int_c, $extencion_puerto
-    public function distribucion_puntos_estratificacion($puntos_finales = 12, $tipo_conducto = "Circular"){
-        $resultados = [];
+    // public function distribucion_puntos_estratificacion($puntos_finales = 12, $tipo_conducto = "Circular") {
+    //     if($puntos_finales == 12 && $tipo_conducto == "Circular") {
+    //         // Aquí debes especificar qué vista quieres retornar
+    //         return view('nombre.de.tu.vista', [
+    //             'factores' => $this->factores_longuitud_kl
+    //         ]);
+    //     }
         
-        if($puntos_finales == 12 && $tipo_conducto == "Circular"){
-            echo "Configuración: " . $configuracion . "\n";
-    
-            foreach ($puntos as $punto => $valor) {
-                echo "  Punto $punto: $valor\n";
-            }
-
-            return view ();
-        }else{
-            $resultados = [
-                "resulatdo" => "N/A"
-            ];
-        }
-    }
+    //     return [
+    //         "resultado" => "N/A"  // Corregido el typo
+    //     ];
+    // }
 }
