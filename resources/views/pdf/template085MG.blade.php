@@ -122,17 +122,7 @@
 </head>
 
 <body>
-    @if ($modo === 'web')
-        <form id="formImagenesGraficas" action="{{ url('/generate085MG') }}" method="POST" style="text-align: right; position: relative; z-index: 10;">
-            @csrf
-            <input type="hidden" name="descargar" value="1">
-            <input type="hidden" name="grafica_co" id="inputGraficaCO">
-            <input type="hidden" name="grafica_o2" id="inputGraficaO2">
-            <input type="hidden" name="grafica_co2" id="inputGraficaCO2">
-            <button type="submit">Descargar PDF</button>
-        </form>
 
-    @endif
     <main>
         @include('pdf.recursos.headerCaratula')
         <div class="company-name">
@@ -398,7 +388,6 @@
     @include('pdf.recursos.headerGeneral')
 
         <div style="margin-top: 20px">
-           @if ($modo === 'pdf')
                 <!-- Diseño con tabla para compatibilidad en PDF -->
                 <table style="width: 100%; border-collapse: collapse;">
                     <tr>
@@ -454,57 +443,7 @@
                         </td>
                     </tr>
                 </table>
-            @else
-                <!-- Vista web normal -->
-                <div style="display: flex; gap: 40px; align-items: flex-start;">
-                    <table style="width: 50%; margin-top: 40px; border-collapse: collapse; border: 1px solid black;">
-                        <thead>
-                            <tr>
-                                <th colspan="5" style="text-align: center; border: 1px solid black; padding: 8px;">ANALITO</th>
-                            </tr>
-                            <tr>
-                                <th style="border: 1px solid black; padding: 6px;">No.</th>
-                                <th style="border: 1px solid black; padding: 6px;">CO (ppmv)</th>
-                                <th style="border: 1px solid black; padding: 6px;">O2%</th>
-                                <th style="border: 1px solid black; padding: 6px;">CO2 %</th>
-                                <th style="border: 1px solid black; padding: 6px;">TEMP, °C</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($analito_no as $i => $no)
-                                <tr>
-                                    <td style="border: 1px solid black; padding: 6px;">{{ $no }}</td>
-                                    <td style="border: 1px solid black; padding: 6px;">{{ $analito_CO[$i] }}</td>
-                                    <td style="border: 1px solid black; padding: 6px;">{{ $analito_O2[$i] }}</td>
-                                    <td style="border: 1px solid black; padding: 6px;">{{ $analito_CO2[$i] }}</td>
-                                    <td style="border: 1px solid black; padding: 6px;">{{ $analito_temp[$i] }}</td>
-                                </tr>
-                            @endforeach
-                            <tr>
-                                <td style="border: 1px solid black; padding: 6px; font-weight: bold;">Promedio</td>
-                                <td style="border: 1px solid black; padding: 6px;">
-                                    {{ number_format(array_sum($analito_CO) / count($analito_CO), 2) }}
-                                </td>
-                                <td style="border: 1px solid black; padding: 6px;">
-                                    {{ number_format(array_sum($analito_O2) / count($analito_O2), 2) }}
-                                </td>
-                                <td style="border: 1px solid black; padding: 6px;">
-                                    {{ number_format(array_sum($analito_CO2) / count($analito_CO2), 2) }}
-                                </td>
-                                <td style="border: 1px solid black; padding: 6px;">
-                                    {{ number_format(array_sum($analito_temp) / count($analito_temp), 2) }}
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                    <div style="width: 50%; display: flex; flex-direction: column; gap: 20px; margin-top: 40px;">
-                        <canvas id="graficaCO" width="400" height="200"></canvas>
-                        <canvas id="graficaO2" width="400" height="200"></canvas>
-                        <canvas id="graficaCO2" width="400" height="200"></canvas>
-                    </div>
-                </div>
-            @endif
+          
         </div>
     @include('pdf.recursos.footerGeneral')  
     <div style="page-break-before: always;"></div>
