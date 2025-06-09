@@ -10,6 +10,6 @@ class nom085_Controller extends Controller
 {
     public function registrar_nom085_mg(Request $request){
         Log::info('La petición llego');
-        return redirect
+        return redirect()->back();
     }
 }

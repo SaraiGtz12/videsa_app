@@ -26,8 +26,11 @@ class User extends Authenticatable
         'contrasena',
         'tipo_rol',
         'es_firmante',
-        'activo'
+        'activo',
+        'creado_en',
+        'actualizado_en'
     ];
+    public $timestamps = false;
 
     /**
      * The attributes that should be hidden for serialization.
