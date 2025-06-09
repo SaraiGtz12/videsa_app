@@ -8,7 +8,6 @@ use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ServiceOrdersController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\nom085_Controller;
-
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\NormaController;
 
@@ -48,12 +47,10 @@ Route::post('/register_user', [UsersController::class, 'RegistrarUsuarios'])->na
 Route::get('/getMuestreadores', [FormsController::class, 'getMuestreadores']);
 
 Route::post('/generarPDF', [PdfController::class, 'generarPDF'])->name('generarPDF');
-Route::get('/prueba_puntos', [Nom, 'distribucion_puntos_estratificacion'])->name('Prueba');
 
-Route::post('/registrar_nom85mg', [nom085_Controller::class, 'registrar_nom085_mg'])->name('registrar_nom085_mg');
 Route::get('/empresa/nueva', [EmpresaController::class, 'create'])->name('empresa.create');
 Route::post('/empresa/guardar', [EmpresaController::class, 'store'])->name('empresa.store');
 
 
-
+Route::post('/registrar_nom085_mg', [nom085_Controller::class, 'registrar_nom085_mg'])->name('registrar_nom085_mg');
 Route::post('/norma/store', [NormaController::class, 'store'])->name('empresa.store');

@@ -16,28 +16,22 @@ class UsersController extends Controller
         Log::info("Función Cargada");
         $request->validate([
             "nombreP" => "required|string",
-            "apellidoPP" => "required|string",
-            "apellidoMP" => "required|string",
+            "apellidos" => "required|string",
             "rolP" => "required|integer",
-            "UsuarioP" => "required|email|unique:users,emailUser",
+            "rfcUsuario" => "required|string|unique:users,rfc",
+            "UsuarioP" => "required|email|unique:users,correo",
             "ContrasenaP" => "required|string",
         ]);
 
         try{
             $usuario = new User();
-            $usuario->emailuser = $request->UsuarioP;
-            $usuario->password = Hash::make($request->ContrasenaP);
-            $usuario->rolId = $request->rolP;
+            $usuario->correo = $request->UsuarioP;
+            $usuario->contrasena = Hash::make($request->ContrasenaP);
+            $usuario->id_rol = $request->rolP;
+            $usuario->es_firmante = 0;
+            $usuario->rfc = $request->rfcUsuario;
+            $usuario->activo = 1;
             $usuario->save();
-
-            $usuario_id = $usuario->idUser;
-
-            $persona = new Person();
-            $persona->name = $request->nombreP;
-            $persona->lastName = $request->apellidoPP;
-            $persona->secondLastName = $request->apellidoMP;
-            $persona->userId = $usuario_id;
-            $persona->save();
 
             return redirect()->back()->with(['success' => '¡El usuario se ha registrado con éxito!']);
         }catch(Exception $e){

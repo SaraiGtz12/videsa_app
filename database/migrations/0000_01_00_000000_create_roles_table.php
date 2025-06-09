@@ -13,14 +13,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('roles', function (Blueprint $table) {
-            $table->id('idRol');
-            $table->string('rol');
+            $table->id('id_rol');
+            $table->string('nombre');
             $table->timestamps();
         });
 
         DB::table('roles')->insert([
-            ['rol' => 'Administrador'],
-            ['rol' => 'Muestreador']
+            ['nombre' => 'Administrador'],
+            ['nombre' => 'Coordinador'],
+            ['nombre' => 'Muestreador']
         ]);
     }
 

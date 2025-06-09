@@ -31,11 +31,11 @@
                             </div>
                             <div class="mb-2">
                                 <span>Apellido Paterno</span>
-                                <input type="text" name="apellidoPP" id="apellidoPP" class="form-control" required>
+                                <input type="text" name="apellidos" id="apellidos" class="form-control" required>
                             </div>
                             <div class="mb-2">
-                                <span>Apellido Materno</span>
-                                <input type="text" name="apellidoMP" id="apellidoMP" class="form-control" required>
+                                <span>RFC</span>
+                                <input type="text" name="rfcUsuario" id="rfcUsuario" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
@@ -44,7 +44,7 @@
                                 <select name="rolP" id="rolP" class="form-select" required>
                                     <option value="">Selecciona un rol</option>
                                     @foreach ($roles as $rol)
-                                        <option value="{{$rol->idRol}}">{{$rol->rol}}</option>
+                                        <option value="{{$rol->id_rol}}">{{$rol->nombre}}</option>
                                     @endforeach
                                 </select>
                             </div>

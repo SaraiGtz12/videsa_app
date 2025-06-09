@@ -24,11 +24,11 @@ class User extends Authenticatable
         'rfc',
         'correo',
         'contrasena',
-        'tipo_rol',
         'es_firmante',
         'activo',
         'creado_en',
-        'actualizado_en'
+        'actualizado_en',
+        'id_rol'
     ];
     public $timestamps = false;
 
