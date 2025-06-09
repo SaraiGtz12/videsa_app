@@ -7,6 +7,8 @@ use App\Models\Rol;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Norma;
+
 
 class Vistas_Controller extends Controller
 {
@@ -51,6 +53,7 @@ class Vistas_Controller extends Controller
         return view('Dashboard.AgregarEmpresa');
     }
      public function AgregarNorma(){
-        return view('Dashboard.AgregarNorma');
+          $normas = Norma::where('activa', 1)->get();
+          return view('Dashboard.AgregarNorma', compact('normas'));
     }
 }

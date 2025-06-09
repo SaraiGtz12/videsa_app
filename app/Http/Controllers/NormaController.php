@@ -24,4 +24,30 @@ class NormaController extends Controller
 
         return redirect()->back()->with('success', 'Norma registrada exitosamente.');
     }
+    public function desactivar($id)
+    {
+        $norma = Norma::findOrFail($id);
+        $norma->activa = 0;
+        $norma->save();
+
+        return response()->json(['success' => true, 'message' => 'Norma desactivada correctamente.']);
+    }
+    public function update(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer|exists:normas,id',
+        
+        ]);
+
+        $norma = Norma::find($request->id);
+        $norma->update([
+            'codigo' => $request->codigo,
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+        ]);
+
+        return redirect()->back()->with('success', 'Norma actualizada correctamente.');
+    }
+
+
 }
