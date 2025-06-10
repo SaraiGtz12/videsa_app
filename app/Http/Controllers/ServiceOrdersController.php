@@ -11,25 +11,64 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
+use App\Models\OrdenTrabajo;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
 class ServiceOrdersController extends Controller
 {
     public function guardar(Request $request)
     {
+    //dd($request->all());die;
         $request->validate([
-            'codigo' => 'required|string|max:255',
-            'nombre' => 'required|string|max:255',
-            'descripcion' => 'required|string|max:1000',
+            'empresa' => 'required|integer',
+            'Servicio' => 'required|array',
+            'Servicio.*' => 'required|integer',
+            'FechaMuestreo' => 'required|date',
+            'Muestreador' => 'required|string|max:255',
+            'Cantidad' => 'required|integer'
+
         ]);
 
-        Servicio::create([
-            'codigo' => $request->norma,
-            'usuario_asignado' => $request->usuario_asignado,
-            'usuario_creador' => $request->usuario_creador,
-            'activa' => 1,
-        ]);
+        $year = date('y'); 
+        $contador = OrdenTrabajo::whereYear('creado_en', date('Y'))->count() + 1;
+        $codigo = $year . '-' . str_pad($contador, 3, '0', STR_PAD_LEFT);
 
-        return redirect()->back()->with('success', 'Orden registrada exitosamente.');
+
+
+            $servicios = $request->input('Servicio');
+            $puntos = $request->input('Puntos');
+            $descripciones = $request->input('Descripcion'); 
+            
+            for ($i = 0; $i < count($servicios); $i++) {
+              //  dd('entre al for');die;
+               //\Log::info("Guardando orden para servicio: " . $servicios[$i]);
+                OrdenTrabajo::create([
+
+                    'codigo'=> $codigo,
+                    'usuario_asignado' => '1',
+                    'usuario_creador'=> '2',
+                    'id_norma'=> $servicios[$i],  
+                    'id_cliente'=> $request->input('empresa'),
+                    'id_sucursal'=> $request->input('empresa'),
+                    'fecha_evaluacion' => $request->input('FechaMuestreo'),
+                    'fecha_reconocimiento'=> null,
+                    'estado'=> '2',
+                    'creado_en'=> Carbon::now(),
+                    'actualizado_en'=>Carbon::now()
+                ]);
+                
+              
+           
+            }
+            
+
+       
+            return redirect()->back()->with('success', 'Orden(es) registrada(s) correctamente.');
+
     }
+
+
 
 
 }

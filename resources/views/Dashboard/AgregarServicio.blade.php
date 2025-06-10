@@ -24,6 +24,7 @@
                                 </select>
                             </div>
                         </div>
+                       
                     </div>
                    
                 </div>
@@ -34,7 +35,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Datos del Servicio</h6>
                 </div>
                 <div class="card-body">
-                    <div class="row mb-3">
+                    <div class="row">
                         <div class="col">
                             <div class="mb-2">
                                 <span>Número de Servicios</span>

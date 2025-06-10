@@ -40,7 +40,7 @@ Route::get('/search',[Vistas_Controller::class, 'Buscar'])->name('Buscar');
 Route::get('/servicios_registrados', [Vistas_Controller::class, 'VistaServiciosRegistrados'])->name('ServiciosRegistrados');
 
 //Rutas para registros
-Route::post('/guardar', [ServiceOrdersController::class, 'guardar'])->name('servicio.guardar');
+Route::post('/servicio/guardar', [ServiceOrdersController::class, 'guardar'])->name('servicio.guardar');
 Route::post('/register_user', [UsersController::class, 'RegistrarUsuarios'])->name('RegistrarUsuario');
 
 
