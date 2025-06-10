@@ -55,6 +55,7 @@ class Vistas_Controller extends Controller
     }
      public function AgregarNorma(){
           $normas = Norma::where('activa', 1)->get();
+          
           return view('Dashboard.AgregarNorma', compact('normas'));
     }
 }
