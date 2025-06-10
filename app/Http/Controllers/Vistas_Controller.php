@@ -7,6 +7,7 @@ use App\Models\Rol;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Sucursal;
 use App\Models\Norma;
 
 
@@ -25,8 +26,11 @@ class Vistas_Controller extends Controller
     }
 
     public function RegistrarServicio(){
-          $clientes = Cliente::all();
+          
           $normas = Norma::select('id', 'codigo')->where('activa', 1)->get();
+          $clientes = Cliente::select('id','razon_social')->get();
+        
+
         return view('Dashboard.AgregarServicio', compact('clientes','normas'));
     }
 
@@ -48,6 +52,7 @@ class Vistas_Controller extends Controller
     }
     public function VistaFormulario(){
          $clientes = Cliente::all();
+         
         return view('Dashboard.Formulario', compact('clientes'));
     }
     public function AgregarEmpresa(){
