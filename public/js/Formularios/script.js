@@ -1,10 +1,17 @@
+
 $(document).ready(function () {
     console.log("JQuery Listo");
     $("#NumServicios").click(function () {
         let cantidad = $("#Cantidad").val();
         $("#ContenidoServicio").empty(); // Limpiar contenido previo
+        let opcionesNormas = '<option value="">Selecciona un Servicio</option>';
+            normas.forEach(norma => {
+                opcionesNormas += `<option value="${norma.id}">${norma.codigo}</option>`;
+            });
 
         for (let i = 0; i < cantidad; i++) {
+            
+            
             let nuevoElemento = `
             <div class="row">
                 <div class="col-md-4">
@@ -17,9 +24,8 @@ $(document).ready(function () {
                     <div class="mb-2">
                         <label class="form-label">Tipo de Servicio (NOM)</label>
                         <select class="form-select" name="Servicio[]" required>
-                            <option value="">Selecciona un Servicio</option>
-                            <option value="1">NOM025</option>
-                        </select>
+                        ${opcionesNormas}
+                    </select>
                     </div>
                 </div>
                 <div class="col-md-4">

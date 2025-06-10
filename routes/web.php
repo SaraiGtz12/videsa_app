@@ -40,8 +40,9 @@ Route::get('/search',[Vistas_Controller::class, 'Buscar'])->name('Buscar');
 Route::get('/servicios_registrados', [Vistas_Controller::class, 'VistaServiciosRegistrados'])->name('ServiciosRegistrados');
 
 //Rutas para registros
-Route::post('/register_order', [ServiceOrdersController::class, 'Registrarorden'])->name('Registrar_Orden');
+Route::post('/guardar', [ServiceOrdersController::class, 'guardar'])->name('servicio.guardar');
 Route::post('/register_user', [UsersController::class, 'RegistrarUsuarios'])->name('RegistrarUsuario');
+
 
 //Rutas para la optención de datos
 Route::get('/getMuestreadores', [FormsController::class, 'getMuestreadores']);
@@ -52,5 +53,12 @@ Route::get('/empresa/nueva', [EmpresaController::class, 'create'])->name('empres
 Route::post('/empresa/guardar', [EmpresaController::class, 'store'])->name('empresa.store');
 
 
+
+Route::post('/norma/store', [NormaController::class, 'store'])->name('norma.store');
+Route::post('/norma/desactivar/{id}', [NormaController::class, 'desactivar'])->name('norma.desactivar');
+Route::post('/norma/update', [NormaController::class, 'update'])->name('norma.update');
+
 Route::post('/registrar_nom085_mg', [nom085_Controller::class, 'registrar_nom085_mg'])->name('registrar_nom085_mg');
 Route::post('/norma/store', [NormaController::class, 'store'])->name('empresa.store');
+
+
