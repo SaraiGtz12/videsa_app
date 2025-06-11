@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\detalles_medicion_nom085;
+use App\Models\medicion_nom085;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -83,7 +84,73 @@ class nom085_Controller extends Controller
 
             $determinacion_conclusiones = $this->determincacion_conclusiones($max_estra, $max_ppm);
             Log::info("Datos Obtenidos de la conclusión: ",$determinacion_conclusiones);
-            return redirect()->back();
+
+            $presion = 760 * exp(-0.000117 * $request->altura);
+
+            try{
+                $detalles_medicion_nom085 = new detalles_medicion_nom085();
+                $detalles_medicion_nom085->orden_trabajo_id = "1";
+                $detalles_medicion_nom085->orden_trabajo_id ="1";
+                $detalles_medicion_nom085->combustible_utilizado = $request->combustible_utilizado;
+                $detalles_medicion_nom085->capacidad_termica = $request->capacidad_termica;
+                $detalles_medicion_nom085->altura_msnm = $request->altura;
+                $detalles_medicion_nom085->precision_estatica = $request->presion_estatica;
+                $detalles_medicion_nom085->presion_barometrica = $presion;
+                $detalles_medicion_nom085->anio = $request->anio;
+                $detalles_medicion_nom085->geometria_conducto = $request->geometria_conductor;
+                $detalles_medicion_nom085->diametro_conducto = $request->diametro_i_d;
+                $detalles_medicion_nom085->diametro_equivalente =$request->diametro_equivalente;
+                $detalles_medicion_nom085->largo_transversal = $request->largo_trasversal;
+                $detalles_medicion_nom085->ancho_transversal = $request->ancho_transversal;
+                $detalles_medicion_nom085->numero_puertos = $request->num_puerto;
+                $detalles_medicion_nom085->extension_puerto = $request->extencion_puerto;
+                $detalles_medicion_nom085->puntos_medicion = $request->num_medicion_gases;
+                $detalles_medicion_nom085->distancia_a = $request->d_a;
+                $detalles_medicion_nom085->distancia_b = $request->d_b;
+                $detalles_medicion_nom085->distancia_c = $request->d_c;
+                $detalles_medicion_nom085->numero_diametro_a = $request->num_d_a;
+                $detalles_medicion_nom085->numero_diametro_b = $request->num_d_b;
+                $detalles_medicion_nom085->numero_diametro_c = $request->num_d_c;
+                $detalles_medicion_nom085->marcado_sonda_1 = $marcado_1;
+                $detalles_medicion_nom085->marcado_sonda_2 = $marcado_2;
+                $detalles_medicion_nom085->marcado_sonda_3 = $marcado_3;
+                $detalles_medicion_nom085->concentracion_1 = $valor_nox_1;
+                $detalles_medicion_nom085->concentracion_2 = $valor_nox_2;
+                $detalles_medicion_nom085->concentracion_3 = $valor_nox_3;
+                $detalles_medicion_nom085->estratificacion_1  = $resultados_estratifciacion['estratificacion']['estratificacion_1'];
+                $detalles_medicion_nom085->estratificacion_2  = $resultados_estratifciacion['estratificacion']['estratificacion_2'];
+                $detalles_medicion_nom085->estratificacion_3  = $resultados_estratifciacion['estratificacion']['estratificacion_3'];
+                $detalles_medicion_nom085->ppm_1 = $resultados_estratifciacion['ppm']['ppm1'];
+                $detalles_medicion_nom085->ppm_2 = $resultados_estratifciacion['ppm']['ppm2'];
+                $detalles_medicion_nom085->ppm_3 = $resultados_estratifciacion['ppm']['ppm3'];
+                $detalles_medicion_nom085->promedio_concentracion = $resultados_estratifciacion['concentraciones']['promedio'];
+                $detalles_medicion_nom085->max_estratificacion = $resultados_estratifciacion['estratificacion']['estratMaxima'];
+                $detalles_medicion_nom085->max_ppm = $resultados_estratifciacion['ppm']['ppmMaxima'];
+                $detalles_medicion_nom085->conclusion = $determinacion_conclusiones['conclusion'];
+
+                $detalles_medicion_nom085->save();
+
+                if($detalles_medicion_nom085){
+                    Log::info("Se guardo los detalles de la nom085");
+                }
+
+                $id_detalle = $detalles_medicion_nom085->id;
+                
+                foreach ($request->nox as $index => $valor) {
+                    medicion_nom085::create([
+                        'nox' => $request->nox[$index],
+                        'co_ppmv' => $request->co[$index],
+                        'o2' => $request->o2[$index],
+                        'co2' => $request->co2[$index],
+                        'temperatura' => $request->temp[$index],
+                        'id_medicion_detalle' => $id_detalle
+                    ]);
+                }
+
+                return redirect()->back();
+            }catch(Exception $e){
+                Log::error("No se pudo guardar: ".$e->getMessage());
+            }
             
         }catch(Exception $e){
             Log::error("----------------------------\nerror en la validación: ".$e->getMessage());
@@ -217,6 +284,7 @@ class nom085_Controller extends Controller
             'conclusion' => $conclusion
         ];
     }
+
 
     // public function distribucion_puntos_estratificacion($puntos_finales = 12, $tipo_conducto = "Circular") {
     //     if($puntos_finales == 12 && $tipo_conducto == "Circular") {
