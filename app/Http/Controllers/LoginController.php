@@ -58,8 +58,6 @@ class LoginController extends Controller
                         $item->es_firmante = 1;
                         $item->rfc ="testuser";
                         $item->activo = 1;
-                        $item->creado_en = now();
-                        $item->actualizado_en = now();
                         $item->save();
 
                         if($item){
