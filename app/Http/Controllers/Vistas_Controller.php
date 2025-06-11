@@ -56,7 +56,8 @@ class Vistas_Controller extends Controller
         return view('Dashboard.Formulario', compact('clientes'));
     }
     public function AgregarEmpresa(){
-        return view('Dashboard.AgregarEmpresa');
+        $clientes = Cliente::all();
+        return view('Dashboard.AgregarEmpresa', compact('clientes'));
     }
      public function AgregarNorma(){
           $normas = Norma::where('activa', 1)->get();

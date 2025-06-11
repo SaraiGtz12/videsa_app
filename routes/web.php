@@ -53,6 +53,12 @@ Route::get('/prueba_puntos', [Nom_085_Campo_Controller::class, 'distribucion_pun
 
 Route::get('/empresa/nueva', [EmpresaController::class, 'create'])->name('empresa.create');
 Route::post('/empresa/guardar', [EmpresaController::class, 'store'])->name('empresa.store');
+Route::post('/empresa/guardarSucursal', [EmpresaController::class, 'guardarSucursal'])->name('empresa.guardarSucursal');
+
+
+
+Route::post('/empresa/desactivar/{id}', [EmpresaController::class, 'desactivar'])->name('empresa.desactivar');
+Route::post('/empresa/update', [EmpresaController::class, 'update'])->name('empresa.update');
 
 
 
