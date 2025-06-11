@@ -74,111 +74,90 @@ class EmpresaController extends Controller
         return redirect()->back()->with('success', 'Cliente actualizada correctamente.');
     }
 
-
-
-// public function guardarSucursal(Request $request)
-// {
-//    ;
-//     $request->validate([
-//         'id_cliente' => 'required|exists:clientes,id',
-//         'telefono' => 'required|string|max:20',
-//         'calle' => 'required|string',
-//         'numero' => 'required',
-//         'colonia' => 'required|string',
-//         'alcaldia' => 'required|string',
-//         'estado' => 'required|string',
-//         'cp' => 'required|string',
-//         'nombre' => 'required|string',
-//     ]);
-
-//     if ($request->filled('id_sucursal')) {
-//         // Editar
-//         $sucursal = Sucursal::findOrFail($request->id_sucursal);
-//         $sucursal->update([
-//             'id_cliente' => $request->id_cliente,
-//             'nombre' => $request->nombre,
-//             'codigo' => $request->codigo, 
-//             'telefono' => $request->telefono,
-//             'calle' => $request->calle,
-//             'numero' => $request->numero,
-//             'colonia' => $request->colonia,
-//             'ciudad' => $request->alcaldia,
-//             'estado' => $request->estado,
-//             'codigo_postal' => $request->cp,
-//             'actualizado_en' => Carbon::now(),
-//         ]);
-//         $mensaje = 'Sucursal actualizada correctamente.';
-//     } else {
-//         // Crear
-//         Sucursal::create([
-//             'id_cliente' => $request->id_cliente,
-//             'nombre' => $request->nombre,
-//             'codigo' => 'SUC-' . $request->id_cliente,
-//             'telefono' => $request->telefono,
-//             'calle' => $request->calle,
-//             'numero' => $request->numero,
-//             'colonia' => $request->colonia,
-//             'ciudad' => $request->alcaldia,
-//             'estado' => $request->estado,
-//             'codigo_postal' => $request->cp,
-//             'creado_en' => Carbon::now(),
-//             'actualizado_en' => null,
-//         ]);
-//         $mensaje = 'Sucursal registrada correctamente.';
-//     }
-
-//     return response()->json(['message' => $mensaje]);
-// }
-
-
-
-  
-
-
-
-    
+//para sucursales
     public function obtenerSucursales($id)
     {
         $sucursales = Sucursal::where('id_cliente', $id)->get();
         return response()->json($sucursales);
     }
 
-     public function updateSucursal(Request $request)
-    {
-        $request->validate([
-            'id' => 'required|integer|exists:sucursal,id',
 
-            'nombre' => 'required|string',
+
+    public function guardarSucursal(Request $request)
+    {
+    
+        $validated = $request->validate([
+            'id_cliente' => 'required|string|max:255',
+            'nombre' => 'required|string|max:20',
             'codigo' => 'required|string|max:20',
             'calle' => 'required|string|max:20',
-            'numero' => 'required|integer',
-            'colonia' => 'required|email', 
-            'alcaldia' => 'required|string',
-            'estado' => 'required|string',
-            'cp' => 'required|string',
-            'telefono' => 'required|string',
+            'numero' => 'required|string|max:20',
+            'colonia' => 'required|string|max:20',
+            'alcaldia' => 'required|string|max:20',
+            'estado' => 'required|string|max:20',
+            'cp' => 'required|string|max:20',
+            'telefono' => 'required|string|max:20',
         ]);
 
-        $sucursal = Sucursal::find($request->id);
-        $sucursal->update([
+        $cliente = Sucursal::create([
+            'id_cliente' => $request->id_cliente,
             'nombre' => $request->nombre,
             'codigo' => $request->codigo,
             'calle' => $request->calle,
             'numero' => $request->numero,
             'colonia' => $request->colonia,
-            'ciudad' => $request->alcaldia,
+            'alcaldia' => $request->alcaldia,
             'estado' => $request->estado,
-            'codigo_postal' => $request->cp,
+            'cp' => $request->cp,
             'telefono' => $request->telefono,
-            'actualizado_en' => Carbon::now(),
+            'creado_en' => Carbon::now(),
+            'actualizado_en' => null
+        ]);
+
+      
+
+        return redirect()->route('empresa.create')->with('success', 'Sucursal registrada correctamente.');
+    }
+    
+
+    public function updateSucursal(Request $request)
+    {
+
+        // dd('entre');die;
+        $validated = $request->validate([
+            'id' => 'required|integer|exists:sucursales,id',
+            'id_cliente' => 'required|integer|exists:clientes,id',
+            'nombre' => 'required|string|max:20',
+            'codigo' => 'required|string|max:20',
+            'calle' => 'required|string|max:20',
+            'numero' => 'required|string|max:20',
+            'colonia' => 'required|string|max:20',
+            'ciudad' => 'required|string|max:20', 
+            'estado' => 'required|string|max:20',
+            'codigo_postal' => 'required|string|max:20', 
+            'telefono' => 'required|string|max:20',
         ]);
 
 
-        return redirect()->back()->with('success', 'Sucursal actualizada correctamente.');
+        $sucursal = Sucursal::find($request->id);
+        $sucursal->update([
+            'id_cliente' => $request->id_cliente,
+            'nombre' => $request->nombre,
+            'codigo' => $request->codigo,
+            'calle' => $request->calle,
+            'numero' => $request->numero,
+            'colonia' => $request->colonia,
+            'ciudad' => $request->ciudad,
+            'estado' => $request->estado,
+            'codigo_postal' => $request->codigo_postal,
+            'telefono' => $request->telefono,
+            'actualizado_en' => Carbon::now()
+        ]);
+
+
+        return redirect()->back()->with('success', 'sucursal actualizada correctamente.');
     }
 
 
-
-  
 
 }

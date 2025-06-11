@@ -177,7 +177,7 @@
     <div class="modal fade" id="modalFormularioSucursal" tabindex="-1" role="dialog" aria-labelledby="tituloModalSucursal" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-            <form action="">
+            <form action="{{ route('empresa.guardarSucursal') }}" method="POST">
                 @csrf
                 <div class="modal-header">
                 <h5 class="modal-title" id="tituloModalSucursal">Registrar Sucursal</h5>
@@ -187,10 +187,10 @@
                 </div>
                 <div class="modal-body">
                 <div class="row">
-                    <input type="hidden" name="id_sucursal" id="id_sucursal">
+                    <input type="hidden" name="id" id="id_sucursal">
                         <div class="col">
                             <div class="mb-2">
-                                <select class="form-select select2" name="id_cliente" required>
+                                <select class="form-select select2" id="id_cliente"  name="id_cliente" required>
                                     <option value="" selected disabled>Seleccionar Empresa</option>
                                     @foreach ($clientes as $cliente)
                                         <option value="{{ $cliente->id }}">{{ $cliente->razon_social}}</option>
@@ -244,7 +244,7 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>Alcaldia o Municipio</span>
-                                <input type="text" name="alcaldia" id="alcaldia" class="form-control" required>
+                                <input type="text" name="ciudad" id="alcaldia" class="form-control" required>
                             </div>
                         </div>
                        
@@ -261,7 +261,7 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>C.P</span>
-                                <input type="text" name="cp" id="cp" class="form-control" required>
+                                <input type="text" name="codigo_postal" id="cp" class="form-control" required>
                             </div>
                         </div>
                        
@@ -301,7 +301,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
       <script>
-        const RUTA_GUARDAR_SUCURSAL = "{{ route('empresa.guardarSucursal') }}";
+        const RUTA_UPDATE_SUCURSAL = "{{ route('empresa.updateSucursal') }}";
         const RUTA_UPDATE_CLIENTE = "{{ route('empresa.update') }}";
          const CSRF_TOKEN = "{{ csrf_token() }}";
          
