@@ -114,30 +114,24 @@
                                 <input type="number" step="0.01" name="diametro_i_d" id="diametro_i_d" class="form-control" required>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="mb-2">
-                                <span>Número de puntos para medición de gases</span>
-                                <input type="number" name="num_medicion_gases" id="num_medicion_gases" class="form-control" required>
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="mb-2">
-                                <span>Diametro equivalente, Deq.</span>
-                                <input type="number" step="0.01" name="diametro_equivalente" id="diametro_equivalente" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="mb-2">
                                 <span>Largo transversal, L1</span>
-                                <input type="number" step="0.01" name="largo_trasversal" id="largo_trasversal" class="form-control" required>
+                                <input type="number" step="0.01" name="largo_trasversal" value="0" id="largo_trasversal" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Ancho Transversal, L2</span>
-                                <input type="number" step="0.01" name="ancho_transversal" id="ancho_transversal" class="form-control" required>
+                                <input type="number" step="0.01" name="ancho_transversal" value="0" id="ancho_transversal" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2">
+                                <span>Diametro equivalente, Deq.</span>
+                                <input type="number" step="0.01" name="diametro_equivalente" id="diametro_equivalente" class="form-control" readonly required>
                             </div>
                         </div>
                     </div>
@@ -151,19 +145,19 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>Distancia A</span>
-                                <input type="number" step="0.01" name="d_a" id="d_a" class="form-control" required>
+                                <input type="number" step="0.01" name="d_a" value="0" id="d_a" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Distancia B</span>
-                                <input type="number" step="0.01" name="d_b" id="d_b" class="form-control" required>
+                                <input type="number" step="0.01" name="d_b" value="0" id="d_b" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Distancia C</span>
-                                <input type="number" step="0.01" name="d_c" id="d_c" class="form-control" required>
+                                <input type="number" step="0.01" name="d_c" value="0" id="d_c" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -171,19 +165,19 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>Número de diametros en A</span>
-                                <input type="number" step="0.01" name="num_d_a" id="num_d_a" class="form-control" required>
+                                <input type="number" step="0.01" name="num_d_a" id="num_d_a" class="form-control" value="0" readonly required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Número de diametros en B</span>
-                                <input type="number" step="0.01" name="num_d_b" id="num_d_b" class="form-control" required>
+                                <input type="number" step="0.01" name="num_d_b" id="num_d_b" class="form-control" value="0" readonly required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Número de diametros en C</span>
-                                <input type="number" step="0.01" name="num_d_c" id="num_d_c" class="form-control" required>
+                                <input type="number" step="0.01" name="num_d_c" id="num_d_c" class="form-control" value="0" readonly required>
                             </div>
                         </div>
                         <div class="col">
@@ -241,5 +235,6 @@
 @endsection
 @section('Scripts')
     <script src="{{asset('js/Formularios/script.js')}}"></script>
+    <script src="{{asset('js/Formularios/formulas.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 @endsection
