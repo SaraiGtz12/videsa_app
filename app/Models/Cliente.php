@@ -17,6 +17,7 @@ class Cliente extends Model
         'correo',
         'creado_en',
         'actualizado_en',
+        'estatus'
     ];
 
     public function sucursales()

@@ -91,7 +91,8 @@ class Vistas_Controller extends Controller
             // Redirige a otra página (por ejemplo, la página de inicio)
             return redirect()->route('login')->withErrors(['error' => 'No tienes permiso para acceder a esta página.', 'Titulo'=>'Acceso Denegado']);
         }
-        $clientes = Cliente::all();
+        $clientes = Cliente::where('estatus', 1)->get();
+
         return view('Dashboard.AgregarEmpresa', compact('clientes'));
     }
      public function AgregarNorma(){
