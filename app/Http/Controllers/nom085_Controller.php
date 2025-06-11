@@ -176,7 +176,7 @@ class nom085_Controller extends Controller
             try{
                 $detalles_medicion_nom085 = new detalles_medicion_nom085();
                 $detalles_medicion_nom085->orden_trabajo_id = "1";
-                $detalles_medicion_nom085->orden_trabajo_id ="1";
+                $detalles_medicion_nom085->equipo_id ="1";
                 $detalles_medicion_nom085->combustible_utilizado = $request->combustible_utilizado;
                 $detalles_medicion_nom085->capacidad_termica = $request->capacidad_termica;
                 $detalles_medicion_nom085->altura_msnm = $request->altura;

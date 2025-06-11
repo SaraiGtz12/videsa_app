@@ -131,7 +131,7 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>Diametro equivalente, Deq.</span>
-                                <input type="number" step="0.01" name="diametro_equivalente" id="diametro_equivalente" class="form-control" readonly required>
+                                <input type="number" step="0.01" name="diametro_equivalente" value="0" id="diametro_equivalente" class="form-control" readonly required>
                             </div>
                         </div>
                     </div>
