@@ -112,6 +112,13 @@ class EmpresaController extends Controller
         return redirect()->back()->with('success', 'Norma actualizada correctamente.');
     }
 
+    public function obtenerSucursales($id)
+    {
+        $sucursales = Sucursal::where('id_cliente', $id)->get();
+        return response()->json($sucursales);
+    }
+
+
   
 
 }

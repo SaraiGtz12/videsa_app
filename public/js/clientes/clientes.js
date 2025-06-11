@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.btnEditarCliente').forEach(btn => {
             btn.addEventListener('click', function () {
-                console.log('Editando cliente');
                 const id = this.getAttribute('data-id');
                 const razon_social = this.getAttribute('data-razon_social');
                 const rfc = this.getAttribute('data-rfc');
@@ -58,5 +57,43 @@ document.addEventListener('DOMContentLoaded', function () {
                 
             });
         });
+$(document).on('click', '.btnVerSucursales', function () {
+    const idCliente = $(this).data('id');
+    $('#modaltablaSucursales').modal('show');
+        console.log("ID Cliente:", idCliente); 
+    $.ajax({
+        url: `/empresa/sucursales/${idCliente}`,
+        method: 'GET',
+        success: function (sucursales) {
+            const tbody = $('#tablaListadoSucursales tbody');
+            tbody.empty();
+
+            if (sucursales.length === 0) {
+                tbody.append('<tr><td colspan="5" class="text-center">No hay sucursales registradas.</td></tr>');
+            } else {
+                sucursales.forEach((sucursal, index) => {
+                    tbody.append(`
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${sucursal.nombre}</td>
+                            <td>${sucursal.codigo}</td>
+                            <td>${sucursal.alcaldia || '---'}</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm btn-circle"> <i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger btn-sm btn-circle"><i class="fas fa-trash-alt"></i></button>
+
+
+                            </td>
+                        </tr>
+                    `);
+                });
+            }
+
+        },
+        error: function () {
+            Swal.fire('Error', 'No se pudieron obtener las sucursales.', 'error');
+        }
+    });
+});
 
       
