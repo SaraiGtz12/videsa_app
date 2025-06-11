@@ -11,22 +11,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Datos del Cliente</h6>
                 </div>
                 <div class="card-body">
-                  
-                    <div class="row">
-                        <div class="col">
-                            <div class="mb-12">
-                                <span>Seleccionar Empresa</span>
-                                <select class="form-select select2" name="empresa" style="width: 100%;" required>
-                                    <option value="" selected disabled>Seleccionar Empresa</option>
-                                    @foreach ($clientes as $cliente)
-                                        <option value="{{ $cliente->id }}">{{ $cliente->razon_social}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                       
-                    </div>
-                   
+                    <livewire:sucursales-empresas />
                 </div>
             </div>
             <div class="card mb-2">
