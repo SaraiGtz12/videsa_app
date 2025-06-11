@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -12,18 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('normas', function (Blueprint $table) {
             $table->id();
+            $table->string('codigo')->unique();
             $table->string('nombre');
-            $table->boolean('activo')->default(true);
+            $table->string('descripcion');
+            $table->tinyInteger('activa')->default(1);
             $table->timestamps();
         });
-
-        DB::table('roles')->insert([
-            ['nombre' => 'Administrador'],
-            ['nombre' => 'Coordinador'],
-            ['nombre' => 'Muestreador']
-        ]);
     }
 
     /**
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('normas');
     }
 };
