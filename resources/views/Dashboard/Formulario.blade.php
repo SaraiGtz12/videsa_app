@@ -29,8 +29,6 @@
                                         <option value="{{ $cliente->id }}">{{ $cliente->razon_social}}</option>
                                     @endforeach
                                 </select>
-
-
                             </div>
                         </div>
                     </div>
@@ -66,7 +64,7 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>Año</span>
-                                <input type="text" name="anio" id="anio" class="form-control" required>
+                                <input type="number" name="anio" id="anio" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -75,25 +73,19 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>Capacidad Térmica Nominal</span>
-                                <input type="text" name="capacidad_termica" id="capacidad_termica" class="form-control" required>
+                                <input type="number" name="capacidad_termica" id="capacidad_termica" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Altura al nivel de mar</span>
-                                <input type="text" name="altura" id="altura" class="form-control" required>
+                                <input type="number" name="altura" id="altura" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Presión Estática</span>
-                                <input type="text" name="presion_estatica" id="presion_estatica" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="mb-2">
-                                <span>Presión Barométrica</span>
-                                <input type="text" name="presion_barometrica" id="presion_barometrica" class="form-control" required>
+                                <input type="number" step="0.01" name="presion_estatica" id="presion_estatica" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -108,19 +100,24 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>Geometría del Conducto</span>
-                                <input type="text" name="geometria_coductor" id="geometria_coductor" class="form-control" required>
+                                <select name="geometria_conductor" id="geometria_conductor" class="form-select" required>
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="Circular">Circular</option>
+                                    <option value="Rectangular">Rectangular</option>
+                                    <option value="Cuadrada">Cuadrada</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Diametrio interior del Conducto Derecho</span>
-                                <input type="text" name="diametro_i_d" id="diametro_i_d" class="form-control" required>
+                                <input type="number" step="0.01" name="diametro_i_d" id="diametro_i_d" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Número de puntos para medición de gases</span>
-                                <input type="text" name="num_medicion_gases" id="num_medicion_gases" class="form-control" required>
+                                <input type="number" name="num_medicion_gases" id="num_medicion_gases" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -128,19 +125,19 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>Diametro equivalente, Deq.</span>
-                                <input type="text" name="diametro_equivalente" id="diametro_equivalente" class="form-control" required>
+                                <input type="number" step="0.01" name="diametro_equivalente" id="diametro_equivalente" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Largo transversal, L1</span>
-                                <input type="text" name="largo_trasversal" id="largo_trasversal" class="form-control" required>
+                                <input type="number" step="0.01" name="largo_trasversal" id="largo_trasversal" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Ancho Transversal, L2</span>
-                                <input type="text" name="ancho_transversal" id="ancho_transversal" class="form-control" required>
+                                <input type="number" step="0.01" name="ancho_transversal" id="ancho_transversal" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -148,25 +145,25 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>Números de Puertos</span>
-                                <input type="text" name="num_puerto" id="num_puerto" class="form-control" required>
+                                <input type="number" name="num_puerto" id="num_puerto" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Distancia A</span>
-                                <input type="text" name="d_a" id="d_a" class="form-control" required>
+                                <input type="number" step="0.01" name="d_a" id="d_a" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Distancia B</span>
-                                <input type="text" name="d_b" id="d_b" class="form-control" required>
+                                <input type="number" step="0.01" name="d_b" id="d_b" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Distancia C</span>
-                                <input type="text" name="d_c" id="d_c" class="form-control" required>
+                                <input type="number" step="0.01" name="d_c" id="d_c" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -174,25 +171,25 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>Número de diametros en A</span>
-                                <input type="text" name="num_d_a" id="num_d_a" class="form-control" required>
+                                <input type="number" step="0.01" name="num_d_a" id="num_d_a" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Número de diametros en B</span>
-                                <input type="text" name="num_d_b" id="num_d_b" class="form-control" required>
+                                <input type="number" step="0.01" name="num_d_b" id="num_d_b" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Número de diametros en C</span>
-                                <input type="text" name="num_d_c" id="num_d_c" class="form-control" required>
+                                <input type="number" step="0.01" name="num_d_c" id="num_d_c" class="form-control" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-2">
                                 <span>Extención del Puerto</span>
-                                <input type="number" name="extencion_puerto" id="extencion_puerto" class="form-control" required>
+                                <input type="number" step="0.01" name="extencion_puerto" id="extencion_puerto" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -221,11 +218,11 @@
                                             @for ($i = 1; $i <= 10; $i++)
                                             <tr>
                                                 <td>{{ $i }}</td>
-                                                <td><input type="number" step="0.01" name="nox[]" class="form-control form-control-sm"></td>
-                                                <td><input type="number" step="0.01" name="co[]" class="form-control form-control-sm"></td>
-                                                <td><input type="number" step="0.01" name="o2[]" class="form-control form-control-sm"></td>
-                                                <td><input type="number" step="0.01" name="co2[]" class="form-control form-control-sm"></td>
-                                                <td><input type="number" step="0.1" name="temp[]" class="form-control form-control-sm"></td>
+                                                <td><input type="number" step="0.01" name="nox[]" class="form-control form-control-sm" value="1" required></td>
+                                                <td><input type="number" step="0.01" name="co[]" class="form-control form-control-sm" value="1" required></td>
+                                                <td><input type="number" step="0.01" name="o2[]" class="form-control form-control-sm" value="1" required></td>
+                                                <td><input type="number" step="0.01" name="co2[]" class="form-control form-control-sm" value="1" required></td>
+                                                <td><input type="number" step="0.1" name="temp[]" class="form-control form-control-sm" value="1" required></td>
                                             </tr>
                                             @endfor
                                         </tbody>
@@ -237,6 +234,8 @@
                     <div class="d-grid mt-4">
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
+                </div>
+            </div>
         </form>
     </div>
 @endsection
