@@ -64,6 +64,14 @@
                                             <button class="btn btn-danger btn-sm btn-circle btnEliminarNorma" data-id="{{ $cliente->id }}" title="Eliminar">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
+                                            <button 
+                                                class="btn btn-info btn-sm btn-circle btnVerSucursales"
+                                                data-id="{{ $cliente->id }}"
+                                                title="Ver Sucursales"
+                                            >
+                                                <i class="fas fa-building"></i>
+                                            </button>
+
 
                                            
                                         </td>
@@ -80,63 +88,92 @@
     <div class="modal fade" id="modalFormularioCliente" tabindex="-1" role="dialog" aria-labelledby="tituloModalCliente" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-            <form action="{{ route('empresa.store') }}" method="POST">
-                @csrf
-                <div class="modal-header">
-                <h5 class="modal-title" id="tituloModalCliente">Registrar Empresa</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                <div class="row">
-                        <div class="col">
-                            <div class="mb-2">
-                                <span>Razón Social</span>
-                                <input type="text" name="razon_social" id="razon_social" class="form-control" required>
-                            </div>
-                        </div>
-                   
+                <form action="{{ route('empresa.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="tituloModalCliente">Registrar Empresa</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-
-                   
+                    <div class="modal-body">
                     <div class="row">
-                        <input type="hidden" name="id" id="id">
+                            <div class="col">
+                                <div class="mb-2">
+                                    <span>Razón Social</span>
+                                    <input type="text" name="razon_social" id="razon_social" class="form-control" required>
+                                </div>
+                            </div>
+                    
+                        </div>
 
-                        <div class="col">
-                            <div class="mb-2">  
-                                <span>RFC</span>
-                                <input type="text" name="rfc" id="rfc" class="form-control" required>
-                            </div>
-                        </div>
-                        
-                    </div>
+                    
+                        <div class="row">
+                            <input type="hidden" name="id" id="id">
 
-                    <div class="row">
-                        <div class="col">
-                            <div class="mb-2">
-                                <span>Teléfono</span>
-                                <input type="text" name="telefono" id="telefono" class="form-control" required>
+                            <div class="col">
+                                <div class="mb-2">  
+                                    <span>RFC</span>
+                                    <input type="text" name="rfc" id="rfc" class="form-control" required>
+                                </div>
                             </div>
+                            
                         </div>
-                        <div class="col">
-                            <div class="mb-2">
-                                <span>Correo</span>
-                                <input type="email" name="correo" id="correo" class="form-control" required>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-2">
+                                    <span>Teléfono</span>
+                                    <input type="text" name="telefono" id="telefono" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-2">
+                                    <span>Correo</span>
+                                    <input type="email" name="correo" id="correo" class="form-control" required>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                 <button type="submit" class="btn btn-primary">Guardar</button>
-                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-
-
+    <div class="modal fade" id="modaltablaSucursales" tabindex="-1" role="dialog" aria-labelledby="tituloTablaSucursal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+           <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tituloTablaSucursal">Listado de Sucursales</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <table class="table table-bordered" id="tablaListadoSucursales">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Código</th>
+                                    <th>Alcaldía</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody> </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="modalFormularioSucursal" tabindex="-1" role="dialog" aria-labelledby="tituloModalSucursal" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -254,26 +291,8 @@
         </div>
     </div>
 
+    
 
-
-    <div id="tablaSucursales" class="mt-4" style="display:none;">
-        <h5>Sucursales Registradas</h5>
-        <div class="table-responsive">
-            <table class="table table-bordered" id="tablaListadoSucursales">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Nombre</th>
-                        <th>Código</th>
-                        <th>Ciudad</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-    </div>
 
 
 @endsection
