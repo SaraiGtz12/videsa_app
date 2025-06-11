@@ -15,8 +15,8 @@ class detalles_medicion_nom085 extends Model
         'capacidad_termica',
         'altura_msnm',
         'precision_estatica',
-        'anyo',
-        'precion_barometrica',
+        'anio',
+        'presion_barometrica',
         'geometria_conducto',
         'diametro_conducto',
         'diametro_equivalente',
@@ -26,11 +26,11 @@ class detalles_medicion_nom085 extends Model
         'distancia_a',
         'distancia_b',
         'distancia_c',
-        'extencion_puerto',
+        'extension_puerto',
         'numero_diametro_a',
         'numero_diametro_b',
         'numero_diametro_c',
-        'puntos_seleccionados_medicion',
+        'puntos_medicion',
         'marcado_sonda_1',
         'marcado_sonda_2',
         'marcado_sonda_3',
@@ -45,6 +45,7 @@ class detalles_medicion_nom085 extends Model
         'ppm_3',
         'promedio_concentracion',
         'max_estratificacion',
-        'max_ppm'
+        'max_ppm', 
+        'conclusion'
     ];
 }
