@@ -11,7 +11,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\NormaController;
 
-
+use App\Http\Controllers\nom085_Controller;
 #--- Ruta Login ---#
 Route::get('/', [Vistas_Controller::class, 'Login'])->name('login');
 Route::post('/check_login', [LoginController::class, 'IniciarSesion'])->name('IniciarSesion');
@@ -66,5 +66,6 @@ Route::post('/norma/store', [NormaController::class, 'store'])->name('norma.stor
 Route::post('/norma/desactivar/{id}', [NormaController::class, 'desactivar'])->name('norma.desactivar');
 Route::post('/norma/update', [NormaController::class, 'update'])->name('norma.update');
 
+Route::post('/registrar_nom085_mg', [nom085_Controller::class, 'registrar_nom085_mg'])->name('registrar_nom085_mg');
 
 
