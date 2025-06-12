@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clientes', function (Blueprint $table) {
-            $table->id('id_cliente');
-            $table->string('razon_social');
-            $table->string('rfc',25);
-            $table->string('telefono',15);
-            $table->string('correo');
-            $table->boolean('estatus')->default(true);
+        Schema::create('zonas_geograficas', function (Blueprint $table) {
+            $table->id('id_zona_geografica');
+            $table->string('lugar',100);
+            $table->string('codiogo', 5);
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('zonas_geograficas');
     }
 };

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_usuario');
             $table->string('nombre_usuario')->unique();
             $table->string('nombre');
             $table->string('rfc', 25);
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->smallInteger('activo');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('contrasena');
-            $table->foreignId('id_rol')->nullable()->constrained('roles')->onDelete('set null');
+            $table->foreignId('id_rol')->nullable()->references('id_rol')->on('roles')->onDelete('set null');
             $table->rememberToken();
             
             $table->timestamps();

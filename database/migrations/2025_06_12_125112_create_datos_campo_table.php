@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mediciones_nom085', function (Blueprint $table) {
-            $table->id();
+        Schema::create('datos_campo', function (Blueprint $table) {
+            $table->id('id_dato_campo');
             $table->integer('id_medicion');
             $table->float('nox')->nullable();
             $table->float('co_ppmv');
             $table->float('o2');
             $table->float('co2');
             $table->float('temp');
-            $table->foreignId('detalles_medicion_nom085_id')->nullable()->constrained('detalles_mediciones_nom085')->onDelete('set null');
+            $table->foreignId('id_informe')->nullable()->references('id_informe')->on('informes')->onDelete('set null');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mediciones_nom085');
+        Schema::dropIfExists('datos_campo');
     }
 };

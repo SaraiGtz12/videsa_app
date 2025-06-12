@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('normas', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_norma');
             $table->string('codigo')->unique();
             $table->string('nombre');
             $table->string('descripcion');

@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipos', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->string('marca');
-            $table->string('numero_serie');
-            $table->string('observaciones');
-            $table->string('ubicacion');
+        Schema::create('datos_servicios', function (Blueprint $table) {
+            $table->id('id_datos_servicio');
+            $table->foreignId('id_norma')->nullable()->references('id_norma')->on('normas')->onDelete('set null');
+            $table->string('descripcion');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('equipos');
+        Schema::dropIfExists('datos_servicios');
     }
 };
