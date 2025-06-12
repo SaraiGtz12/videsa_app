@@ -32,6 +32,9 @@ Route::get('/agregarNorma', [Vistas_Controller::class, 'AgregarNorma'])->name('A
 
 
 //RUTAS PARA PLANTILLAS PDF
+Route::get('/generar-pdf', [PdfController::class, 'generarPDF'])->name('pdf.generar');
+Route::get('/detalles-medicion', [PdfController::class, 'mostrarDetalles']);
+
 Route::get('generate085MG', [PdfController::class, 'generatePdf085MG']);
 Route::get('generate085G', [PdfController::class, 'generatePdf085G']);
 Route::get('generate085L', [PdfController::class, 'generatePdf085L']);

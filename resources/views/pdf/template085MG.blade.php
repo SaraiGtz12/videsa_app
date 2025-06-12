@@ -144,10 +144,10 @@
                     Fecha de informe:
                 </td>
                   <td class="col-3">
-                    {{ $numero_informe }}<br>
-                    {{ $orden_servicio }}<br>
-                    {{ $fecha_evaluacion }}<br>
-                    {{ $recepcion }}<br>
+                    1<br>
+                    2<br>
+                    3<br>
+                    4<br>
                     {{ $fecha_informe }}
                  </td>
                 <td class="col-4">
@@ -162,7 +162,7 @@
                 <th colspan="6" style = "text-align: center">Equipo evaluado</th>
             </tr>
             <tr>
-                <td colspan="6" style = "text-align: center">{{$equipo_evaluado}}</td>
+                <td colspan="6" style = "text-align: center">plancha 3</td>
             </tr>
             <tr>
                 <td>Capacidad térmica</td>
@@ -173,11 +173,11 @@
                 <td>Gas natural</td>
             </tr>
             <tr>
-                <td>Nominal</td>
+                <td>{{ $detalle->capacidad_termica }}</td>
                 <td>No.Disponible</td>
                 <td>No.Disponible</td>
                 <td></td>
-                <td></td>
+                <td>{{ $detalle->combustible_utilizado }}</td>
                 <td></td>
             </tr>
         </table>
@@ -376,61 +376,7 @@
         </div>
      @include('pdf.recursos.footerCaratula')              
     <div style="page-break-before: always;"></div>
-    <!-- paginas 3 -->
-    @include('pdf.recursos.headerGeneral')
-
-
-     <table width="100%" cellpadding="10">
-        <tr>
-            <td width="60%" valign="top">
-                <table border="1" cellpadding="5" cellspacing="0" width="100%">
-                    <thead>
-                        <tr >
-                            <th>No.</th>
-                            <th>Nox (ppmv)</th>
-                            <th>CO (ppmv)</th>
-                            <th>O2 (%)</th>
-                            <th>CO (%)</th>
-                            <th>TEMP (°C)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($filas as $fila)
-                        <tr>
-                            <td>{{ $fila['no'] }}</td>
-                            <td>{{ $fila['nox'] ?? '-' }}</td>
-                            <td>{{ $fila['co'] ?? '-' }}</td>
-                            <td>{{ $fila['o2'] ?? '-' }}</td>
-                            <td>{{ $fila['co2'] ?? '-' }}</td>
-                            <td>{{ $fila['temp'] ?? '-' }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </td>
-            <td width="40%" valign="top" style="vertical-align: top;">
-                <div style="margin-bottom: 10px;">
-                    <img src="{{ $imgNox }}" alt="Gráfico NOX" style="width: 100%; height: auto;">
-                </div>
-                <div style="margin-bottom: 10px;">
-                    <img src="{{ $imgCo }}" alt="Gráfico CO" style="width: 100%; height: auto;">
-                </div>
-                <div style="margin-bottom: 10px;">
-                    <img src="{{ $imgO2 }}" alt="Gráfico O2" style="width: 100%; height: auto;">
-                </div>
-                <div>
-                    <img src="{{ $imgCo2 }}" alt="Gráfico CO2" style="width: 100%; height: auto;">
-                </div>
-            </td>
-        </tr>
-    </table>
-
-
-
-
-
-
-    @include('pdf.recursos.footerGeneral')              
+ 
     <div style="page-break-before: always;"></div>
      <!-- paginas 4 -->
     @include('pdf.recursos.headerGeneral')
