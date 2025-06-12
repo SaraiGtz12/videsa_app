@@ -144,8 +144,8 @@
                     Fecha de informe:
                 </td>
                   <td class="col-3">
-                    1<br>
-                    2<br>
+                    {{ $numero_informe }}<br>
+                    {{ $detalle->codigo }}<br>
                     3<br>
                     4<br>
                     {{ $fecha_informe }}

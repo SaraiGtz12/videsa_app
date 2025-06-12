@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\detalles_medicion_nom085;
+use App\Models\OrdenTrabajo;
 use Carbon\Carbon;
 
 class PdfController extends Controller
@@ -132,8 +133,18 @@ public function generarPDF()
          if (!$detalle) {
             return response()->json(['error' => 'No se encontraron datos para esta orden de trabajo.'], 404);
         }
+
+        $now = Carbon::now();
+        $fecha_formateada = $now->format('d/m/Y'); 
+        $fecha_informe_compacta = $now->format('ymd'); // yyMMdd → 250611
+        $contador = OrdenTrabajo::whereYear('created_at', $now->year)->count() + 1;
+
+        $contador_formateado = str_pad($contador, 2, '0', STR_PAD_LEFT);
+
+        $numero_informe = 'FE085MG/' . $fecha_informe_compacta . '-' . $contador_formateado;
+
         $fecha_informe = Carbon::now()->format('d/m/Y');
-        $pdf = \PDF::loadView('pdf.template085MG', compact('detalle', 'fecha_informe'));
+        $pdf = \PDF::loadView('pdf.template085MG', compact('detalle', 'fecha_informe','numero_informe'));
 
          return $pdf->download('medicion_nom085.pdf');
 
