@@ -124,19 +124,18 @@ class EmpresaController extends Controller
     public function updateSucursal(Request $request)
     {
 
-        // dd('entre');die;
         $validated = $request->validate([
             'id' => 'required|integer|exists:sucursales,id',
-            'id_cliente' => 'required|integer|exists:clientes,id',
+            'id_cliente' => 'required|integer',
             'nombre' => 'required|string|max:20',
             'codigo' => 'required|string|max:20',
             'calle' => 'required|string|max:20',
             'numero' => 'required|string|max:20',
             'colonia' => 'required|string|max:20',
-            'ciudad' => 'required|string|max:20', 
+            'ciudad' => 'required|string|max:20',
             'estado' => 'required|string|max:20',
-            'codigo_postal' => 'required|string|max:20', 
-            'telefono' => 'required|string|max:20',
+            'codigo_postal' => 'required|string|max:20',
+            'telefono' => 'required|string|max:20'
         ]);
 
 

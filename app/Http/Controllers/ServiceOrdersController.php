@@ -19,7 +19,7 @@ class ServiceOrdersController extends Controller
 {
     public function guardar(Request $request)
     {
-    //dd($request->all());die;
+    // dd($request->all());die;
         $request->validate([
             'empresa' => 'required|integer',
             'Servicio' => 'required|array',

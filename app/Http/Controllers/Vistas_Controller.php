@@ -46,9 +46,8 @@ class Vistas_Controller extends Controller
         }
           $normas = Norma::select('id', 'codigo')->where('activa', 1)->get();
           $clientes = Cliente::select('id','razon_social')->get();
-        
-
-        return view('Dashboard.AgregarServicio', compact('clientes','normas'));
+          $muestreadores = User::where('id_rol', 3)->get();
+        return view('Dashboard.AgregarServicio', compact('clientes','normas', 'muestreadores'));
     }
 
     public function Buscar(){
