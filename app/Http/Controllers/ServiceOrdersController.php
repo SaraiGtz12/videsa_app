@@ -22,6 +22,7 @@ class ServiceOrdersController extends Controller
     //dd($request->all());die;
         $request->validate([
             'empresa' => 'required|integer',
+            'sucursal' => 'required|integer',
             'Servicio' => 'required|array',
             'Servicio.*' => 'required|integer',
             'FechaMuestreo' => 'required|date',
@@ -42,15 +43,12 @@ class ServiceOrdersController extends Controller
             
             for ($i = 0; $i < count($servicios); $i++) {
                 OrdenTrabajo::create([
-                    'codigo'=> $codigo,
-                    'usuario_asignado' => $request->input('Muestreador'),
-                    'usuario_creador'=> '2',
-                    'id_norma'=> $servicios[$i],  
+                    'orden_servicio'=> $codigo,
+                    'muestreador_asignado' => $request->input('Muestreador'),
                     'id_cliente'=> $request->input('empresa'),
-                    'id_sucursal'=> $request->input('empresa'),
-                    'fecha_evaluacion' => $request->input('FechaMuestreo'),
-                    'fecha_reconocimiento'=> Carbon::now(),
-                    'estado'=> '2'
+                    'id_sucursal'=> $request->input('sucursal'),
+                    'fecha_muestreo' => $request->input('FechaMuestreo'),
+                    'estatus'=> 2
                 ]);
                 
             }

@@ -27,7 +27,7 @@ class SucursalesEmpresas extends Component
     public function updatedEmpresaId($id):void{
         $this->sucursales = Sucursal::where('id_cliente', $id)->get();
         if($this->sucursal && $this->sucursal->first()){
-            $this->sucursal =  $this->sucursal->first()['id'];
+            $this->sucursal =  $this->sucursal->first()['id_sucursal'];
         }else{
             $this->sucursal = null;
         }

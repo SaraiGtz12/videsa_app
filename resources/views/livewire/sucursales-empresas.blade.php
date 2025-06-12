@@ -6,7 +6,7 @@
                 <select class="form-select select2" name="empresa" wire:model.live="empresaId" style="width: 100%;" required>
                     <option value="">Seleccionar Empresa</option>
                     @foreach ($empresas as $empresa)
-                        <option value="{{ $empresa->id }}">{{ $empresa->razon_social}}</option>
+                        <option value="{{ $empresa->id_cliente }}">{{ $empresa->razon_social}}</option>
                     @endforeach
                 </select>
             </div>
@@ -17,7 +17,7 @@
                 <select class="form-select select2" name="sucursal" wire:model="sucursalId" style="width: 100%;" required>
                     <option value="">Seleccionar Sucursal</option>
                     @foreach ($sucursales as $sucursal)
-                        <option value="{{ $sucursal->id }}">{{ $sucursal->nombre}}</option>
+                        <option value="{{ $sucursal->id_sucursal }}">{{ $sucursal->nombre}}</option>
                     @endforeach
 
                 </select>

@@ -51,10 +51,13 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="mb-2">
-                                <span>Muestreador Responsable</span>
-                                <input type="text" name="Muestreador" id="Muestreador" class="form-control" required>
-                            </div>
+                            <span>Muestrador</span>
+                            <select name="Muestreador" id="Muestreador" class="form-control" required>
+                                <option value="">Seleccione un muestreador</option>
+                                @foreach ($muestreadores as $usuario)
+                                    <option value="{{ $usuario->id_usuario }}">{{ $usuario->nombre }}</option>
+                                @endforeach
+                            </select>
                         </div>
                   
                     </div>
