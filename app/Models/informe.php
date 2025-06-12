@@ -4,22 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class detalles_medicion_nom085 extends Model
+class informe extends Model
 {
-    protected $table = 'detalles_mediciones_nom085';
+    protected $table = 'datos_campo';
+    public $timestamps = true;
+    protected $primaryKey = 'id_informe';
 
     protected $fillable = [
-        'orden_trabajo_id',
-        'equipo_id',
+        'numero_informe',
+        'id_norma',
+        'id_orden_servicio',
         'combustible_utilizado',
-        'capacidad_termica',
-        'altura_msnm',
-        'precision_estatica',
-        'anyo',
-        'presion_barometrica',
+        'anio',
+        'equipo_evaluado',
+        'marca_modelo',
+        'cpacidad_termica_nominal',
+        'altura_nivel_mar',
+        'precion_estatica',
         'geometria_conducto',
-        'diametro_conducto',
-        'diametro_equivalente',
+        'diametro_int',
+        'diametro_eq',
         'largo_transversal',
         'ancho_transversal',
         'numero_puertos',
@@ -27,10 +31,11 @@ class detalles_medicion_nom085 extends Model
         'distancia_b',
         'distancia_c',
         'extencion_puerto',
-        'numero_diametro_a',
-        'numero_diametro_b',
-        'numero_diametro_c',
-        'puntos_seleccionados_medicion',
+        'num_diametros_a',
+        'num_diametros_b',
+        'num_diametros_c',
+        'presion_barometrica_1',
+        'presion_barometrica_2',
         'marcado_sonda_1',
         'marcado_sonda_2',
         'marcado_sonda_3',
@@ -45,7 +50,7 @@ class detalles_medicion_nom085 extends Model
         'ppm_3',
         'promedio_concentracion',
         'max_estratificacion',
-        'max_ppm', 
-        'conclusion'
+        'max_ppm',
+        'id_zona_geografica',
     ];
 }

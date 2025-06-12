@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $table = "usuarios";
+    protected $primaryKey = 'id_usuario'; 
     protected $fillable = [
         'nombre_usuario',
         'nombre',
@@ -30,7 +31,7 @@ class User extends Authenticatable
         'actualizado_en',
         'id_rol'
     ];
-    public $timestamps = false;
+    public $timestamps = true;
 
     /**
      * The attributes that should be hidden for serialization.

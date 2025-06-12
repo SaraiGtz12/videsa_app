@@ -24,11 +24,7 @@ class Vistas_Controller extends Controller
             // Redirige a otra página (por ejemplo, la página de inicio)
             return redirect()->route('login')->withErrors(['error' => 'No tienes permiso para acceder a esta página.', 'Titulo'=>'Acceso Denegado']);
         }
-        
-        $detalles = OrdenTrabajo::join('normas','normas.id', '=', 'ordenes_trabajo.id_norma')
-        ->select('normas.nombre as nom', 'ordenes_trabajo.*')
-        ->get();
-        return view('Dashboard.Home', compact('detalles'));
+        return view('Dashboard.Home');
     }
 
     public function RegistrarCliente(){
@@ -40,15 +36,14 @@ class Vistas_Controller extends Controller
     }
 
     public function RegistrarServicio(){
-           if (!$usuario = Auth::user()) {
-            // Redirige a otra página (por ejemplo, la página de inicio)
-            return redirect()->route('login')->withErrors(['error' => 'No tienes permiso para acceder a esta página.', 'Titulo'=>'Acceso Denegado']);
-        }
-          $normas = Norma::select('id', 'codigo')->where('activa', 1)->get();
-          $clientes = Cliente::select('id','razon_social')->get();
-        
-
-        return view('Dashboard.AgregarServicio', compact('clientes','normas'));
+            if (!$usuario = Auth::user()) {
+                // Redirige a otra página (por ejemplo, la página de inicio)
+                return redirect()->route('login')->withErrors(['error' => 'No tienes permiso para acceder a esta página.', 'Titulo'=>'Acceso Denegado']);
+            }
+            $normas = Norma::select('id', 'codigo')->where('activa', 1)->get();
+            $clientes = Cliente::select('id','razon_social')->get();
+            
+            return view('Dashboard.AgregarServicio', compact('clientes','normas'));
     }
 
     public function Buscar(){
@@ -84,16 +79,16 @@ class Vistas_Controller extends Controller
         return view('Dashboard.AgregarUsuarios', compact('roles'));
     }
     public function VistaFormulario(){
-     if (!$usuario = Auth::user()) {
+        if (!$usuario = Auth::user()) {
             // Redirige a otra página (por ejemplo, la página de inicio)
             return redirect()->route('login')->withErrors(['error' => 'No tienes permiso para acceder a esta página.', 'Titulo'=>'Acceso Denegado']);
         }
-         $clientes = Cliente::all();
-         
+        $clientes = Cliente::all();
+        
         return view('Dashboard.Formulario', compact('clientes'));
     }
     public function AgregarEmpresa(){
-    if (!$usuario = Auth::user()) {
+        if (!$usuario = Auth::user()) {
             // Redirige a otra página (por ejemplo, la página de inicio)
             return redirect()->route('login')->withErrors(['error' => 'No tienes permiso para acceder a esta página.', 'Titulo'=>'Acceso Denegado']);
         }
@@ -101,13 +96,13 @@ class Vistas_Controller extends Controller
 
         return view('Dashboard.AgregarEmpresa', compact('clientes'));
     }
-     public function AgregarNorma(){
-         if (!$usuario = Auth::user()) {
+    public function AgregarNorma(){
+        if (!$usuario = Auth::user()) {
                 // Redirige a otra página (por ejemplo, la página de inicio)
                 return redirect()->route('login')->withErrors(['error' => 'No tienes permiso para acceder a esta página.', 'Titulo'=>'Acceso Denegado']);
             }
-          $normas = Norma::where('activa', 1)->get();
-          
-          return view('Dashboard.AgregarNorma', compact('normas'));
+        $normas = Norma::where('activa', 1)->get();
+        
+        return view('Dashboard.AgregarNorma', compact('normas'));
     }
 }

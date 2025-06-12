@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class medicion_nom085 extends Model
+class dato_campo extends Model
 {
-    protected $table = 'mediciones_nom085';
-    
-    
+    protected $table = 'datos_campo';
+    protected $primaryKey = 'id_dato_campo';
+
+    public $timestamps = true;
+
     protected $fillable = [
         'id_medicion',
         'nox',
@@ -16,6 +18,7 @@ class medicion_nom085 extends Model
         'o2',
         'co2',
         'temp',
-        'detalles_medicion_nom085_id'
+        'id_informe'
     ];
+
 }

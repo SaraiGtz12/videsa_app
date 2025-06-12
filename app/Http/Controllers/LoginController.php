@@ -19,6 +19,7 @@ class LoginController extends Controller
             'UserPasswordTxt' => 'required|string'
         ]);
 
+        Log::info('Los datos llegaron');
 
         try{
             if($usuario = User::where('correo', $request->input('UserEmailTxt'))->first()){
