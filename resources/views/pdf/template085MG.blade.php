@@ -29,7 +29,7 @@
             margin-top: 0;
             margin-bottom: 0;
         }
-      
+
 
         body {
             font-family: Arial, sans-serif;
@@ -81,7 +81,7 @@
             font-size: 8px;
             border: 1px solid #999;
         }
-   
+
 
         .evaluated-equipment-table {
             width: 100%;
@@ -101,7 +101,7 @@
 
         .evaluated-equipment-table tr:first-child th {
             border: 1px solid #000;
-            background-color: #f2f2f2; 
+            background-color: #f2f2f2;
             text-align: center;
         }
 
@@ -117,6 +117,34 @@
             border: 1px solid #000;
             padding: 5px;
             text-align: left;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 4px;
+        }
+        .section {
+            margin-bottom: 10px;
+        }
+        .client-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px;
+        }
+        .client-table td {
+            border: 1px solid black;
+            padding: 3px;
+            vertical-align: top;
+        }
+
+        .client-table th {
+            border: 1px solid black;
+            padding: 3px;
+            vertical-align: top;
+        }
+        .label td{
+            border: none;
+            font-weight: bold;
+
         }
     </style>
 </head>
@@ -156,7 +184,7 @@
             </tr>
         </table>
 
-    
+
         <table class="evaluated-equipment-table">
             <tr>
                 <th colspan="6" style = "text-align: center">Equipo evaluado</th>
@@ -212,20 +240,20 @@
         </table>
 
         <div style="margin-top: 20px; font-size: 7px;">
-            NOTA 1: La incertidumbre estimada UE para CO es 1.86% y para NOx es 0.54%, se expresa con un factor de cobertura k=2 que corresponde aproximadamente 
+            NOTA 1: La incertidumbre estimada UE para CO es 1.86% y para NOx es 0.54%, se expresa con un factor de cobertura k=2 que corresponde aproximadamente
             a un nivel de confianza del 95%. Se calcula basandose en la guia para la expresion de incertidumbre en los resultados de las mediciones (NMX-CH-140-IMNC-202)
             <br>
             NOTA 2: Para este caso, la zona geografica para el Monoxido de Carbono (CO) se considera: Resto del Pais (RP).
             <br>
             NOTA 3:Para este caso, la zona geografica para los Oxidos de Nitrogeno (NOx) se considera: Resto del Pais (RP).
             <br>
-            NOTA 4: ppmv Partes por millon volumen, igual a micromol por mol 
+            NOTA 4: ppmv Partes por millon volumen, igual a micromol por mol
             <br>
             GJ/has      Giga Joules por hora
             <br>
-            C.C         Caballos Caldera 
+            C.C         Caballos Caldera
             <br>
-            *Para este caso de CO NOx los limites se establecen como concentraciones en volumen y 
+            *Para este caso de CO NOx los limites se establecen como concentraciones en volumen y
             base seca, en condiciones de refrencia de 25&deg;C, 101 325 pascales (1 atm) y 5% de (O2)
         </div>
 
@@ -242,12 +270,12 @@
                     relativa a los resultados obtenidos. La evaluacion se realiza a solictud del cliente.
                 </td>
             </tr>
-        
+
         </table>
 
         <div style="text-align: center; margin-top: 30px;">
             <p>Firma Electrónica</p>
-         
+
             <p>Escanea para verificar</p>
         </div>
 
@@ -259,7 +287,7 @@
 
         <table style="margin-top: 40px;margin-left: auto;">
             <tr>
-            
+
                 <td class="col-1">
                     Número de informe:<br>
                     Orden de servicio:<br>
@@ -274,7 +302,7 @@
                     6-ABRIL-25<br>
                     11-ABRIL-25
                 </td>
-        
+
             </tr>
         </table>
         <table class="result-table " >
@@ -336,7 +364,7 @@
 
 
         <table class="evaluated-equipment-table">
-        
+
             <tr>
                 <td>Concentración de referencia del O2</td>
                 <td></td>
@@ -366,15 +394,15 @@
         <div style="margin-top: 20px; font-size: 8px;">
             *Para valores de OM medidos entre 15.1% y 20.9%, se utilizará un valor de OM de 15%
             <br><br><br>
-            Método 3A EPA-2008 &nbsp; Determinación de oxígeno (O2) y bióxido de carbono (CO2) en los gases que 
+            Método 3A EPA-2008 &nbsp; Determinación de oxígeno (O2) y bióxido de carbono (CO2) en los gases que
             fluyen por un conducto. Método instrumenta
             <br>
-            Método 10 EPA-2008&nbsp;Para el caso de CO y NOx los límites se establecen como concentraciones en volumen y en base seca, 
+            Método 10 EPA-2008&nbsp;Para el caso de CO y NOx los límites se establecen como concentraciones en volumen y en base seca,
             en condiciones de referencia de 25°C, 101 325 Pa (1 atm) y 5 % de
             Método 7 EPA-2008&nbsp;Determinación de óxidos de nitrógeno, en los gases que fluyen por un conducto.
             Método de quimiluminiscencia
         </div>
-     @include('pdf.recursos.footerCaratula')              
+     @include('pdf.recursos.footerCaratula')
     <div style="page-break-before: always;"></div>
     <!-- paginas 3 -->
     @include('pdf.recursos.headerGeneral')
@@ -430,25 +458,255 @@
 
 
 
-    @include('pdf.recursos.footerGeneral')              
+    @include('pdf.recursos.footerGeneral')
     <div style="page-break-before: always;"></div>
      <!-- paginas 4 -->
     @include('pdf.recursos.headerGeneral')
-    @include('pdf.recursos.footerGeneral')  
+
+    <h2>Hoja de Campo para la determinación de Gases de combustión</h2>
+<p style="text-align:center">
+    Para equipos de calentamiento indirecto de capacidad térmica mayor de 5.3 GJ/h o 150 C.C. combustible gaseoso
+</p>
+<div class="section">
+    <table class="client-table ">
+        <tr>
+            <td class="label">Razón Social:</td>
+            <td colspan="3">Empresa XYZ S.A. de C.V.</td>
+        </tr>
+        <tr>
+            <td class="label">Calle y Número:</td>
+            <td>Calle Falsa 123</td>
+            <td class="label">Colonia:</td>
+            <td>Centro</td>
+        </tr>
+        <tr>
+            <td class="label">Municipio / Alcaldía:</td>
+            <td>Benito Juárez</td>
+            <td class="label">Estado:</td>
+            <td>CDMX</td>
+        </tr>
+        <tr>
+            <td class="label">Código Postal:</td>
+            <td>03100</td>
+            <td class="label">Teléfono:</td>
+            <td>5555-1234</td>
+        </tr>
+        <tr>
+            <td class="label">Responsable:</td>
+            <td>Ing. Juan Pérez</td>
+            <td class="label">Cargo:</td>
+            <td>Jefe de Mantenimiento</td>
+        </tr>
+    </table>
+</div>
+<div class="section">
+    <table class="client-table">
+        <tr>
+            <td class="label">Equipo Evaluado:</td>
+            <td>Caldera Industrial</td>
+            <td class="label">Marca y Modelo:</td>
+            <td>ABC123</td>
+        </tr>
+        <tr>
+            <td class="label">Combustible Utilizado:</td>
+            <td>Gas Natural</td>
+            <td class="label">Año:</td>
+            <td>2023</td>
+        </tr>
+        <tr>
+            <td class="label">Capacidad Térmica Nominal:</td>
+            <td colspan="3">6.0 GJ/h</td>
+        </tr>
+    </table>
+</div>
+<div class="section">
+    <table class="client-table">
+        <tr>
+            <td class="label">Geometría del conducto:</td>
+            <td>Redonda</td>
+            <td class="label">Diámetro interior:</td>
+            <td>0.45 m</td>
+        </tr>
+        <tr>
+            <td class="label">Núm. de puertos:</td>
+            <td>2</td>
+            <td class="label">Distancia A (m):</td>
+            <td>1.5</td>
+        </tr>
+        <tr>
+            <td class="label">Distancia B (m):</td>
+            <td>2.0</td>
+            <td class="label">Distancia C (m):</td>
+            <td>3.0</td>
+        </tr>
+        <tr>
+            <td class="label">Número de puntos seleccionados:</td>
+            <td colspan="3">12</td>
+        </tr>
+    </table>
+</div>
+<div class="section">
+    <table class="client-table">
+        <tr>
+            <td class="label">Zona geográfica:</td>
+            <td>Valle de México</td>
+            <td class="label">Presión Estática:</td>
+            <td>0.12 inH2O</td>
+        </tr>
+        <tr>
+            <td class="label">Altitud (msnm):</td>
+            <td>2240</td>
+            <td class="label">Presión Barométrica:</td>
+            <td>610 mmHg</td>
+        </tr>
+    </table>
+</div>
+<div class="title">Determinación de la estratificación</div>
+
+<table class="client-table">
+    <thead>
+        <tr>
+            <th rowspan="2">Analito</th>
+            <th rowspan="2">Marcado de la sonda (m)</th>
+            <th rowspan="2">Concentración<br>(ppm o %vol.)</th>
+            <th colspan="2">% Estratificación</th>
+        </tr>
+        <tr>
+            <th>%</th>
+            <th>ppm</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="3"><strong style="color:#007bff">NOx</strong></td>
+            <td>0.03</td>
+            <td>8.1</td>
+            <td>4.33</td>
+            <td>0.37</td>
+        </tr>
+        <tr>
+            <td>0.075</td>
+            <td>8.4</td>
+            <td>0.79</td>
+            <td>0.07</td>
+        </tr>
+        <tr>
+            <td>0.13</td>
+            <td>8.9</td>
+            <td>5.12</td>
+            <td>0.43</td>
+        </tr>
+        <tr>
+            <td><strong>Promedio</strong></td>
+            <td></td>
+            <td>8.47</td>
+            <td><strong>Máximo</strong></td>
+            <td>0.43</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="no-border">
+    <tr><td><strong>Cp.</strong> Concentración promedio (ppmv o %vol.)</td></tr>
+    <tr><td><strong>Cm.</strong> Concentración medida (ppmv o %vol.)</td></tr>
+    <tr><td><strong>16.7%</strong> Distancia donde se tomará la primer medición</td></tr>
+    <tr><td><strong>50%</strong> Distancia donde se tomará la segunda medición</td></tr>
+    <tr><td><strong>83.3%</strong> Distancia donde se tomará la tercera medición</td></tr>
+</table>
+
+<table>
+    <thead>
+        <tr><th colspan="3">Clasificación de Estratificación</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>No Estratificada</strong></td>
+            <td>a) ≤ 5%<br>b) ≤ 0.5 ppmv</td>
+            <td>1 punto de muestreo</td>
+        </tr>
+        <tr>
+            <td><strong>Mínimamente Estratificada</strong></td>
+            <td>a) >5% y hasta 10%<br>b) >0.5 ppmv a 1 ppm</td>
+            <td>3 puntos de muestreo</td>
+        </tr>
+        <tr>
+            <td><strong>Estratificada</strong></td>
+            <td>a) >10%<br>b) >1 ppmv</td>
+            <td>12 puntos de muestreo</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="client-table">
+    <thead>
+        <tr>
+            <th>Punto</th>
+            <th>Estratificada</th>
+            <th>Mínimamente Estratificada</th>
+            <th>No Estratificada</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for ($i = 1; $i <= 12; $i++)
+            <tr>
+                <td>{{ $i }}</td>
+                <td>N.A.</td>
+                <td>N.A.</td>
+                <td>{{ $i == 1 ? '0.08' : '' }}</td>
+            </tr>
+        @endfor
+    </tbody>
+</table>
+
+<table class="no-border">
+    <tr><td><strong>Conclusión:</strong> No Estratificada</td></tr>
+    <tr><td>-------</td></tr>
+    <tr><td>-------</td></tr>
+</table>
+
+<p style="text-align:center;"><i>Estratificación = ((Cp - Cm) / Cp) * 100</i></p>
+
+<p><strong>Método:</strong> 7E EPA-2008 – Determinación de óxidos de nitrógeno. Método de quimiluminiscencia.</p>
+
+<table class="no-border">
+    <tr>
+        <td><strong>SIGNATARIO:</strong> Edgar Daniel Flores García</td>
+        <td><strong>INGENIERO DE SERVICIO:</strong> Juan Ángel García Flores</td>
+        <td><strong>REVISIÓN:</strong> Cristian Giovani Jiménez Gómez</td>
+    </tr>
+</table>
+
+<p><strong>OBSERVACIONES:</strong> Ninguna.</p>
+
+
+<div class="section">
+    <p class="label">Conclusión:</p>
+    <p>El equipo cumple con los parámetros establecidos por la NOM-085.</p>
+</div>
+<div class="section">
+    <p class="label">Firmas:</p>
+    <ul>
+        <li>Juan Pérez</li>
+        <li>Ana Gómez</li>
+        <li>Carlos Ramírez</li>
+    </ul>
+</div>
+
+    @include('pdf.recursos.footerGeneral')
     <div style="page-break-before: always;"></div>
     <!-- paginas 5 -->
     @include('pdf.recursos.headerGeneral')
 
-    @include('pdf.recursos.footerGeneral')  
+    @include('pdf.recursos.footerGeneral')
     <div style="page-break-before: always;"></div>
 
      <!-- paginas 6 -->
     @include('pdf.recursos.headerGeneral')
-    @include('pdf.recursos.footerGeneral')              
+    @include('pdf.recursos.footerGeneral')
     <div style="page-break-before: always;"></div>
      <!-- paginas 7 -->
     @include('pdf.recursos.headerGeneral')
-    @include('pdf.recursos.footerGeneral')  
+    @include('pdf.recursos.footerGeneral')
     </main>
 
 <script src="{{ asset('js/pdf/grafica-resultados.js') }}"></script>
