@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('ordenes_servicios', function (Blueprint $table) {
             $table->id('id_orden_servicio');
+            $table->date('fecha_muestreo');
+            $table->string('numero_servicio', 15);
+            $table->foreignId('id_estatus')->nullable()->references('id_estatus')->on('estatus')->onDelete('set null');
             $table->foreignId('id_cliente')->nullable()->references('id_cliente')->on('clientes')->onDelete('set null');
             $table->foreignId('id_sucursal')->nullable()->references('id_sucursal')->on('sucursales')->onDelete('set null');
-            $table->date('fecha_muestreo');
             $table->foreignId('muestreador_asignado')->references('id_usuario')->on('usuarios');
-            $table->foreignId('id_datos_servicio')->nullable()->references('id_datos_servicio')->on('datos_servicios')->onDelete('set null');
             $table->timestamps();
         });
     }

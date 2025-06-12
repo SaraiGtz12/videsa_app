@@ -29,7 +29,8 @@ class User extends Authenticatable
         'activo',
         'creado_en',
         'actualizado_en',
-        'id_rol'
+        'id_rol',
+        'id_estatus'
     ];
     public $timestamps = true;
 

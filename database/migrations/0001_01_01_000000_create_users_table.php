@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('rfc', 25);
             $table->string('correo');
             $table->tinyInteger('es_firmante');
-            $table->smallInteger('activo');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('contrasena');
             $table->foreignId('id_rol')->nullable()->references('id_rol')->on('roles')->onDelete('set null');
+            $table->foreignId('id_estatus')->nullable()->references('id_estatus')->on('estatus')->onDelete('set null');
             $table->rememberToken();
             
             $table->timestamps();

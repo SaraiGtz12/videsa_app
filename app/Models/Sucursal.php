@@ -8,7 +8,7 @@ class Sucursal extends Model
     protected $table = 'sucursales';
     protected $primaryKey = 'id_sucursal'; 
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'id_cliente',

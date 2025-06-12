@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('informes', function (Blueprint $table) {
             $table->id('id_informe');
             $table->string('numero_informe', 10);
-            $table->foreignId('id_norma')->nullable()->references('id_norma')->on('normas')->onDelete('set null');
-            $table->foreignId('id_orden_servicio')->nullable()->references('id_orden_servicio')->on('ordenes_servicios')->onDelete('set null');
             $table->integer('combustible_utilizado');
             $table->integer('anio');
             $table->string('equipo_evaluado', 50);
@@ -54,6 +52,9 @@ return new class extends Migration
             $table->decimal('max_estratificacion');
             $table->decimal('max_ppm');
             $table->foreignId('id_zona_geografica')->references('id_zona_geografica')->on('zonas_geograficas');
+            $table->foreignId('id_norma')->nullable()->references('id_norma')->on('normas')->onDelete('set null');
+            $table->foreignId('id_datos_servicio')->nullable()->references('id_datos_servicio')->on('datos_servicios')->onDelete('set null');
+            $table->foreignId('id_estatus')->nullable()->references('id_estatus')->on('estatus')->onDelete('set null');
             $table->timestamps();
         });
     }

@@ -58,7 +58,7 @@ class LoginController extends Controller
                         $item->id_rol = 1;
                         $item->es_firmante = 1;
                         $item->rfc ="testuser";
-                        $item->activo = 1;
+                        $item->id_estatus = 1;
                         $item->save();
 
                         if($item){

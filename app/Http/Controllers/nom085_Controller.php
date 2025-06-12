@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\detalles_medicion_nom085;
-use App\Models\medicion_nom085;
+use App\Models\dato_campo;
+use App\Models\informe;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -174,7 +174,7 @@ class nom085_Controller extends Controller
             $presion = 760 * exp(-0.000117 * $request->altura);
 
             try{
-                $detalles_medicion_nom085 = new detalles_medicion_nom085();
+                $detalles_medicion_nom085 = new informe();
                 $detalles_medicion_nom085->orden_trabajo_id = "1";
                 $detalles_medicion_nom085->equipo_id ="1";
                 $detalles_medicion_nom085->combustible_utilizado = $request->combustible_utilizado;
@@ -225,7 +225,7 @@ class nom085_Controller extends Controller
                 $contador = 0;
                 
                 foreach ($request->nox as $index => $valor) {
-                    medicion_nom085::create([
+                    dato_campo::create([
                         'id_medicion' => $contador,
                         'nox' => $request->nox[$index],
                         'co_ppmv' => $request->co[$index],
