@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('ciudad');
             $table->string('estado');
             $table->string('codigo_postal', 8);
-            $table->boolean('estatus');
+            $table->boolean('estatus')->default(true);
             $table->timestamps();
         });
     }

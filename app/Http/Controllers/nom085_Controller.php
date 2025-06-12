@@ -181,16 +181,16 @@ class nom085_Controller extends Controller
                 $detalles_medicion_nom085->capacidad_termica = $request->capacidad_termica;
                 $detalles_medicion_nom085->altura_msnm = $request->altura;
                 $detalles_medicion_nom085->precision_estatica = $request->presion_estatica;
-                $detalles_medicion_nom085->presion_barometrica = $presion;
-                $detalles_medicion_nom085->anio = $request->anio;
+                $detalles_medicion_nom085->precion_barometrica = $presion;
+                $detalles_medicion_nom085->anyo = $request->anio;
                 $detalles_medicion_nom085->geometria_conducto = $request->geometria_conductor;
                 $detalles_medicion_nom085->diametro_conducto = $request->diametro_i_d;
                 $detalles_medicion_nom085->diametro_equivalente =$request->diametro_equivalente;
                 $detalles_medicion_nom085->largo_transversal = $request->largo_trasversal;
                 $detalles_medicion_nom085->ancho_transversal = $request->ancho_transversal;
                 $detalles_medicion_nom085->numero_puertos = $request->num_puerto;
-                $detalles_medicion_nom085->extension_puerto = $request->extencion_puerto;
-                $detalles_medicion_nom085->puntos_medicion = $determinacion_conclusiones['puntosFinales'];
+                $detalles_medicion_nom085->extencion_puerto = $request->extencion_puerto;
+                $detalles_medicion_nom085->puntos_seleccionados_medicion = $determinacion_conclusiones['puntosFinales'];
                 $detalles_medicion_nom085->distancia_a = $request->d_a;
                 $detalles_medicion_nom085->distancia_b = $request->d_b;
                 $detalles_medicion_nom085->distancia_c = $request->d_c;
@@ -212,7 +212,7 @@ class nom085_Controller extends Controller
                 $detalles_medicion_nom085->promedio_concentracion = $resultados_estratifciacion['concentraciones']['promedio'];
                 $detalles_medicion_nom085->max_estratificacion = $resultados_estratifciacion['estratificacion']['estratMaxima'];
                 $detalles_medicion_nom085->max_ppm = $resultados_estratifciacion['ppm']['ppmMaxima'];
-                $detalles_medicion_nom085->conclusion = $determinacion_conclusiones['conclusion'];
+                //$detalles_medicion_nom085->conclusion = $determinacion_conclusiones['conclusion'];
 
                 $detalles_medicion_nom085->save();
 
@@ -221,16 +221,21 @@ class nom085_Controller extends Controller
                 }
 
                 $id_detalle = $detalles_medicion_nom085->id;
+
+                $contador = 0;
                 
                 foreach ($request->nox as $index => $valor) {
                     medicion_nom085::create([
+                        'id_medicion' => $contador,
                         'nox' => $request->nox[$index],
                         'co_ppmv' => $request->co[$index],
                         'o2' => $request->o2[$index],
                         'co2' => $request->co2[$index],
-                        'temperatura' => $request->temp[$index],
-                        'id_medicion_detalle' => $id_detalle
+                        'temp' => $request->temp[$index],
+                        'detalles_medicion_nom085_id' => $id_detalle
                     ]);
+
+                    $contador ++;
                 }
 
                 return redirect()->back();

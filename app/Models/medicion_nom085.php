@@ -6,15 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class medicion_nom085 extends Model
 {
-    protected $table = 'medicion_nom85';
+    protected $table = 'mediciones_nom085';
     
     
     protected $fillable = [
+        'id_medicion',
         'nox',
         'co_ppmv',
         'o2',
         'co2',
-        'temperatura',
-        'id_medicion_detalle'
+        'temp',
+        'detalles_medicion_nom085_id'
     ];
 }

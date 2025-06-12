@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\Sucursal;
 use Carbon\Carbon;
+use Exception;
+use Illuminate\Support\Facades\Log;
 
 class EmpresaController extends Controller
 {
@@ -30,16 +32,11 @@ class EmpresaController extends Controller
             'razon_social' => $request->razon_social,
             'rfc' => $request->rfc,
             'telefono' => $request->telefono,
-            'correo' => $request->correo,
-            'creado_en' => Carbon::now(),
-            'actualizado_en' => null,
+            'correo' => $request->correo
         ]);
-
-      
-
         return redirect()->route('empresa.create')->with('success', 'Empresa registrada correctamente.');
     }
-       public function desactivar($id)
+    public function desactivar($id)
     {
         $cliente = Cliente::findOrFail($id);
         $cliente->estatus = 0;
@@ -66,8 +63,7 @@ class EmpresaController extends Controller
             'razon_social' => $request->razon_social,
             'rfc' => $request->rfc,
             'telefono' => $request->telefono,
-            'correo' => $request->correo,
-            'actualizado_en' => Carbon::now()
+            'correo' => $request->correo
         ]);
 
 
@@ -86,35 +82,40 @@ class EmpresaController extends Controller
     public function guardarSucursal(Request $request)
     {
     
-        $validated = $request->validate([
-            'id_cliente' => 'required|string|max:255',
-            'nombre' => 'required|string|max:20',
-            'codigo' => 'required|string|max:20',
-            'calle' => 'required|string|max:20',
-            'numero' => 'required|string|max:20',
-            'colonia' => 'required|string|max:20',
-            'alcaldia' => 'required|string|max:20',
-            'estado' => 'required|string|max:20',
-            'cp' => 'required|string|max:20',
-            'telefono' => 'required|string|max:20',
-        ]);
+        Log::info('Los datos llegaron');
 
-        $cliente = Sucursal::create([
-            'id_cliente' => $request->id_cliente,
-            'nombre' => $request->nombre,
-            'codigo' => $request->codigo,
-            'calle' => $request->calle,
-            'numero' => $request->numero,
-            'colonia' => $request->colonia,
-            'alcaldia' => $request->alcaldia,
-            'estado' => $request->estado,
-            'cp' => $request->cp,
-            'telefono' => $request->telefono,
-            'creado_en' => Carbon::now(),
-            'actualizado_en' => null
-        ]);
+        
+            $validated = $request->validate([
+                'id_cliente' => 'required|integer',
+                'nombre' => 'required|string|max:20',
+                'codigo' => 'required|string|max:20',
+                'calle' => 'required|string|max:20',
+                'numero' => 'required|string|max:20',
+                'colonia' => 'required|string|max:20',
+                'ciudad' => 'required|string|max:20',
+                'estado' => 'required|string|max:20',
+                'codigo_postal' => 'required|string|max:20',
+                'telefono' => 'required|string|max:20'
+            ]);
 
-      
+        try{
+            Log::info('se va a ingresar datos');
+            $cliente = Sucursal::create([
+                'id_cliente' => $request->id_cliente,
+                'nombre' => $request->nombre,
+                'codigo' => $request->codigo,
+                'calle' => $request->calle,
+                'numero' => $request->numero,
+                'colonia' => $request->colonia,
+                'ciudad' => $request->ciudad,
+                'estado' => $request->estado,
+                'codigo_postal' => $request->codigo_postal,
+                'telefono' => $request->telefono,
+            ]);
+        }catch(Exception $e){
+            Log::error('Ocurrio algo:'.$e->getMessage());
+        }
+
 
         return redirect()->route('empresa.create')->with('success', 'Sucursal registrada correctamente.');
     }
@@ -151,7 +152,6 @@ class EmpresaController extends Controller
             'estado' => $request->estado,
             'codigo_postal' => $request->codigo_postal,
             'telefono' => $request->telefono,
-            'actualizado_en' => Carbon::now()
         ]);
 
 

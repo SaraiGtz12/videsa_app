@@ -4,7 +4,7 @@
             <div class="mb-2">
                 <span>Seleccionar Empresa</span>
                 <select class="form-select select2" name="empresa" wire:model.live="empresaId" style="width: 100%;" required>
-                    <option value="" selected disabled>Seleccionar Empresa</option>
+                    <option value="">Seleccionar Empresa</option>
                     @foreach ($empresas as $empresa)
                         <option value="{{ $empresa->id }}">{{ $empresa->razon_social}}</option>
                     @endforeach

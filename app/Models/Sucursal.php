@@ -21,12 +21,7 @@ class Sucursal extends Model
         'ciudad',
         'estado',
         'codigo_postal',
-        'creado_en',
-        'actualizado_en',
+        'estatus'
     ];
 
-    public function cliente()
-    {
-        return $this->belongsTo(Cliente::class, 'id_cliente');
-    }
 }

@@ -21,10 +21,8 @@ return new class extends Migration
             $table->smallInteger('activo');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('contrasena');
-            $table->unsignedBigInteger('id_rol');
+            $table->foreignId('id_rol')->nullable()->constrained('roles')->onDelete('set null');
             $table->rememberToken();
-
-            $table->foreign('id_rol')->references('id')->on('roles');
             
             $table->timestamps();
             
@@ -51,7 +49,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('usuarios');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
     }

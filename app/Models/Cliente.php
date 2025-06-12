@@ -15,8 +15,6 @@ class Cliente extends Model
         'rfc',
         'telefono',
         'correo',
-        'creado_en',
-        'actualizado_en',
         'estatus'
     ];
 

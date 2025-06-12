@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('rfc',25);
             $table->string('telefono',15);
             $table->string('correo');
-            $table->boolean('estatus');
+            $table->boolean('estatus')->default(true);
             $table->timestamps();
         });
     }
