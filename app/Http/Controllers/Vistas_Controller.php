@@ -7,8 +7,10 @@ use App\Models\Rol;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\detalles_medicion_nom085;
 use App\Models\Sucursal;
 use App\Models\Norma;
+use App\Models\OrdenTrabajo;
 use Illuminate\Support\Facades\Auth;
 
 class Vistas_Controller extends Controller
@@ -22,7 +24,11 @@ class Vistas_Controller extends Controller
             // Redirige a otra página (por ejemplo, la página de inicio)
             return redirect()->route('login')->withErrors(['error' => 'No tienes permiso para acceder a esta página.', 'Titulo'=>'Acceso Denegado']);
         }
-        return view('Dashboard.Home');
+        
+        $detalles = OrdenTrabajo::join('normas','normas.id', '=', 'ordenes_trabajo.id_norma')
+        ->select('normas.nombre as nom', 'ordenes_trabajo.*')
+        ->get();
+        return view('Dashboard.Home', compact('detalles'));
     }
 
     public function RegistrarCliente(){
