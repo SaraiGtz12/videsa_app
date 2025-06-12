@@ -31,7 +31,7 @@ class ServiceOrdersController extends Controller
         ]);
 
         $year = date('y'); 
-        $contador = OrdenTrabajo::whereYear('creado_en', date('Y'))->count() + 1;
+        $contador = OrdenTrabajo::whereYear('created_at', date('Y'))->count() + 1;
         $codigo = $year . '-' . str_pad($contador, 3, '0', STR_PAD_LEFT);
 
 
@@ -52,10 +52,8 @@ class ServiceOrdersController extends Controller
                     'id_cliente'=> $request->input('empresa'),
                     'id_sucursal'=> $request->input('empresa'),
                     'fecha_evaluacion' => $request->input('FechaMuestreo'),
-                    'fecha_reconocimiento'=> null,
-                    'estado'=> '2',
-                    'creado_en'=> Carbon::now(),
-                    'actualizado_en'=>Carbon::now()
+                    'fecha_reconocimiento'=> Carbon::now(),
+                    'estado'=> '2'
                 ]);
                 
               
