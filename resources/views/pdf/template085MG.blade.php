@@ -126,7 +126,7 @@
     <main>
         @include('pdf.recursos.headerCaratula')
         <div class="company-name">
-            Flexico, S. de R.L. de C.V.
+            {{sucursal}}
         </div>
 
         <table class="info-table">

@@ -66,7 +66,7 @@
                                             </button>
                                             <button 
                                                 class="btn btn-info btn-sm btn-circle btnVerSucursales"
-                                                data-id="{{ $cliente->id }}"
+                                                data-id="{{ $cliente->id_cliente }}"
                                                 title="Ver Sucursales"
                                             >
                                                 <i class="fas fa-building"></i>
@@ -193,7 +193,7 @@
                                 <select class="form-select select2" id="id_cliente"  name="id_cliente" required>
                                     <option value="" selected disabled>Seleccionar Empresa</option>
                                     @foreach ($clientes as $cliente)
-                                        <option value="{{ $cliente->id }}">{{ $cliente->razon_social}}</option>
+                                        <option value="{{ $cliente->id_cliente }}">{{ $cliente->razon_social}}</option>
                                     @endforeach
                                 </select>
                             </div>

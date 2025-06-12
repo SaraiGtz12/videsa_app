@@ -24,10 +24,8 @@
     <hr style="border: 0; border-top: 2px solid black; margin: 10px 0;">
     <hr style="border: 0; border-top: 2px solid black; margin: 0 0 10px 0;">
 
-    <div style="text-align: center; font-size: 9px; line-height: 1.4;">
-        <strong>Verificaciones Industriales y Desarrollo de Proyectos Ecológicos S.A. de C.V.</strong><br>
-            Revolución No.356, Col. La Romana &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e-mail: verificaciones@prodigy.net.mx<br>
-            CP. 54030, Tlalnepantla, Estado de México &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; www.videsa.net<br>
-            Tel: 01(55) 5565-5044, con 13 líneas
+    <div >
+                 <img src="{{ public_path('img/footer.png') }}" width="100%" alt="footer">
+
     </div>
 </div>

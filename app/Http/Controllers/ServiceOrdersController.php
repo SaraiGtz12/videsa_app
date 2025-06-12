@@ -31,7 +31,7 @@ class ServiceOrdersController extends Controller
         ]);
 
         $year = date('y'); 
-        $contador = OrdenTrabajo::whereYear('created_at', date('Y'))->count() + 1;
+        $contador = OrdenTrabajo::count() + 1;
         $codigo = $year . '-' . str_pad($contador, 3, '0', STR_PAD_LEFT);
 
 
@@ -41,12 +41,9 @@ class ServiceOrdersController extends Controller
             $descripciones = $request->input('Descripcion'); 
             
             for ($i = 0; $i < count($servicios); $i++) {
-              //  dd('entre al for');die;
-               //\Log::info("Guardando orden para servicio: " . $servicios[$i]);
                 OrdenTrabajo::create([
-
                     'codigo'=> $codigo,
-                    'usuario_asignado' => '1',
+                    'usuario_asignado' => $request->input('Muestreador'),
                     'usuario_creador'=> '2',
                     'id_norma'=> $servicios[$i],  
                     'id_cliente'=> $request->input('empresa'),
@@ -56,8 +53,6 @@ class ServiceOrdersController extends Controller
                     'estado'=> '2'
                 ]);
                 
-              
-           
             }
             
 

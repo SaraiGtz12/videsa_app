@@ -60,7 +60,7 @@ document.querySelectorAll('.btnEditarCliente').forEach(btn => {
 $(document).on('click', '.btnVerSucursales', function () {
     const idCliente = $(this).data('id');
     $('#modaltablaSucursales').modal('show');
-        console.log("ID Cliente:", idCliente); 
+        console.log("este es mi:", idCliente); 
     $.ajax({
         url: `/empresa/sucursales/${idCliente}`,
         method: 'GET',
@@ -113,7 +113,7 @@ $(document).on('click', '.btnVerSucursales', function () {
 
 
 $(document).on('click', '.btnEditarSucursal', function () {
-    const id = $(this).data('id');
+    const id = $(this).data('id_sucursal');
     const id_cliente = $(this).data('id_cliente');
     const nombre = $(this).data('nombre');
     const codigo = $(this).data('codigo');

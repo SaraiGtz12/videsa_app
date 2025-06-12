@@ -73,6 +73,7 @@ class EmpresaController extends Controller
 //para sucursales
     public function obtenerSucursales($id)
     {
+         Log::info('Llegue');
         $sucursales = Sucursal::where('id_cliente', $id)->get();
         return response()->json($sucursales);
     }
@@ -85,19 +86,18 @@ class EmpresaController extends Controller
         Log::info('Los datos llegaron');
 
         
-            $validated = $request->validate([
-                'id_cliente' => 'required|integer',
-                'nombre' => 'required|string|max:20',
-                'codigo' => 'required|string|max:20',
-                'calle' => 'required|string|max:20',
-                'numero' => 'required|string|max:20',
-                'colonia' => 'required|string|max:20',
-                'ciudad' => 'required|string|max:20',
-                'estado' => 'required|string|max:20',
-                'codigo_postal' => 'required|string|max:20',
-                'telefono' => 'required|string|max:20'
-            ]);
-
+            // $validated = $request->validate([
+            //     'id_cliente' => 'required|integer',
+            //     'nombre' => 'required|string|max:20',
+            //     'codigo' => 'required|string|max:20',
+            //     'calle' => 'required|string|max:20',
+            //     'numero' => 'required|string|max:20',
+            //     'colonia' => 'required|string|max:20',
+            //     'ciudad' => 'required|string|max:20',
+            //     'estado' => 'required|string|max:20',
+            //     'codigo_postal' => 'required|string|max:20',
+            //     'telefono' => 'required|string|max:20'
+            // ]);
         try{
             Log::info('se va a ingresar datos');
             $cliente = Sucursal::create([
@@ -126,8 +126,8 @@ class EmpresaController extends Controller
 
         // dd('entre');die;
         $validated = $request->validate([
-            'id' => 'required|integer|exists:sucursales,id',
-            'id_cliente' => 'required|integer|exists:clientes,id',
+            'id' => 'required|integer|exists:sucursales,id_sucursal',
+            'id_cliente' => 'required|integer|exists:clientes,id_cliente',
             'nombre' => 'required|string|max:20',
             'codigo' => 'required|string|max:20',
             'calle' => 'required|string|max:20',

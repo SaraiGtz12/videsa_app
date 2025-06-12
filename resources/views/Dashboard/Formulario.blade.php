@@ -1,7 +1,9 @@
 @extends('../Layout/Layout')
-
+@section('DataTablecss')
+    <link href="{{asset('css/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+@endsection
 @section('Formulario')
-    <div class="container rounded shadow p-4 mb-4 bg-white">
+    <!-- <div class="container rounded shadow p-4 mb-4 bg-white">
         <div class="text-center">
             <h3>Formulario de Muestreo</h3>
         </div>
@@ -231,6 +233,49 @@
                 </div>
             </div>
         </form>
+    </div> -->
+
+
+
+
+
+
+      <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Servicios Registrados</h4>
+                </div>
+                <div class="card-body">
+                    
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>N°</th>
+                                    <th>Orden de Servicio</th>
+                                    <th>Norma</th>
+                                    <th>Descripcion</th>
+                                    <th>Fecha de Evaluación</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                 <tr>
+                                    <th>1</th>
+                                    <th>25-005</th>
+                                    <th>085</th>
+                                    <th>Prueba</th>
+                                    <th>11/06/2025</th>
+                                    <th></th>
+                                </tr>
+                          
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 @section('Scripts')

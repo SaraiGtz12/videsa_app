@@ -26,21 +26,13 @@
             margin: 5px 0;
         }
 </style>
-<div class="top-section">
+<div >
 
     <div class="logo">
-            <img style="width: 100px;" src="{{ public_path('img/logo.png') }}">
-
+         <img src="{{ public_path('img/encabezado.png') }}" width="100%" alt="Header">
     </div>
-
-    <div class="title">Informe de Resultados</div>        
+       
 </div>
 
     
-        <div class="divider"></div>
-   
-        <div class="subtitle"> 
-            Comparación con la Norma Oficial Mexicana NOM-085-SEMARNAT-2011, Contaminación atmosférica — Niveles máximos permisibles de emisión de los equipos de combustión de calentamiento indirecto y su medición.
-            <br>
-            Para equipos con capacidad térmica nominal mayor de 5.3 G/J o 150 C.C combustible gaseoso
-        </div>
+        
