@@ -61,7 +61,7 @@
                                             >
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <button class="btn btn-danger btn-sm btn-circle btnEliminarNorma" data-id="{{ $cliente->id }}" title="Eliminar">
+                                            <button class="btn btn-danger btn-sm btn-circle btnEliminarCliente" data-id="{{ $cliente->id }}" title="Eliminar">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                             <button 
@@ -88,8 +88,8 @@
     <div class="modal fade" id="modalFormularioCliente" tabindex="-1" role="dialog" aria-labelledby="tituloModalCliente" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form action="{{ route('empresa.store') }}" method="POST">
-                    @csrf
+               <form action="{{ route('empresa.store') }}" method="POST">
+                @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="tituloModalCliente">Registrar Empresa</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
@@ -187,9 +187,10 @@
                 </div>
                 <div class="modal-body">
                 <div class="row">
+                    <input type="hidden" name="id" id="id_sucursal">
                         <div class="col">
                             <div class="mb-2">
-                                <select class="form-select select2" name="id_cliente" required>
+                                <select class="form-select select2" id="id_cliente"  name="id_cliente" required>
                                     <option value="" selected disabled>Seleccionar Empresa</option>
                                     @foreach ($clientes as $cliente)
                                         <option value="{{ $cliente->id }}">{{ $cliente->razon_social}}</option>
@@ -243,7 +244,7 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>Alcaldia o Municipio</span>
-                                <input type="text" name="alcaldia" id="alcaldia" class="form-control" required>
+                                <input type="text" name="ciudad" id="alcaldia" class="form-control" required>
                             </div>
                         </div>
                        
@@ -260,19 +261,14 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>C.P</span>
-                                <input type="text" name="cp" id="cp" class="form-control" required>
+                                <input type="text" name="codigo_postal" id="cp" class="form-control" required>
                             </div>
                         </div>
                        
                     </div>
 
                     <div class="row">
-                         <div class="col">
-                            <div class="mb-2">
-                                <span>RFC</span>
-                                <input type="text" name="rfc" id="rfc" class="form-control" required>
-                            </div>
-                        </div>
+                         
                         
                         <div class="col">
                             <div class="mb-2">
@@ -283,7 +279,7 @@
                         
                 </div>
                 <div class="modal-footer">
-                 <button type="submit" class="btn btn-primary">Guardar</button>
+                 <button type="submit" class="btn btn-primary" id="btnGuardarSucursal">Guardar</button>
                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
             </form>
@@ -305,9 +301,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
       <script>
+        const RUTA_UPDATE_SUCURSAL = "{{ route('empresa.updateSucursal') }}";
         const RUTA_UPDATE_CLIENTE = "{{ route('empresa.update') }}";
          const CSRF_TOKEN = "{{ csrf_token() }}";
+         
     </script>
+
 
     <script src="{{ asset('js/clientes/clientes.js') }}"></script>
 @endsection

@@ -19,9 +19,7 @@ class OrdenTrabajo extends Model
         'id_sucursal',
         'fecha_evaluacion',
         'fecha_reconocimiento',
-        'estado',
-        'creado_en',
-        'actualizado_en',
+        'estado'
     ];
 
 }

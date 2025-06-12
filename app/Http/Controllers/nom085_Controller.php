@@ -12,6 +12,93 @@ use InvalidArgumentException;
 
 class nom085_Controller extends Controller
 {
+    private $factores_longuitud_kl = [
+        "4_puntos_transversales_diametro" => [
+            "1" => 0.067,
+            "2" => 0.25,
+            "3" => 0.75,
+            "4" => 0.933
+        ],
+        "6_puntos_transversales_diametro" => [
+            "1" => 0.044,
+            "2" => 0.147,
+            "3" => 0.295,
+            "4" => 0.705,
+            "5" => 0.853,
+            "6" => 0.956
+        ],
+        "8_puntos_transversales_diametro" => [
+            "1" => 0.033,
+            "2" => 0.105,
+            "3" => 0.194,
+            "4" => 0.323,
+            "5" => 0.677,
+            "6" => 0.806,
+            "7" => 0.895,
+            "8" => 0.967
+        ],
+        "10_puntos_transversales_diametro" => [
+            "1" => 0.025,
+            "2" => 0.082,
+            "3" => 0.146,
+            "4" => 0.226,
+            "5" => 0.342,
+            "6" => 0.658,
+            "7" => 0.774,
+            "8" => 0.854,
+            "9" => 0.918,
+            "10" => 0.975
+        ],
+        "12_puntos_transversales_diametro" => [
+            "1" => 0.021,
+            "2" => 0.067,
+            "3" => 0.118,
+            "4" => 0.177,
+            "5" => 0.250,
+            "6" => 0.355,
+            "7" => 0.645,
+            "8" => 0.750,
+            "9" => 0.823,
+            "10" => 0.882,
+            "11" => 0.933,
+            "12" => 0.979
+        ],
+        "14_puntos_transversales_diametro" => [
+            "1" => 0.018,
+            "2" => 0.057,
+            "3" => 0.099,
+            "4" => 0.146,
+            "5" => 0.201,
+            "6" => 0.269,
+            "7" => 0.366,
+            "8" => 0.634,
+            "9" => 0.731,
+            "10" => 0.799,
+            "11" => 0.854,
+            "12" => 0.901,
+            "13" => 0.943,
+            "14" => 0.982
+        ],
+        "16_puntos_transversales_diametro" => [
+            "1" => 0.016,
+            "2" => 0.049,
+            "3" => 0.085,
+            "4" => 0.125,
+            "5" => 0.169,
+            "6" => 0.220,
+            "7" => 0.283,
+            "8" => 0.375,
+            "9" => 0.625,
+            "10" => 0.717,
+            "11" => 0.780,
+            "12" => 0.831,
+            "13" => 0.875,
+            "14" => 0.915,
+            "15" => 0.951,
+            "16" => 0.984
+        ]
+    ];
+
     public function registrar_nom085_mg(Request $request){
         try{
             $request->validate([
@@ -26,7 +113,6 @@ class nom085_Controller extends Controller
                 "presion_estatica" => "required|numeric",
                 "geometria_conductor" => "required|string|max:255",
                 "diametro_i_d" => "required|numeric",
-                "num_medicion_gases" => "required|integer|min:1",
                 "diametro_equivalente" => "required|numeric",
                 "largo_trasversal" => "required|integer",
                 "ancho_transversal" => "required|integer",
@@ -90,21 +176,21 @@ class nom085_Controller extends Controller
             try{
                 $detalles_medicion_nom085 = new detalles_medicion_nom085();
                 $detalles_medicion_nom085->orden_trabajo_id = "1";
-                $detalles_medicion_nom085->orden_trabajo_id ="1";
+                $detalles_medicion_nom085->equipo_id ="1";
                 $detalles_medicion_nom085->combustible_utilizado = $request->combustible_utilizado;
                 $detalles_medicion_nom085->capacidad_termica = $request->capacidad_termica;
                 $detalles_medicion_nom085->altura_msnm = $request->altura;
                 $detalles_medicion_nom085->precision_estatica = $request->presion_estatica;
-                $detalles_medicion_nom085->presion_barometrica = $presion;
-                $detalles_medicion_nom085->anio = $request->anio;
+                $detalles_medicion_nom085->precion_barometrica = $presion;
+                $detalles_medicion_nom085->anyo = $request->anio;
                 $detalles_medicion_nom085->geometria_conducto = $request->geometria_conductor;
                 $detalles_medicion_nom085->diametro_conducto = $request->diametro_i_d;
                 $detalles_medicion_nom085->diametro_equivalente =$request->diametro_equivalente;
                 $detalles_medicion_nom085->largo_transversal = $request->largo_trasversal;
                 $detalles_medicion_nom085->ancho_transversal = $request->ancho_transversal;
                 $detalles_medicion_nom085->numero_puertos = $request->num_puerto;
-                $detalles_medicion_nom085->extension_puerto = $request->extencion_puerto;
-                $detalles_medicion_nom085->puntos_medicion = $request->num_medicion_gases;
+                $detalles_medicion_nom085->extencion_puerto = $request->extencion_puerto;
+                $detalles_medicion_nom085->puntos_seleccionados_medicion = $determinacion_conclusiones['puntosFinales'];
                 $detalles_medicion_nom085->distancia_a = $request->d_a;
                 $detalles_medicion_nom085->distancia_b = $request->d_b;
                 $detalles_medicion_nom085->distancia_c = $request->d_c;
@@ -126,7 +212,7 @@ class nom085_Controller extends Controller
                 $detalles_medicion_nom085->promedio_concentracion = $resultados_estratifciacion['concentraciones']['promedio'];
                 $detalles_medicion_nom085->max_estratificacion = $resultados_estratifciacion['estratificacion']['estratMaxima'];
                 $detalles_medicion_nom085->max_ppm = $resultados_estratifciacion['ppm']['ppmMaxima'];
-                $detalles_medicion_nom085->conclusion = $determinacion_conclusiones['conclusion'];
+                //$detalles_medicion_nom085->conclusion = $determinacion_conclusiones['conclusion'];
 
                 $detalles_medicion_nom085->save();
 
@@ -135,16 +221,21 @@ class nom085_Controller extends Controller
                 }
 
                 $id_detalle = $detalles_medicion_nom085->id;
+
+                $contador = 0;
                 
                 foreach ($request->nox as $index => $valor) {
                     medicion_nom085::create([
+                        'id_medicion' => $contador,
                         'nox' => $request->nox[$index],
                         'co_ppmv' => $request->co[$index],
                         'o2' => $request->o2[$index],
                         'co2' => $request->co2[$index],
-                        'temperatura' => $request->temp[$index],
-                        'id_medicion_detalle' => $id_detalle
+                        'temp' => $request->temp[$index],
+                        'detalles_medicion_nom085_id' => $id_detalle
                     ]);
+
+                    $contador ++;
                 }
 
                 return redirect()->back();
@@ -285,17 +376,15 @@ class nom085_Controller extends Controller
         ];
     }
 
-
-    // public function distribucion_puntos_estratificacion($puntos_finales = 12, $tipo_conducto = "Circular") {
-    //     if($puntos_finales == 12 && $tipo_conducto == "Circular") {
-    //         // Aquí debes especificar qué vista quieres retornar
-    //         return view('nombre.de.tu.vista', [
-    //             'factores' => $this->factores_longuitud_kl
-    //         ]);
-    //     }
+    public function d_p_e($puntos_finales = 12, $tipo_conducto = "Circular") {
+        if($puntos_finales == 12 && $tipo_conducto == "Circular") {
+            return [
+                'factores' => $this->factores_longuitud_kl
+            ];
+        }
         
-    //     return [
-    //         "resultado" => "N/A"  // Corregido el typo
-    //     ];
-    // }
+        return [
+            "resultado" => "N/A"
+        ];
+    }
 }
