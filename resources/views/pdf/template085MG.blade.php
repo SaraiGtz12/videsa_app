@@ -126,15 +126,15 @@
     <main>
         @include('pdf.recursos.headerCaratula')
         <div class="company-name">
-            {{sucursal}}
+            {{$sucursal}}
         </div>
 
         <table class="info-table">
             <tr>
                 <td class="col-1">
                     Carretera Jilotepec–Soyaniquilpan Km 3.5 MZ 2 Lt 1B, Parque industrial Jilotepec,<br>
-                    Jilotepec, Estado de México, C.P. 54240<br>
-                    Resto de país (Rp)
+                    {{$ciudad}}, {{$estado}}, C.P. 54240<br>
+                    {{$id_zona_geografica}}<br>
                 </td>
                 <td class="col-2">
                     Número de informe:<br>
@@ -146,12 +146,12 @@
                   <td class="col-3">
                     {{ $numero_informe }}<br>
                     {{ $detalle->codigo }}<br>
-                    3<br>
-                    4<br>
+                    {{$fecha_muestreo}}<br>
+                    {{$fecha_muestreo}}<br>
                     {{ $fecha_informe }}
                  </td>
                 <td class="col-4">
-                    <div class="placeholder-image">QR</div>
+                    
                 </td>
             </tr>
         </table>
@@ -162,7 +162,7 @@
                 <th colspan="6" style = "text-align: center">Equipo evaluado</th>
             </tr>
             <tr>
-                <td colspan="6" style = "text-align: center">plancha 3</td>
+                <td colspan="6" style = "text-align: center">{{$equipo_evaluado}}</td>
             </tr>
             <tr>
                 <td>Capacidad térmica</td>
@@ -268,11 +268,11 @@
                     Fecha de informe:
                 </td>
                 <td class="col-2">
-                    FE085MG/250405-01<br>
-                    25-1347<br>
-                    5-ABRIL-25<br>
-                    6-ABRIL-25<br>
-                    11-ABRIL-25
+                    {{$numero_informe}}<br>
+                    {{$orden_servicio}}<br>
+                    {{$fecha_muestreo}}<br>
+                    {{$fecha_muestreo}}<br>
+                    {{$fecha_informe}}
                 </td>
         
             </tr>

@@ -40,10 +40,11 @@ class Vistas_Controller extends Controller
                 // Redirige a otra página (por ejemplo, la página de inicio)
                 return redirect()->route('login')->withErrors(['error' => 'No tienes permiso para acceder a esta página.', 'Titulo'=>'Acceso Denegado']);
             }
-            $normas = Norma::select('id', 'codigo')->where('activa', 1)->get();
-            $clientes = Cliente::select('id','razon_social')->get();
-            
-            return view('Dashboard.AgregarServicio', compact('clientes','normas'));
+            $normas = Norma::select('id_norma', 'codigo')->where('activa', 1)->get();
+            $clientes = Cliente::select('id_cliente','razon_social')->get();
+            $muestreadores = User::where('id_rol', 3)->get();
+
+            return view('Dashboard.AgregarServicio', compact('clientes','normas', 'muestreadores'));
     }
 
     public function Buscar(){

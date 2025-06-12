@@ -45,3 +45,10 @@ $(document).ready(function () {
 
 
 
+
+ $(document).ready(function() {
+        $('#Muestreador').select2({
+            placeholder: 'Seleccione un muestreador',
+            allowClear: true
+        });
+    });
