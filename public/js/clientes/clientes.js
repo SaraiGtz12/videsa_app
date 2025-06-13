@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.btnEliminarCliente').forEach(btn => {
             btn.addEventListener('click', function () {
-                const idCliente = this.getAttribute('data-id');
+                const idCliente = this.getAttribute('data-id_cliente');
                 Swal.fire({
                     title: '¿Estás seguro?',
                     text: "Esta acción eliminará al cliente.",
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.querySelectorAll('.btnEditarCliente').forEach(btn => {
             btn.addEventListener('click', function () {
-                const id = this.getAttribute('data-id');
+                const id = this.getAttribute('data-id_cliente');
                 const razon_social = this.getAttribute('data-razon_social');
                 const rfc = this.getAttribute('data-rfc');
                 const telefono = this.getAttribute('data-telefono');
@@ -142,75 +142,3 @@ $(document).on('click', '.btnEditarSucursal', function () {
     $('#modalFormularioSucursal').modal('show');
 });
 
-// $(document).on('click', '.btnEditarSucursal', function () {
-//     const boton = $(this);
-//     $('#modalFormularioSucursal').modal('show');
-
-//     $('#modalFormularioSucursal select[name="id_cliente"]').val(boton.data('id_cliente')).trigger('change');
-//     $('#modalFormularioSucursal input[name="nombre"]').val(boton.data('nombre'));
-//     $('#modalFormularioSucursal input[name="codigo"]').val(boton.data('codigo'));
-//     $('#modalFormularioSucursal input[name="calle"]').val(boton.data('calle'));
-//     $('#modalFormularioSucursal input[name="numero"]').val(boton.data('numero'));
-//     $('#modalFormularioSucursal input[name="colonia"]').val(boton.data('colonia'));
-//     $('#modalFormularioSucursal input[name="alcaldia"]').val(boton.data('ciudad'));
-//     $('#modalFormularioSucursal input[name="estado"]').val(boton.data('estado'));
-//     $('#modalFormularioSucursal input[name="cp"]').val(boton.data('codigo_postal'));
-//     $('#modalFormularioSucursal input[name="telefono"]').val(boton.data('telefono'));
-
-//     if (!$('#modalFormularioSucursal input[name="id_sucursal"]').length) {
-//         $('#modalFormularioSucursal form').append('<input type="hidden" name="id_sucursal" id="id_sucursal">');
-//     }
-//     $('#modalFormularioSucursal input[name="id_sucursal"]').val(boton.data('id'));
-// });
-
-
-
-
-// $(document).on('click', '#btnGuardarSucursal', function (e) {
-//     e.preventDefault(); 
-//     const form = $('#modalFormularioSucursal form');
-//     const formData = form.serialize();
-    
-//     console.log("RUta:", RUTA_GUARDAR_SUCURSAL);
-//     console.log("formData:", formData);
-//     $.ajax({
-//         url: RUTA_GUARDAR_SUCURSAL,
-//         method: 'POST',
-//         data: formData,
-//         success: function (response) {
-//             Swal.fire({
-//                 icon: 'success',
-//                 title: '¡Éxito!',
-//                 text: response.message || 'Sucursal guardada correctamente.',
-//                 timer: 2000,
-//                 showConfirmButton: false
-//             });
-
-//             $('#modalFormularioSucursal').modal('hide');
-
-//             const idCliente = form.find('select[name="id_cliente"]').val();
-//             if (idCliente) {
-//                 $('.btnVerSucursales[data-id="' + idCliente + '"]').click();
-//             }
-
-//         },
-//         error: function (xhr) {
-//             if (xhr.status === 422) {
-//                 const errores = xhr.responseJSON.errors;
-//                 let mensaje = 'Corrige los siguientes errores:<br>';
-//                 for (let campo in errores) {
-//                     mensaje += `<strong>${errores[campo]}</strong><br>`;
-//                 }
-//                 Swal.fire({
-//                     icon: 'error',
-//                     title: 'Error de validación',
-//                     html: mensaje
-//                 });
-//             } else {
-//                 Swal.fire('Error', 'Ocurrió un error al guardar la sucursal.', 'error');
-//             }
-//         }
-//     });
-// });
-
-      

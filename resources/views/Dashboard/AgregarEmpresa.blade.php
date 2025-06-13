@@ -61,7 +61,7 @@
                                             >
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <button class="btn btn-danger btn-sm btn-circle btnEliminarCliente" data-id="{{ $cliente->id }}" title="Eliminar">
+                                            <button class="btn btn-danger btn-sm btn-circle btnEliminarCliente" data-id_cliente="{{ $cliente->id_cliente }}" title="Eliminar">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                             <button 

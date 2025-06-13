@@ -39,8 +39,9 @@ class EmpresaController extends Controller
     }
     public function desactivar($id)
     {
+        Log::info("Desactivando cliente con ID: $id");
         $cliente = Cliente::findOrFail($id);
-        $cliente->estatus = 0;
+        $cliente->id_estatus = 2;
         $cliente->save();
 
         return response()->json(['success' => true, 'message' => 'cliente eliminado correctamente.']);
@@ -49,9 +50,9 @@ class EmpresaController extends Controller
     public function update(Request $request)
     {
 
-        
+        Log::info('Actualizando cliente con ID: '.$request->id);
         $request->validate([
-            'id' => 'required|integer|exists:clientes,id',
+            'id_cliente' => 'required|integer|exists:clientes,id_cliente',
             'razon_social' => 'required|string|max:255',
             'rfc' => 'required|string|max:20',
             'telefono' => 'required|string|max:20',

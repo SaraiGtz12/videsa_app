@@ -21,7 +21,7 @@ class Sucursal extends Model
         'ciudad',
         'estado',
         'codigo_postal',
-        'estatus'
+        'id_estatus'
     ];
 
 }
