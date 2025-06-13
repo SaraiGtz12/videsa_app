@@ -48,7 +48,7 @@ class ServiceOrdersController extends Controller
                     'id_cliente'=> $request->input('empresa'),
                     'id_sucursal'=> $request->input('sucursal'),
                     'fecha_muestreo' => $request->input('FechaMuestreo'),
-                    'estatus'=> 2
+                    'id_estatus'=> 1
                 ]);
                 
             }

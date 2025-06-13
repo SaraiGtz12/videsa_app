@@ -133,7 +133,7 @@
             <tr>
                 <td class="col-1">
                     Carretera Jilotepec–Soyaniquilpan Km 3.5 MZ 2 Lt 1B, Parque industrial Jilotepec,<br>
-                    {{$ciudad}}, {{$estado}}, C.P. 54240<br>
+                    {{$ciudad}}, {{$estado}}, C.P. {{$codigo_postal}}<br>
                     {{$id_zona_geografica}}<br>
                 </td>
                 <td class="col-2">
@@ -170,7 +170,7 @@
                 <td>GJ/h</td>
                 <td></td>
                 <td>Combustible utilizado</td>
-                <td>Gas natural</td>
+                <td>{{ $detalle->combustible_utilizado }}</td>
             </tr>
             <tr>
                 <td>{{ $detalle->capacidad_termica }}</td>
