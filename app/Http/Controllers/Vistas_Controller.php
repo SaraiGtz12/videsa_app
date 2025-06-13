@@ -7,6 +7,7 @@ use App\Models\Rol;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\datos_servicio;
 use App\Models\detalles_medicion_nom085;
 use App\Models\Sucursal;
 use App\Models\Norma;
@@ -26,9 +27,11 @@ class Vistas_Controller extends Controller
             // Redirige a otra página (por ejemplo, la página de inicio)
             return redirect()->route('login')->withErrors(['error' => 'No tienes permiso para acceder a esta página.', 'Titulo'=>'Acceso Denegado']);
         }
-        $detalles = orden_servicio::join('datos_servicios','datos_servicios.id_orden_servicio','=','ordenes_servicios.id_orden_servicio')
+        $detalles = datos_servicio::join('ordenes_servicios','datos_servicios.id_orden_servicio','=','ordenes_servicios.id_orden_servicio')
         ->join('normas', 'normas.id_norma', '=', 'datos_servicios.id_norma')
-        ->select('normas.nombre as nom', 'ordenes_servicios.*', 'datos_servicios.*')
+        ->join('usuarios', 'usuarios.id_usuario', '=', 'ordenes_servicios.muestreador_asignado')
+        ->join('clientes', 'clientes.id_cliente', '=', 'ordenes_servicios.id_cliente')
+        ->select('normas.nombre as nom', 'ordenes_servicios.*', 'datos_servicios.*', 'usuarios.nombre as muestreador', 'clientes.razon_social')
         ->get();
         return view('Dashboard.Home', compact('detalles'));
     }

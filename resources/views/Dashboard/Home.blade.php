@@ -1,4 +1,8 @@
 @extends('../Layout.Layout')
+@section('DataTablecss')
+    <link href="{{asset('css/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+@endsection
+
 @section('Home')
 
 <!-- Page Heading -->
@@ -20,7 +24,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Servicios Realizados (Mes)</div>
+                            Servicios Registrados (Mes)</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                     </div>
                     <div class="col-auto">
@@ -108,33 +112,40 @@
                 <h6 class="m-0 font-weight-bold text-primary">Reportes Generados</h6>
             </div>
             <div class="card-body">
-                <div class="table-responsive" style="max-height: 400px; max-width: 200px overflow-y: auto;">
+                <div class="table-responsive" style="max-height: 600px; max-width: 200px overflow-y: auto;">
                     <table class="table table-bordered table-hover" id="tablaReportes" width="100%" cellspacing="0">
                         <thead class="thead-light">
                             <tr>
                                 <th>No.</th>
+                                <th>Cliente</th>
                                 <th>Norma</th>
                                 <th>Orden de Servicio</th>
+                                <th>Fecha Muestreo</th>
+                                <th>Muestreador Asignado</th>
                                 <th>Estatus</th>
                                 <th>Acciones</th>
                             </tr>
-                            <tr>
-                                {{-- <th><input type="text" placeholder="Buscar" /></th>
-                                <th><input type="text" placeholder="Buscar" /></th>
-                                <th><input type="text" placeholder="Buscar" /></th>
-                                <th><input type="text" placeholder="Buscar" /></th>
-                                <th><input type="text" placeholder="Buscar" /></th>
-                                <th><input type="text" placeholder="Buscar" /></th>
-                                <th></th>  --}}
-                            </tr>
+                            {{-- <tr>
+                                <th></th>
+                                <th><input type="text" placeholder="Buscar" class="form-control" /></th>
+                                <th><input type="text" placeholder="Buscar" class="form-control" /></th>
+                                <th><input type="text" placeholder="Buscar" class="form-control" /></th>
+                                <th><input type="text" placeholder="Buscar" class="form-control" /></th>
+                                <th><input type="text" placeholder="Buscar" class="form-control" /></th>
+                                <th><input type="text" placeholder="Buscar" class="form-control" /></th>
+                                <th></th> 
+                            </tr> --}}
                         </thead>
 
                         <tbody>
                             @foreach ($detalles as $detalle)
                                 <tr>
                                     <td>{{$detalle->id_orden_servicio}}</td>
+                                    <td>{{$detalle->razon_social}}</td>
                                     <td>{{$detalle->nom}}</td>
-                                    <td>{{$detalle->codigo}}</td>
+                                    <td>{{$detalle->numero_servicio}}</td>
+                                    <td>{{$detalle->fecha_muestreo}}</td>
+                                    <td>{{$detalle->muestreador}}</td>
                                     <td>
                                         @if ($detalle->estado == 1)
                                             <span class="badge badge-success">
@@ -168,33 +179,43 @@
 
 @endsection
 
-<script>
-$(document).ready(function() {
-    $('#tablaReportes thead tr:eq(1) th').each(function(i) {
-        $('input', this).on('keyup change', function() {
-            if ($('#tablaReportes').DataTable().column(i).search() !== this.value) {
-                $('#tablaReportes').DataTable().column(i).search(this.value).draw();
-            }
-        });
-    });
+@section('Scripts')
+    <script src="{{asset('js/DataTables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('js/DataTables/dataTables.bootstrap4.min.js')}}"></script>
 
-    $('#tablaReportes').DataTable({
-        orderCellsTop: true,
-        fixedHeader: true,
-        language: {
-            search: "Buscar general:",
-            lengthMenu: "Mostrar _MENU_ registros",
-            zeroRecords: "No se encontraron resultados",
-            info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
-            infoEmpty: "No hay registros disponibles",
-            infoFiltered: "(filtrado de _MAX_ registros totales)",
-            paginate: {
-                first: "Primero",
-                last: "Último",
-                next: "Siguiente",
-                previous: "Anterior"
-            }
-        }
-    });
-});
-</script>
+    <script>
+        $(document).ready(function() {
+            $('#tablaReportes').DataTable();
+
+            // $('#tablaReportes').DataTable({
+            //     orderCellsTop: true,
+            //     fixedHeader: true,
+            //     language: {
+            //         search: "Buscar general:",
+            //         lengthMenu: "Mostrar _MENU_ registros",
+            //         zeroRecords: "No se encontraron resultados",
+            //         info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+            //         infoEmpty: "No hay registros disponibles",
+            //         infoFiltered: "(filtrado de _MAX_ registros totales)",
+            //         paginate: {
+            //             first: "Primero",
+            //             last: "Último",
+            //             next: "Siguiente",
+            //             previous: "Anterior"
+            //         }
+            //     }
+            // });
+
+            // $('#tablaReportes thead tr:eq(1) th').each(function(i) {
+            //     $('input', this).on('keyup change', function() {
+            //         if ($('#tablaReportes').DataTable().column(i).search() !== this.value) {
+            //             $('#tablaReportes').DataTable().column(i).search(this.value).draw();
+            //         }
+            //     });
+            // });
+        });
+    </script>
+
+@endsection
+
+

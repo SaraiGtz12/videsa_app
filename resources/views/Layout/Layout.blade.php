@@ -13,6 +13,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{asset('img/logo.png')}}" type="image/x-icon">
     <script src="https://kit.fontawesome.com/e485076abf.js" crossorigin="anonymous"></script>
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
@@ -47,8 +48,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon ">
+                    <img src="{{asset('img/logo.png')}}" alt="log" width="50px">
                 </div>
                 <div class="sidebar-brand-text mx-3">Videsa</div>
             </a>
