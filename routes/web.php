@@ -32,7 +32,6 @@ Route::get('/agregarNorma', [Vistas_Controller::class, 'AgregarNorma'])->name('A
 
 
 //RUTAS PARA PLANTILLAS PDF
-Route::get('/generar-pdf', [PdfController::class, 'generarPDF'])->name('pdf.generar');
 Route::get('/detalles-medicion', [PdfController::class, 'mostrarDetalles']);
 
 Route::get('generate085MG', [PdfController::class, 'generatePdf085MG']);
@@ -40,6 +39,7 @@ Route::get('generate085G', [PdfController::class, 'generatePdf085G']);
 Route::get('generate085L', [PdfController::class, 'generatePdf085L']);
 Route::post('generate085MG', [PdfController::class, 'generatePdf085MG']);
 Route::post('generate085G', [PdfController::class, 'generatePdf085G']);
+Route::get('generar/{id}', [PdfController::class, 'generarPDF'])->name('pdf.generar');
 
 Route::get('/search',[Vistas_Controller::class, 'Buscar'])->name('Buscar');
 Route::get('/servicios_registrados', [Vistas_Controller::class, 'VistaServiciosRegistrados'])->name('ServiciosRegistrados');
@@ -52,7 +52,6 @@ Route::post('/register_user', [UsersController::class, 'RegistrarUsuarios'])->na
 //Rutas para la optención de datos
 Route::get('/getMuestreadores', [FormsController::class, 'getMuestreadores']);
 
-Route::post('/generarPDF', [PdfController::class, 'generarPDF'])->name('generarPDF');
 Route::get('/prueba_puntos', [Nom_085_Campo_Controller::class, 'distribucion_puntos_estratificacion'])->name('Prueba');
 
 

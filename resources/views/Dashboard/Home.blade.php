@@ -6,13 +6,7 @@
 @section('Home')
 
 <!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-    <a href="{{ route('pdf.generar') }}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
-    </a>
 
-</div>
 
 <!-- Content Row -->
 <div class="row">
@@ -147,7 +141,7 @@
                                     <td>{{$detalle->fecha_muestreo}}</td>
                                     <td>{{$detalle->muestreador}}</td>
                                     <td>
-                                        @if ($detalle->estado == 1)
+                                        @if ($detalle->id_estatus == 1)
                                             <span class="badge badge-success">
                                                 Completado
                                             </span>
@@ -165,6 +159,16 @@
                                         <button class="btn btn-danger btn-sm btn-circle" title="Eliminar">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
+
+                                         <a 
+                                            href="{{ route('pdf.generar', ['id' => $detalle->id_orden_servicio]) }}" 
+                                            class="btn btn-success btn-sm btn-circle" 
+                                            title="Generar PDF" 
+                                            target="_blank"
+                                        >
+                                            <i class="fas fa-file-pdf"></i>
+                                        </a>
+
                                     </td>
                                 </tr>
                             @endforeach
