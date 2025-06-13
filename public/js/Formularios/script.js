@@ -5,7 +5,7 @@ $(document).ready(function () {
         $("#ContenidoServicio").empty(); // Limpiar contenido previo
         let opcionesNormas = '<option value="">Selecciona un Servicio</option>';
             normas.forEach(norma => {
-                opcionesNormas += `<option value="${norma.id}">${norma.codigo}</option>`;
+                opcionesNormas += `<option value="${norma.id_norma}">${norma.codigo}</option>`;
             });
 
         for (let i = 0; i < cantidad; i++) {

@@ -16,6 +16,7 @@ class orden_servicio extends Model
         'id_sucursal',
         'fecha_muestreo',
         'muestreador_asignado',
-        'id_datos_servicio'
+        'numero_servicio',
+        'id_estatus'
     ];
 }
