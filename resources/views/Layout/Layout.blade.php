@@ -467,7 +467,7 @@
     <script src="{{asset('js/Layout.js')}}"></script>
 
     <!--Customs Scripts-->
-    @yield('Scripts')
+    @stack('Scripts')
 
 </body>
 </html>

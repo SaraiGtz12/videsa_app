@@ -5,15 +5,6 @@
 @endsection
 @section('AgregarEmpresa')
 
-@if (session('success'))
-    <input id="ConfirmacionEmpresa" value="true" type="hidden">
-@endif
-
-@if ($errors->has('error'))
-    <input id="errorEmpresa" value="true" type="hidden">
-@endif
-   
-
     <div class="mb-3 text-right">
         <button id="btnMostrarFormulario" class="btn btn-success" data-toggle="modal" data-target="#modalFormularioCliente">
             <i class="fas fa-plus"></i> Agregar Cliente
@@ -312,8 +303,5 @@
     </script>
 
     <script src="{{ asset('js/clientes/clientes.js') }}"></script>
-
-    <script src="{{asset('js/Alertas/confirmaciones.js')}}"></script>
-    <script src="{{asset('js/Alertas/Errores.js')}}"></script>
 
 @endsection

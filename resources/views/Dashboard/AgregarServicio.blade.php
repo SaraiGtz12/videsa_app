@@ -1,10 +1,18 @@
 @extends('../Layout/Layout')
 @section('DataTablecss')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/path/to/select2.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css"> --}}
 @endsection
 @section('AgregarServicio')
+    @if (session('success'))
+        <input id="ConfirmacionEmpresa" value="true" type="hidden">
+    @endif
+
+    @if ($errors->has('error'))
+        <input id="errorEmpresa" value="true" type="hidden">
+    @endif
+
     <div class="container rounded shadow p-4 mb-4 bg-white">
         <div class="text-center">
             <h3>Registrar Orden de Servicio</h3>
@@ -77,7 +85,7 @@
                         </div>
                         <div class="col">
                             <span>Muestrador</span>
-                            <select name="Muestreador" id="Muestreador" class="form-control" required>
+                            <select name="Muestreador" id="Muestreador" class="form-select" required>
                                 <option value="">Seleccione un muestreador</option>
                                 @foreach ($muestreadores as $usuario)
                                     <option value="{{ $usuario->id_usuario }}">{{ $usuario->nombre }}</option>
@@ -97,18 +105,31 @@
 
 @endsection
 
-@section('Scripts')
+@push('Scripts')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         const normas = @json($normas);
     </script>
     <script src="{{asset('js/Formularios/script.js')}}"></script>
-    <script>
+    
+    {{-- <script>
         $('#empresa').select2({
-            placeholder: "Selecciona una opción",
             theme: 'bootstrap4',
-            width: '100%'
         });
-    </script>
 
-@endsection
+        $('#Muestreador').select2({
+            theme: 'bootstrap4',
+        });
+
+        document.addEventListener('livewire:load', function () {
+            initSelect2();
+
+            Livewire.hook('message.processed', (message, component) => {
+                initSelect2();
+            });
+        });
+    </script> --}}
+    <script src="{{asset('js/Alertas/confirmaciones.js')}}"></script>
+    <script src="{{asset('js/Alertas/Errores.js')}}"></script>
+
+@endpush
