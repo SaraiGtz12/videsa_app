@@ -33,7 +33,7 @@
                                     <td>{{ $orden->fecha_registro ?? '---'  }}</td>
                                     <td>
                                        <button 
-                                            class="btn btn-info btn-sm btn-circle btnModalFormulario"
+                                            class="btn btn-success btn-sm btn-circle btnModalFormulario"
                                             data-id_datos_servicio="{{ $orden->id_datos_servicio }}"
                                             data-razon_social="{{ $orden->razon_social }}"
                                             data-calle="{{ $orden->calle }}"
@@ -44,8 +44,7 @@
                                             data-codigo_postal="{{ $orden->codigo_postal }}"
                   
                                             title="Abrir Formulario"
-                                        >
-
+                                        ><i class="fas fa-edit"></i>
                                     </td>
                                 </tr>
                             @endforeach
