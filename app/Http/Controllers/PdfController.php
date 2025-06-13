@@ -7,161 +7,54 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\detalles_medicion_nom085;
 use App\Models\OrdenTrabajo;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class PdfController extends Controller
 {
-    // public function generarPDF(Request $request)
-    // {
-    //     $request->validate([
-    //         'fecha_evaluacion' => 'required|date',
-    //         'equipo_evaluado' => 'required|string',
-
-    //         'nox' => 'required|array',
-    //         'co' => 'required|array',
-    //         'o2' => 'required|array',
-    //         'co2' => 'required|array',
-    //         'temp' => 'required|array',
-    //     ]);
-
-    //     $nox = $request->input('nox');  
-    //     $co = $request->input('co');
-    //     $o2 = $request->input('o2');
-    //     $co2 = $request->input('co2');
-    //     $temp = $request->input('temp');
-
-    //     $urlNox = $this->buildChartUrl('NOX', $nox, 'blue');
-    //     $urlCo = $this->buildChartUrl('CO', $co, 'red');
-    //     $urlO2 = $this->buildChartUrl('O2', $o2, 'green');
-    //     $urlCo2 = $this->buildChartUrl('CO2', $co2, 'orange');
-
-    //     $imgNox = $this->getBase64FromUrl($urlNox);
-    //     $imgCo = $this->getBase64FromUrl($urlCo);
-    //     $imgO2 = $this->getBase64FromUrl($urlO2);
-    //     $imgCo2 = $this->getBase64FromUrl($urlCo2);
-
-    //     $filas = [];
-    //     $numFilas = count($nox);
-
-    //     for ($i = 0; $i < $numFilas; $i++) {
-    //         $filas[] = [
-    //             'no' => $i + 1,
-    //             'nox' => $nox[$i],
-    //             'co' => $co[$i],
-    //             'o2' => $o2[$i],
-    //             'co2' => $co2[$i],
-    //             'temp' => $temp[$i],
-    //         ];
-    //     }
-
-    //     $data = [
-    //         'numero_informe' => 'INF-' . rand(1000, 9999),
-    //         'orden_servicio' => 'OS-' . rand(1000, 9999),
-    //         'fecha_evaluacion' => $request->fecha_evaluacion,
-    //         'recepcion' => now()->format('Y-m-d'),
-    //         'fecha_informe' => now()->format('Y-m-d'),
-            
-    //         'equipo_evaluado' => $request->equipo_evaluado,
-
-    //         'filas' => $filas,
-    //         'imgNox' => $imgNox,
-    //         'imgCo' => $imgCo,
-    //         'imgO2' => $imgO2,
-    //         'imgCo2' => $imgCo2,
-    //     ];
-
-    //     $pdf = Pdf::loadView('pdf.template085MG', $data);
-
-    //     return $pdf->stream('Informe085MG.pdf'); 
-    // }
-
-    // private function buildChartUrl($label, $data, $color)
-    // {
-    //     $chart = [
-    //         'type' => 'line',
-    //         'data' => [
-    //             'labels' => range(1, count($data)),
-    //             'datasets' => [[
-    //                 'label' => $label,
-    //                 'data' => $data,
-    //                 'fill' => false,
-    //                 'borderColor' => $color,
-    //             ]],
-    //         ],
-    //         'options' => [
-    //             'title' => [
-    //                 'display' => true,
-    //                 'text' => "$label (ppmv)"
-    //             ],
-    //             'legend' => [
-    //                 'display' => false
-    //             ],
-    //             'scales' => [
-    //                 'xAxes' => [[
-    //                     'display' => true,
-    //                     'scaleLabel' => [
-    //                         'display' => true,
-    //                         'labelString' => 'No.'
-    //                     ]
-    //                 ]],
-    //                 'yAxes' => [[
-    //                     'display' => true,
-    //                     'scaleLabel' => [
-    //                         'display' => true,
-    //                         'labelString' => 'Valor'
-    //                     ]
-    //                 ]]
-    //             ]
-    //         ]
-    //     ];
-
-    //     return "https://quickchart.io/chart?c=" . urlencode(json_encode($chart));
-    // }
-
-    // private function getBase64FromUrl($url)
-    // {
-    //     $imageData = @file_get_contents($url);
-    //     if ($imageData === false) {
-    //         return '';
-    //     }
-    //     return 'data:image/png;base64,' . base64_encode($imageData);
-    // }
-
-public function generarPDF()
+    
+public function generarPDF($id)
 {
-    $orden_trabajo_id=1;
-        $detalle = detalles_medicion_nom085::where('orden_trabajo_id', $orden_trabajo_id)->first();
-         if (!$detalle) {
-            return response()->json(['error' => 'No se encontraron datos para esta orden de trabajo.'], 404);
-        }
+    $detalle = \DB::table('informes')
+        ->join('datos_servicios as ds', 'informes.id_datos_servicio', '=', 'ds.id_datos_servicio')
+        ->join('ordenes_servicios as os', 'ds.id_orden_servicio', '=', 'os.id_orden_servicio')
+        ->join('clientes as c', 'os.id_cliente', '=', 'c.id_cliente')
+        ->join('sucursales as s', 'c.id_cliente', '=', 's.id_cliente')
+        ->join('zonas_geograficas as zg', 'informes.id_zona_geografica', '=', 'zg.id_zona_geografica')
+        ->join('tipos_combustibles as tc', 'informes.combustible_utilizado', '=', 'tc.id_tipo_combustible')
+        ->where('os.id_orden_servicio', $id)
+        ->select(
+            'os.numero_servicio',
+            'os.fecha_muestreo',
+            'c.razon_social as cliente',
+            's.nombre as nombre_sucursal',
+            's.calle', 's.numero', 's.colonia', 's.estado','s.ciudad', 's.codigo_postal',
+            'zg.codigo',
+            'tc.tipo','informes.cpacidad_termica_nominal',
+            'informes.*'
+        )
+        ->first();
 
-        $now = Carbon::now();
-        $fecha_formateada = $now->format('d/m/Y'); 
-        $fecha_informe_compacta = $now->format('ymd'); // yyMMdd → 250611
-        $contador = OrdenTrabajo::whereYear('created_at', $now->year)->count() + 1;
+    if (!$detalle) {
+        return redirect()->back()->with('error', 'No se encontró información para este informe.');
+    }
 
-        $contador_formateado = str_pad($contador, 2, '0', STR_PAD_LEFT);
+    $data = [
+        'detalle' => $detalle,
+        'numero_servicio' => $detalle->numero_servicio,
+        'nombre_sucursal' => $detalle->nombre_sucursal,
+        'codigo' => $detalle->codigo,
+        'id_zona_geografica' => $detalle->id_zona_geografica,
+        'numero_informe' => $detalle->numero_informe ?? 'N/A',
+        'fecha_informe' => now()->format('d/m/Y'),
+        'fecha_muestreo' => \Carbon\Carbon::parse($detalle->created_at)->format('d/m/Y'),
+        'equipo_evaluado' => $detalle->equipo_evaluado ?? 'No especificado',
+    ];
 
-        $numero_informe = 'FE085MG/' . $fecha_informe_compacta . '-' . $contador_formateado;
+    $pdf = \PDF::loadView('pdf.template085MG', $data);
 
-        $fecha_informe = Carbon::now()->format('d/m/Y');
-        $pdf = \PDF::loadView('pdf.template085MG', compact('detalle', 'fecha_informe','numero_informe'));
-
-         return $pdf->download('medicion_nom085.pdf');
-
-    // $data = [
-    //     'numero_informe' => 'FE085MG/250405-01',
-    //     'orden_servicio' => '25-1347',
-    //     'fecha_evaluacion' => '5-ABRIL-25',
-    //     'recepcion' => '6-ABRIL-25',
-    //     'fecha_informe' => '11-ABRIL-25',
-    //     'equipo_evaluado' => 'Equipo de prueba',
-    // ];
-
-    // $pdf = Pdf::loadView('pdf.template085MG', $data);
-
-    // return $pdf->stream('informe.pdf'); 
-    // return $pdf->download('informe.pdf'); // para descargar automáticamente
+    return $pdf->stream("informe_{$detalle->numero_servicio}_{$detalle->numero_informe}.pdf");
 }
+
 
 
 }

@@ -53,7 +53,7 @@
         }
 
         .col-1 {
-            width: 35%;
+            width: 50%;
         }
 
         .col-2 {
@@ -62,7 +62,7 @@
         }
 
         .col-3 {
-            width: 25%;
+            width: 10%;
         }
 
         .col-4 {
@@ -125,16 +125,33 @@
 
     <main>
         @include('pdf.recursos.headerCaratula')
+      
         <div class="company-name">
-            {{$sucursal}}
+            {{$detalle->cliente}}  ({{$detalle->nombre_sucursal}})
         </div>
 
         <table class="info-table">
             <tr>
                 <td class="col-1">
-                    Carretera Jilotepec–Soyaniquilpan Km 3.5 MZ 2 Lt 1B, Parque industrial Jilotepec,<br>
-                    {{$ciudad}}, {{$estado}}, C.P. {{$codigo_postal}}<br>
-                    {{$id_zona_geografica}}<br>
+                    {{$detalle->calle}} {{$detalle->numero}}, {{$detalle->colonia}},<br>
+                    {{$detalle->ciudad}}, {{$detalle->estado}}, C.P. {{$detalle->codigo_postal}}<br>
+                    {{$detalle->codigo}}<br>
+                    @switch($detalle->codigo)
+                        @case('ZMG')
+                            Zona Metropolitana de Guadalajara
+                            @break
+
+                        @case('ZMM')
+                            Zona Metropolitana de Monterrey
+                            @break
+
+                        @case('RP')
+                            Resto del país
+                            @break
+
+                        @default
+                            {{$detalle->codigo}} {{-- Mostrar el código si no coincide con ningún caso --}}
+                    @endswitch
                 </td>
                 <td class="col-2">
                     Número de informe:<br>
@@ -144,14 +161,14 @@
                     Fecha de informe:
                 </td>
                   <td class="col-3">
-                    {{ $numero_informe }}<br>
-                    {{ $detalle->codigo }}<br>
+                    {{$detalle->numero_informe }}<br>
+                    {{$detalle->numero_servicio }}<br>
                     {{$fecha_muestreo}}<br>
                     {{$fecha_muestreo}}<br>
                     {{ $fecha_informe }}
                  </td>
                 <td class="col-4">
-                    
+                    <img src="{{ public_path('img/CODIGOQR.jpg') }}" width="60px" alt="footer">
                 </td>
             </tr>
         </table>
@@ -159,34 +176,26 @@
     
         <table class="evaluated-equipment-table">
             <tr>
-                <th colspan="6" style = "text-align: center">Equipo evaluado</th>
+                <th colspan="5" style = "text-align: center">EQUIPO EVALUADO</th>
             </tr>
             <tr>
-                <td colspan="6" style = "text-align: center">{{$equipo_evaluado}}</td>
+                <td colspan="5" style = "text-align: center">{{$equipo_evaluado}}</td>
             </tr>
             <tr>
-                <td>Capacidad térmica</td>
-                <td>C.C</td>
-                <td>GJ/h</td>
+                <td>Capacidad térmica<br>nominal</td>
+                <td>C.C<br>{{ $detalle->cpacidad_termica_nominal}}</td>
+                <td>GJ/h<br>22.06</td>
                 <td></td>
-                <td>Combustible utilizado</td>
-                <td>{{ $detalle->combustible_utilizado }}</td>
+                <td>Combustible utilizado:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $detalle->tipo }}</td>
             </tr>
-            <tr>
-                <td>{{ $detalle->capacidad_termica }}</td>
-                <td>No.Disponible</td>
-                <td>No.Disponible</td>
-                <td></td>
-                <td>{{ $detalle->combustible_utilizado }}</td>
-                <td></td>
-            </tr>
+            
         </table>
 
 
 
         <table class="result-table ">
             <tr>
-                <th colspan="5" style = "text-align: center">Resultados</th>
+                <th colspan="5" style = "text-align: center">RESULTADOS</th>
             </tr>
             <tr>
                 <td>Parámetros Evaluados</td>
@@ -268,11 +277,11 @@
                     Fecha de informe:
                 </td>
                 <td class="col-2">
-                    {{$numero_informe}}<br>
-                    {{$orden_servicio}}<br>
-                    {{$fecha_muestreo}}<br>
-                    {{$fecha_muestreo}}<br>
-                    {{$fecha_informe}}
+                    {{$detalle->numero_informe}}<br>
+                    {{$detalle->numero_servicio}}<br>
+                    {{$detalle->fecha_muestreo}}<br>
+                    {{$detalle->fecha_muestreo}}<br>
+                  
                 </td>
         
             </tr>

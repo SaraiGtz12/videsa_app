@@ -31,7 +31,7 @@ class Vistas_Controller extends Controller
         ->join('normas', 'normas.id_norma', '=', 'datos_servicios.id_norma')
         ->join('usuarios', 'usuarios.id_usuario', '=', 'ordenes_servicios.muestreador_asignado')
         ->join('clientes', 'clientes.id_cliente', '=', 'ordenes_servicios.id_cliente')
-        ->select('normas.nombre as nom', 'ordenes_servicios.*', 'datos_servicios.*', 'usuarios.nombre as muestreador', 'clientes.razon_social')
+        ->select('normas.nombre as nom', 'ordenes_servicios.*', 'datos_servicios.*', 'usuarios.nombre as muestreador', 'clientes.razon_social','datos_servicios.id_datos_servicio')
         ->get();
         return view('Dashboard.Home', compact('detalles'));
     }
