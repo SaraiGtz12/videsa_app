@@ -49,7 +49,7 @@ class UsersController extends Controller
             $usuario->id_rol = $request->rolP;
             $usuario->es_firmante = $responsable;
             $usuario->rfc = $request->rfcUsuario;
-            $usuario->activo = 1;
+            $usuario->id_estatus = 1;
             $usuario->save();
 
             return redirect()->back()->with(['success' => '¡El usuario se ha registrado con éxito!']);
