@@ -270,10 +270,11 @@
                                     <td>{{ $orden->fecha_registro ?? '---'  }}</td>
                                     <td>
                                        <button 
-                                                class="btn btn-info btn-sm btn-circle btnModalFormulario"
-                                                data-id="{{ $orden->id_datos_servicio }}"
-                                                title="Abrir Formulario"
-                                            >
+                                            class="btn btn-info btn-sm btn-circle btnModalFormulario"
+                                            data-id_datos_servicio="{{ $orden->id_datos_servicio }}"
+                                            title="Abrir Formulario"
+                                        >
+
                                     </td>
                                 </tr>
                             @endforeach
@@ -282,6 +283,164 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="modal fade" id="ModalFormulario" tabindex="-1" role="dialog" aria-labelledby="tituloModalCliente" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+               <form action="">
+          
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="tituloFormulario">Formulario de Muestreo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-2">
+                                            <span>Fecha de Evaluación</span>
+                                            <input type="date" name="fecha_evaluacion" id="fecha_evaluacion" class="form-control" required readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-2">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-success">Datos de Cliente</h6>
+                                <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#DatosCliente">
+                                    Ver detalle
+                                </button>
+                            </div>
+
+                            <div class="collapse" id="DatosCliente">
+                                <div style="overflow-x:auto; max-height:400px;" class="p-3">
+                                    <div class="row mb-2">
+                                        <div class="col-12">
+                                            <label for="razon_social">Razón Social</label>
+                                            <input type="text" name="razon_social" id="razon_social" class="form-control" required readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-4">
+                                            <label for="calle">Calle</label>
+                                            <input type="text" name="calle" id="calle" class="form-control" required readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="numero">Número</label>
+                                            <input type="number" name="numero" id="numero" class="form-control" required readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="colonia">Colonia</label>
+                                            <input type="text" name="colonia" id="colonia" class="form-control" required readonly>
+                                        </div>
+                                    </div>
+
+                                     <div class="row mb-2">
+                                        <div class="col-md-4">
+                                            <label for="calle">Alcaldía</label>
+                                            <input type="text" name="ciudad" id="ciudad" class="form-control" required readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="numero">Estado</label>
+                                            <input type="text" name="estado" id="estado" class="form-control" required readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="colonia">Código Postal</label>
+                                            <input type="text" name="codigo_postal" id="codigo_postal" class="form-control" required readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <div class="row mb-2">
+                                        <div class="col-md-4">
+                                            <label for="responsable">Responsable</label>
+                                            <input type="text" name="responsable" id="responsable" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="numero">Telefono</label>
+                                            <input type="number" name="telefono" id="telefono" class="form-control">
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-2">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-success">Datos del equipo</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-2">
+                                            <span>Equipo Evaluado</span>
+                                            <input type="text" name="equipo_evaluado" id="equipo_evaluado" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-2">
+                                            <span>Marca y Modelo</span>
+                                            <input type="text" name="marca" id="marca" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-2">
+                                            <span>Combustible Utilizado</span>
+                                            <input type="text" name="combustible_utilizado" id="combustible_utilizado" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-2">
+                                            <span>Año</span>
+                                            <input type="number" name="anio" id="anio" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-2">
+                                            <span>Capacidad Térmica Nominal</span>
+                                            <input type="number" name="capacidad_termica" id="capacidad_termica" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-2">
+                                            <span>Altura al nivel de mar</span>
+                                            <input type="number" name="altura" id="altura" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-2">
+                                            <span>Presión Estática</span>
+                                            <input type="number" step="0.01" name="presion_estatica" id="presion_estatica" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -39,7 +39,7 @@ $(document).ready(function () {
 
 
 
-
+//ordenes de servicio
  $(document).ready(function() {
         $('#Muestreador').select2({
             placeholder: 'Seleccione un muestreador',
@@ -47,8 +47,18 @@ $(document).ready(function () {
         });
     });
 
+
+
+
+
+//Formulario de muestreo 
+ $(document).ready(function () {
+        const today = new Date().toISOString().split('T')[0];
+        $('#fecha_evaluacion').val(today);
+    });
 $(document).on('click', '.btnModalFormulario', function () {
     const id_datos_servicio = $(this).data('id_datos_servicio');
-    
+    console.log(id_datos_servicio);
+    $('#ModalFormulario').modal('show');
 
     });
