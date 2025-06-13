@@ -13,13 +13,7 @@ $(document).ready(function () {
             
             let nuevoElemento = `
             <div class="row">
-                <div class="col-md-4">
-                    <div class="mb-2">
-                        <label class="form-label">Puntos o Equipos a Evaluar</label>
-                        <input type="number" name="Puntos[]" class="form-control" required>
-                    </div>
-                </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="mb-2">
                         <label class="form-label">Tipo de Servicio (NOM)</label>
                         <select class="form-select" name="Servicio[]" required>
@@ -27,11 +21,11 @@ $(document).ready(function () {
                     </select>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="mb-2">
                         <div class="mb-4">
-                            <span>Descripción del Servicio</span>
-                                <textarea name="Descripcion[]" id="Descripcion_${i}" class="form-control" rows="3"></textarea>
+                            <label class="form-label">Descripción del Servicio</label>
+                                <textarea name="Descripcion[]" id="Descripcion_${i}" class="form-control" rows="1"></textarea>
                         </div>
                     </div>
                 </div>
