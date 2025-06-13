@@ -1,17 +1,16 @@
 if(document.getElementById('ConfirmacionUser')){
-    const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-        }
-    });
-    Toast.fire({
+    Swal.fire({
         icon: "success",
-        title: "¡Usuario Registrado!"
+        title: "¡Usuario Registrado!",
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
+if(document.getElementById('ConfirmacionEmpresa')){
+    Swal.fire({
+        icon: "success",
+        title: "¡Usuario Registrado!",
+        showConfirmButton: false,
+        timer: 1500
     });
 }

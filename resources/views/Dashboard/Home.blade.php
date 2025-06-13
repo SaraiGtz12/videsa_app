@@ -125,16 +125,6 @@
                                 <th>Estatus</th>
                                 <th>Acciones</th>
                             </tr>
-                            {{-- <tr>
-                                <th></th>
-                                <th><input type="text" placeholder="Buscar" class="form-control" /></th>
-                                <th><input type="text" placeholder="Buscar" class="form-control" /></th>
-                                <th><input type="text" placeholder="Buscar" class="form-control" /></th>
-                                <th><input type="text" placeholder="Buscar" class="form-control" /></th>
-                                <th><input type="text" placeholder="Buscar" class="form-control" /></th>
-                                <th><input type="text" placeholder="Buscar" class="form-control" /></th>
-                                <th></th> 
-                            </tr> --}}
                         </thead>
 
                         <tbody>
@@ -147,13 +137,17 @@
                                     <td>{{$detalle->fecha_muestreo}}</td>
                                     <td>{{$detalle->muestreador}}</td>
                                     <td>
-                                        @if ($detalle->estado == 1)
+                                        @if ($detalle->id_estatus == 5)
                                             <span class="badge badge-success">
                                                 Completado
                                             </span>
-                                        @else
+                                        @elseif ($detalle->id_estatus == 3)
+                                            <span class="badge badge-warning">
+                                                En proceso
+                                            </span>
+                                        @elseif ($detalle->id_estatus == 2)
                                             <span class="badge badge-danger">
-                                                Incompleto
+                                                Cancelado
                                             </span>
                                         @endif
                                         

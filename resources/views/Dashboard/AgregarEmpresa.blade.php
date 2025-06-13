@@ -1,12 +1,17 @@
-
-
-
-
 @extends('../Layout/Layout')
 @section('DataTablecss')
     <link href="{{asset('css/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    
 @endsection
 @section('AgregarEmpresa')
+
+@if (session('success'))
+    <input id="ConfirmacionEmpresa" value="true" type="hidden">
+@endif
+
+@if ($errors->has('error'))
+    <input id="errorEmpresa" value="true" type="hidden">
+@endif
    
 
     <div class="mb-3 text-right">
@@ -300,13 +305,15 @@
     <script src="{{asset('js/DataTables/datatables-demo.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-      <script>
+    <script>
         const RUTA_UPDATE_SUCURSAL = "{{ route('empresa.updateSucursal') }}";
         const RUTA_UPDATE_CLIENTE = "{{ route('empresa.update') }}";
-         const CSRF_TOKEN = "{{ csrf_token() }}";
-         
+        const CSRF_TOKEN = "{{ csrf_token() }}";
     </script>
 
-
     <script src="{{ asset('js/clientes/clientes.js') }}"></script>
+
+    <script src="{{asset('js/Alertas/confirmaciones.js')}}"></script>
+    <script src="{{asset('js/Alertas/Errores.js')}}"></script>
+
 @endsection

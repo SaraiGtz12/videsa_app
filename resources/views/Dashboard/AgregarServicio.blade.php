@@ -1,4 +1,9 @@
 @extends('../Layout/Layout')
+@section('DataTablecss')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/path/to/select2.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+@endsection
 @section('AgregarServicio')
     <div class="container rounded shadow p-4 mb-4 bg-white">
         <div class="text-center">
@@ -12,6 +17,26 @@
                 </div>
                 <div class="card-body">
                     <livewire:sucursales-empresas />
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label">Nombre del Responsable</label>
+                                <input type="text" name="nombre_responsable" id="nombre_responsable" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label">Cargo del resposable</label>
+                                <input type="text" name="cargo_responsable" id="cargo_responsable" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label">Numero de telefono</label>
+                                <input type="text" name="telefono" id="telefono" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card mb-2">
@@ -59,7 +84,6 @@
                                 @endforeach
                             </select>
                         </div>
-                  
                     </div>
                     <div id="Muestreadores"></div>
                     
@@ -74,10 +98,17 @@
 @endsection
 
 @section('Scripts')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         const normas = @json($normas);
     </script>
     <script src="{{asset('js/Formularios/script.js')}}"></script>
-    
+    <script>
+        $('#empresa').select2({
+            placeholder: "Selecciona una opción",
+            theme: 'bootstrap4',
+            width: '100%'
+        });
+    </script>
 
 @endsection

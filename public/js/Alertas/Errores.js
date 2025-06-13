@@ -1,17 +1,16 @@
 if(document.getElementById('errorUser')){
-    const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-        }
-    });
-    Toast.fire({
+    Swal.fire({
         icon: "error",
-        title: "¡No se ha podido registrar!"
+        title: "¡No se ha podido registrar!",
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
+if(document.getElementById('errorEmpresa')){
+    Swal.fire({
+        icon: "error",
+        title: "¡No se ha podido registrar!",
+        showConfirmButton: false,
+        timer: 1500
     });
 }

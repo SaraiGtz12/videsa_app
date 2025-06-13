@@ -31,7 +31,10 @@ class ServiceOrdersController extends Controller
             'Muestreador' => 'required|integer',
             'Cantidad' => 'required|integer',
             'Descripcion' => 'required|array',
-            'Descripcion.*' => 'required|string'
+            'Descripcion.*' => 'required|string',
+            'nombre_responsable' => 'required|string',
+            'cargo_responsable' => 'required|string',
+            'telefono' => 'required|string'
 
         ]);
 
@@ -48,19 +51,37 @@ class ServiceOrdersController extends Controller
             'id_cliente'=> $request->input('empresa'),
             'id_sucursal'=> $request->input('sucursal'),
             'fecha_muestreo' => $request->input('FechaMuestreo'),
-            'id_estatus'=> 1
+            'id_estatus'=> 3,
+            'responsable' => $request->nombre_responsable,
+            'cargo' => $request->cargo_responsable,
+            'telefono' => $request->telefono
         ]);
 
         $id_orden = $orden->id_orden_servicio;
 
+        $estado = false;
+
         try{
             for ($i = 0; $i < $request->input('Cantidad'); $i++) {
-                datos_servicio::create([
+                $datos_s = datos_servicio::create([
                     'descripcion' => $descripciones[$i],
                     'id_norma' =>  $servicios[$i],
                     'id_orden_servicio' => $id_orden
                 ]);
+
+                if($datos_s){
+                    $estado = true;
+                }else{
+                    $estado = false;
+                }
             }
+
+            if($orden && $estado){
+                return redirect()->back()->with('success', 'Orden(es) registrada(s) correctamente.');
+            }else{
+                return redirect()->back()->withErrors('error', 'Ocurrio un error al registrar la(s) orden(es) de servcio(s)');
+            }
+
         }catch(Exception $e){
             Log::error('Error en la creación de datos servicios: '.$e->getMessage());
         }   

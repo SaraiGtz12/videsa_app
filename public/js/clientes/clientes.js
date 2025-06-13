@@ -101,9 +101,6 @@ $(document).on('click', '.btnVerSucursales', function () {
                                     data-id_sucursal="${sucursal.id_sucursal}">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
-
-
-
                             </td>
                         </tr>
                     `);

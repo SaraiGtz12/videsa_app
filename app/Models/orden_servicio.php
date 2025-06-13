@@ -17,6 +17,9 @@ class orden_servicio extends Model
         'fecha_muestreo',
         'muestreador_asignado',
         'numero_servicio',
-        'id_estatus'
+        'id_estatus',
+        'responsable',
+        'cargo',
+        'telefono'
     ];
 }
