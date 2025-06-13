@@ -124,8 +124,62 @@
 <body>
 
     <main>
+        @php
+            $tabla_resultados = null;
+            $capacidad = $detalle->cpacidad_termica_nominal;
+            if ($capacidad >= 15 && $capacidad < 150) {
+                 $tipo_comb = null;
+                 $tipo= $detalle->tipo;
+                     if ($tipo == 'Gaseoso') {
+                        $tabla_resultados = 1;
+                     }elseif ($tipo == 'Liquido') {
+                        $tabla_resultados = 2;
+                     } 
+            } elseif ($capacidad >= 150 && $capacidad < 1200) {
+                $tipo_comb = null;
+                 $tipo= $detalle->tipo;
+                     if ($tipo == 'Gaseoso') {
+                        $tabla_resultados = 3;
+                     }elseif ($tipo == 'Liquido') {
+                        $tabla_resultados = 4;
+                     } 
+            } elseif ($capacidad >= 1200 && $capacidad < 3000) {
+                $tipo_comb = null;
+                 $tipo= $detalle->tipo;
+                     if ($tipo == 'Gaseoso') {
+                        $tabla_resultados = 5;
+                     }elseif ($tipo == 'Liquido') {
+                        $tabla_resultados = 6;
+                     } 
+            }elseif ($capacidad >= 3000 && $capacidad < 15000) {
+                $tipo_comb = null;
+                 $tipo= $detalle->tipo;
+                     if ($tipo == 'Gaseoso') {
+                        $tabla_resultados = 7;
+                     }elseif ($tipo == 'Liquido') {
+                        $tabla_resultados = 8;
+                     } 
+            }  elseif ($capacidad >= 15000) {
+               $tipo_comb = null;
+                 $tipo= $detalle->tipo;
+                     if ($tipo == 'Gaseoso') {
+                        $tabla_resultados = 9;
+                     }elseif ($tipo == 'Liquido') {
+                        $tabla_resultados = 10;
+                     } 
+            }
+
+         
+        @endphp
+
         @include('pdf.recursos.headerCaratula')
       
+        <div > 
+            Comparación con la Norma Oficial Mexicana {{$detalle->nombre}}, {{$detalle->descripcion}}
+            <br>
+            Para equipos con capacidad térmica nominal mayor de 5.3 G/J o 150 C.C combustible gaseoso
+        </div>
+
         <div class="company-name">
             {{$detalle->cliente}}  ({{$detalle->nombre_sucursal}})
         </div>
