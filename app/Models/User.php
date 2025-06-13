@@ -26,9 +26,6 @@ class User extends Authenticatable
         'correo',
         'contrasena',
         'es_firmante',
-        'activo',
-        'creado_en',
-        'actualizado_en',
         'id_rol',
         'id_estatus'
     ];

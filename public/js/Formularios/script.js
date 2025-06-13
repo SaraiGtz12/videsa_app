@@ -52,3 +52,9 @@ $(document).ready(function () {
             allowClear: true
         });
     });
+
+$(document).on('click', '.btnModalFormulario', function () {
+    const id_datos_servicio = $(this).data('id_datos_servicio');
+    
+
+    });

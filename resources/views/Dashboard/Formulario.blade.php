@@ -261,16 +261,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                 <tr>
-                                    <th>1</th>
-                                    <th>25-005</th>
-                                    <th>085</th>
-                                    <th>Prueba</th>
-                                    <th>11/06/2025</th>
-                                    <th></th>
+                            @foreach ($ordenes as $index => $orden)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $orden->numero_servicio }}</td>
+                                    <td>{{ $orden->nombre_norma ?? '---' }}</td>
+                                    <td>{{ $orden->descripcion ?? '---' }}</td>
+                                    <td>{{ $orden->fecha_registro ?? '---'  }}</td>
+                                    <td>
+                                       <button 
+                                                class="btn btn-info btn-sm btn-circle btnModalFormulario"
+                                                data-id="{{ $orden->id_datos_servicio }}"
+                                                title="Abrir Formulario"
+                                            >
+                                    </td>
                                 </tr>
-                          
-                            </tbody>
+                            @endforeach
+                        </tbody>
+
                         </table>
                     </div>
                 </div>

@@ -13,6 +13,7 @@ use App\Models\Norma;
 use App\Models\orden_servicio;
 use App\Models\OrdenTrabajo;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Vistas_Controller extends Controller
 {   
@@ -90,8 +91,18 @@ class Vistas_Controller extends Controller
             return redirect()->route('login')->withErrors(['error' => 'No tienes permiso para acceder a esta página.', 'Titulo'=>'Acceso Denegado']);
         }
         $clientes = Cliente::all();
-        
-        return view('Dashboard.Formulario', compact('clientes'));
+        $ordenes = DB::table('ordenes_servicios as os')
+        ->join('datos_servicios as ds', 'os.id_orden_servicio', '=', 'ds.id_orden_servicio')
+        ->join('normas as n', 'ds.id_norma', '=', 'n.id_norma')
+        ->select('os.numero_servicio', 
+            'os.created_at as fecha_registro', 
+            'n.nombre AS nombre_norma',
+            'ds.descripcion',
+            'ds.id_datos_servicio')
+        ->where('os.muestreador_asignado', $usuario->id_usuario)
+        ->get();
+
+        return view('Dashboard.Formulario', compact('ordenes','clientes'));
     }
     public function AgregarEmpresa(){
         if (!$usuario = Auth::user()) {
