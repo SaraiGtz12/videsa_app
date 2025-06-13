@@ -19,11 +19,11 @@ class LoginController extends Controller
             'UserPasswordTxt' => 'required|string'
         ]);
 
-        Log::info('Los datos llegaron');
+        Log::info('Los datos llegaron'.$request);
 
         try{
             if($usuario = User::where('correo', $request->input('UserEmailTxt'))->first()){
-                if($usuario->activo == 1){
+                if($usuario->id_estatus == 1){
                     try{
                         if(Hash::check($request->input('UserPasswordTxt'), $usuario->contrasena)){
                             Auth::login($usuario);
