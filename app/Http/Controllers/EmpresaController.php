@@ -22,7 +22,7 @@ class EmpresaController extends Controller
     {
     
         $validated = $request->validate([
-            'razon_social' => 'required|string|max:255',
+            'razon_social' => 'required|string|max:255|unique:clientes,razon_social',
             'rfc' => 'required|string|max:20',
             'telefono' => 'required|string|max:20',
             'correo' => 'required|email',

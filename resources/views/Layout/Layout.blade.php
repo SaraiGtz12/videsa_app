@@ -101,7 +101,6 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Opciones:</h6>
                             <a class="collapse-item" href="{{route('AgregarUsuarios')}}">Usuarios</a>
-                            <a class="collapse-item" href="{{route('RegistrarCliente')}}">Clientes</a>
                             <a class="collapse-item" href="{{route('AgregarEmpresa')}}">Empresa</a>
                             <a class="collapse-item" href="{{route('AgregarNorma')}}">Normas</a>
                             
