@@ -130,9 +130,9 @@
                         </thead>
 
                         <tbody>
-                            {{-- @foreach ($detalles as $detalle)
+                            @foreach ($detalles as $detalle)
                                 <tr>
-                                    <td>{{$detalle->id}}</td>
+                                    <td>{{$detalle->id_orden_servicio}}</td>
                                     <td>{{$detalle->nom}}</td>
                                     <td>{{$detalle->codigo}}</td>
                                     <td>
@@ -156,7 +156,7 @@
                                         </button>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

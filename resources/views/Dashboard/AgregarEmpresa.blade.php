@@ -42,10 +42,10 @@
                             <tbody>
                                 @foreach($clientes as $cliente)
                                     <tr>
-                                        <td>{{ $cliente->id }}</td>
+                                        <td>{{ $cliente->id_cliente }}</td>
                                         <td>{{ $cliente->razon_social}}</td>
                                         <td>{{ $cliente->rfc }}</td>
-                                        <td>{{ $cliente->creado_en }}</td>
+                                        <td>{{ $cliente->created_at }}</td>
                                         <td>
                                             <button 
                                                 class="btn btn-primary btn-sm btn-circle btnEditarCliente"

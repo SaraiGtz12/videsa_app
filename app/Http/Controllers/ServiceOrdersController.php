@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Address;
 use App\Models\Client;
+use App\Models\orden_servicio;
 use App\Models\ServiceOrder;
 use Exception;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ class ServiceOrdersController extends Controller
         ]);
 
         $year = date('y'); 
-        $contador = OrdenTrabajo::count() + 1;
+        $contador = orden_servicio::count() + 1;
         $codigo = $year . '-' . str_pad($contador, 3, '0', STR_PAD_LEFT);
 
 
@@ -42,7 +43,7 @@ class ServiceOrdersController extends Controller
             $descripciones = $request->input('Descripcion'); 
             
             for ($i = 0; $i < count($servicios); $i++) {
-                OrdenTrabajo::create([
+                orden_servicio::create([
                     'orden_servicio'=> $codigo,
                     'muestreador_asignado' => $request->input('Muestreador'),
                     'id_cliente'=> $request->input('empresa'),
@@ -54,7 +55,6 @@ class ServiceOrdersController extends Controller
             }
             
 
-       
             return redirect()->back()->with('success', 'Orden(es) registrada(s) correctamente.');
 
     }
