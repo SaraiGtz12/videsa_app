@@ -187,7 +187,7 @@
                 </div>
                 <div class="modal-body">
                 <div class="row">
-                    <input type="hidden" name="id" id="id_sucursal">
+                    <input type="hidden" name="id_sucursal" id="id_sucursal">
                         <div class="col">
                             <div class="mb-2">
                                 <select class="form-select select2" id="id_cliente"  name="id_cliente" required>

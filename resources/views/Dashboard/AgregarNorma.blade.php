@@ -34,7 +34,7 @@
                             <tbody>
                                 @foreach($normas as $norma)
                                     <tr>
-                                        <td>{{ $norma->id }}</td>
+                                        <td>{{ $norma->id_norma }}</td>
                                         <td>{{ $norma->codigo }}</td>
                                         <td>{{ $norma->nombre }}</td>
                                         <td>{{ $norma->descripcion }}</td>
@@ -42,7 +42,7 @@
                                             <button 
                                                 class="btn btn-primary btn-sm btn-circle btnEditarNorma"
                                                 title="Editar"
-                                                data-id="{{ $norma->id }}"
+                                                data-id="{{ $norma->id_norma }}"
                                                 data-codigo="{{ $norma->codigo }}"
                                                 data-nombre="{{ $norma->nombre }}"
                                                 data-descripcion="{{ $norma->descripcion }}"
@@ -52,7 +52,7 @@
                                             >
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <button class="btn btn-danger btn-sm btn-circle btnEliminarNorma" data-id="{{ $norma->id }}" title="Eliminar">
+                                            <button class="btn btn-danger btn-sm btn-circle btnEliminarNorma" data-id="{{ $norma->id_norma }}" title="Eliminar">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
 

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('codigo')->unique();
             $table->string('nombre');
             $table->string('descripcion');
-            $table->foreignId('id_estatus')->nullable()->references('id_estatus')->on('estatus')->onDelete('set null');
+            $table->foreignId('id_estatus')->nullable()->references('id_estatus')->on('estatus')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
     }

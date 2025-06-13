@@ -14,7 +14,7 @@ class EmpresaController extends Controller
     //para empresas 
     public function create()
     {
-        $clientes = Cliente::where('estatus', 1)->get();
+        $clientes = Cliente::where('id_estatus', 1)->get();
         return view('Dashboard.AgregarEmpresa', compact('clientes')); 
     }
 
@@ -32,7 +32,8 @@ class EmpresaController extends Controller
             'razon_social' => $request->razon_social,
             'rfc' => $request->rfc,
             'telefono' => $request->telefono,
-            'correo' => $request->correo
+            'correo' => $request->correo,
+            'id_estatus' => 1,
         ]);
         return redirect()->route('empresa.create')->with('success', 'Empresa registrada correctamente.');
     }
@@ -86,18 +87,18 @@ class EmpresaController extends Controller
         Log::info('Los datos llegaron');
 
         
-            // $validated = $request->validate([
-            //     'id_cliente' => 'required|integer',
-            //     'nombre' => 'required|string|max:20',
-            //     'codigo' => 'required|string|max:20',
-            //     'calle' => 'required|string|max:20',
-            //     'numero' => 'required|string|max:20',
-            //     'colonia' => 'required|string|max:20',
-            //     'ciudad' => 'required|string|max:20',
-            //     'estado' => 'required|string|max:20',
-            //     'codigo_postal' => 'required|string|max:20',
-            //     'telefono' => 'required|string|max:20'
-            // ]);
+         $request->validate([
+                'id_cliente' => 'required|integer',
+                'nombre' => 'required|string|max:20',
+                'codigo' => 'required|string|max:20',
+                'calle' => 'required|string|max:20',
+                'numero' => 'required|string|max:20',
+                'colonia' => 'required|string|max:20',
+                'ciudad' => 'required|string|max:20',
+                'estado' => 'required|string|max:20',
+                'codigo_postal' => 'required|string|max:20',
+                'telefono' => 'required|string|max:20'
+            ]);
         try{
             Log::info('se va a ingresar datos');
             $cliente = Sucursal::create([
@@ -111,6 +112,7 @@ class EmpresaController extends Controller
                 'estado' => $request->estado,
                 'codigo_postal' => $request->codigo_postal,
                 'telefono' => $request->telefono,
+                'id_estatus' => 1,
             ]);
         }catch(Exception $e){
             Log::error('Ocurrio algo:'.$e->getMessage());
@@ -125,34 +127,40 @@ class EmpresaController extends Controller
     {
 
         // dd('entre');die;
-        $validated = $request->validate([
-            'id' => 'required|integer|exists:sucursales,id_sucursal',
-            'id_cliente' => 'required|integer|exists:clientes,id_cliente',
-            'nombre' => 'required|string|max:20',
-            'codigo' => 'required|string|max:20',
-            'calle' => 'required|string|max:20',
-            'numero' => 'required|string|max:20',
-            'colonia' => 'required|string|max:20',
-            'ciudad' => 'required|string|max:20', 
-            'estado' => 'required|string|max:20',
-            'codigo_postal' => 'required|string|max:20', 
-            'telefono' => 'required|string|max:20',
-        ]);
+         Log::info('$request->id_sucursal: '.$request);
+        try {
+           $validated = $request->validate([
+            'id_sucursal' => 'required|integer|exists:sucursales,id_sucursal',
+                'id_cliente' => 'required|integer',
+                    'nombre' => 'required|string|max:20',
+                    'codigo' => 'required|string|max:20',
+                    'calle' => 'required|string|max:20',
+                    'numero' => 'required|string|max:20',
+                    'colonia' => 'required|string|max:20',
+                    'ciudad' => 'required|string|max:20',
+                    'estado' => 'required|string|max:20',
+                    'codigo_postal' => 'required|string|max:20',
+                    'telefono' => 'required|string|max:20'
+            ]);
 
-
-        $sucursal = Sucursal::find($request->id);
-        $sucursal->update([
-            'id_cliente' => $request->id_cliente,
-            'nombre' => $request->nombre,
-            'codigo' => $request->codigo,
-            'calle' => $request->calle,
-            'numero' => $request->numero,
-            'colonia' => $request->colonia,
-            'ciudad' => $request->ciudad,
-            'estado' => $request->estado,
-            'codigo_postal' => $request->codigo_postal,
-            'telefono' => $request->telefono,
-        ]);
+           
+            $sucursal = Sucursal::find($request->id_sucursal);
+            $sucursal->update([
+                'id_cliente' => $request->id_cliente,
+                    'nombre' => $request->nombre,
+                    'codigo' => $request->codigo,
+                    'calle' => $request->calle,
+                    'numero' => $request->numero,
+                    'colonia' => $request->colonia,
+                    'ciudad' => $request->ciudad,
+                    'estado' => $request->estado,
+                    'codigo_postal' => $request->codigo_postal,
+                    'telefono' => $request->telefono,
+            ]);
+        } catch (Exception $e) {
+            Log::error('Error en la validación de sucursal: '.$e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Error en la validación de sucursal.']);
+        }
 
 
         return redirect()->back()->with('success', 'sucursal actualizada correctamente.');

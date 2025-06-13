@@ -81,7 +81,7 @@ $(document).on('click', '.btnVerSucursales', function () {
                             <td>
                                 <button 
                                     class="btn btn-primary btn-sm btn-circle btnEditarSucursal"
-                                    data-id="${sucursal.id_sucursal}"
+                                    data-id_sucursal="${sucursal.id_sucursal}"
                                     data-id_cliente="${sucursal.id_cliente}"
                                     data-nombre="${sucursal.nombre}"
                                     data-codigo="${sucursal.codigo}"

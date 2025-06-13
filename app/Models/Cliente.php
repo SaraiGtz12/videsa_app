@@ -15,7 +15,7 @@ class Cliente extends Model
         'rfc',
         'telefono',
         'correo',
-        'estatus'
+        'id_estatus'
     ];
 
     public function sucursales()

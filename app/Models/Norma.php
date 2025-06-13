@@ -15,6 +15,6 @@ class Norma extends Model
         'codigo',
         'nombre',
         'descripcion',
-        'activa'
+        'id_estatus'
     ];
 }
