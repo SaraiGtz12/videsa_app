@@ -1,4 +1,4 @@
-
+//empresa
 document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.btnEliminarCliente').forEach(btn => {
             btn.addEventListener('click', function () {
@@ -39,7 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.querySelectorAll('.btnEditarCliente').forEach(btn => {
             btn.addEventListener('click', function () {
-                const id = this.getAttribute('data-id_cliente');
+                const id = this.getAttribute('data-id');
+                console.log("este es miiii:", id);
                 const razon_social = this.getAttribute('data-razon_social');
                 const rfc = this.getAttribute('data-rfc');
                 const telefono = this.getAttribute('data-telefono');
@@ -56,7 +57,7 @@ document.querySelectorAll('.btnEditarCliente').forEach(btn => {
                 
             });
 });
-
+//sucursales
 $(document).on('click', '.btnVerSucursales', function () {
     const idCliente = $(this).data('id');
     $('#modaltablaSucursales').modal('show');
@@ -95,7 +96,12 @@ $(document).on('click', '.btnVerSucursales', function () {
                                 >
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn btn-danger btn-sm btn-circle"><i class="fas fa-trash-alt"></i></button>
+                                <button 
+                                    class="btn btn-danger btn-sm btn-circle btnEliminarSucursal" 
+                                    data-id_sucursal="${sucursal.id_sucursal}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+
 
 
                             </td>
@@ -142,3 +148,35 @@ $(document).on('click', '.btnEditarSucursal', function () {
     $('#modalFormularioSucursal').modal('show');
 });
 
+$(document).on('click', '.btnEliminarSucursal', function () {
+    const idSucursal = $(this).data('id_sucursal');
+
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Esta acción marcará la sucursal como eliminada.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `/empresa/sucursal/${idSucursal}/eliminar`,
+                method: 'POST',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content') 
+                },
+                success: function (response) {
+                    Swal.fire('Eliminado', 'La sucursal fue marcada como eliminada.', 'success').then(() => {
+                        $('.btnVerSucursales[data-id="' + response.id_cliente + '"]').click();
+                    });
+                },
+                error: function () {
+                    Swal.fire('Error', 'No se pudo eliminar la sucursal.', 'error');
+                }
+            });
+        }
+    });
+});

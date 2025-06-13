@@ -66,6 +66,7 @@ Route::get('/empresa/sucursales/{id}', [EmpresaController::class, 'obtenerSucurs
 
 Route::post('/empresa/guardarSucursal', [EmpresaController::class, 'guardarSucursal'])->name('empresa.guardarSucursal');
 Route::post('/empresa/updateSucursal', [EmpresaController::class, 'updateSucursal'])->name('empresa.updateSucursal');
+Route::post('/empresa/sucursal/{id}/eliminar', [EmpresaController::class, 'eliminarSucursal']);
 
 
 

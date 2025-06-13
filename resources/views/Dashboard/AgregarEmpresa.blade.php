@@ -42,7 +42,7 @@
                             <tbody>
                                 @foreach($clientes as $cliente)
                                     <tr>
-                                        <td>{{ $cliente->id }}</td>
+                                        <td>{{ $cliente->id_cliente }}</td>
                                         <td>{{ $cliente->razon_social}}</td>
                                         <td>{{ $cliente->rfc }}</td>
                                         <td>{{ $cliente->creado_en }}</td>
@@ -50,7 +50,7 @@
                                             <button 
                                                 class="btn btn-primary btn-sm btn-circle btnEditarCliente"
                                                 title="Editar"
-                                                data-id="{{ $cliente->id }}"
+                                                data-id="{{ $cliente->id_cliente }}"
                                                 data-razon_social="{{ $cliente->razon_social }}"
                                                 data-rfc="{{ $cliente->rfc }}"
                                                 data-telefono="{{ $cliente->telefono }}"

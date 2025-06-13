@@ -52,7 +52,7 @@ class EmpresaController extends Controller
 
         Log::info('Actualizando cliente con ID: '.$request->id);
         $request->validate([
-            'id_cliente' => 'required|integer|exists:clientes,id_cliente',
+            'id' => 'required|integer|exists:clientes,id_cliente',
             'razon_social' => 'required|string|max:255',
             'rfc' => 'required|string|max:20',
             'telefono' => 'required|string|max:20',
@@ -165,6 +165,19 @@ class EmpresaController extends Controller
 
 
         return redirect()->back()->with('success', 'sucursal actualizada correctamente.');
+    }
+
+    public function eliminarSucursal($id)
+    {
+        $sucursal = Sucursal::findOrFail($id);
+        $sucursal->id_estatus = 2;
+        $sucursal->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Sucursal eliminada correctamente.',
+            'id_cliente' => $sucursal->id_cliente
+        ]);
     }
 
 
