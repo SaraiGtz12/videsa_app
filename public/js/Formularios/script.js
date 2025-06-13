@@ -58,7 +58,22 @@ $(document).ready(function () {
     });
 $(document).on('click', '.btnModalFormulario', function () {
     const id_datos_servicio = $(this).data('id_datos_servicio');
-    console.log(id_datos_servicio);
+    const razon_social = $(this).data('razon_social');
+    const calle = $(this).data('calle');
+    const numero = $(this).data('numero');
+    const colonia = $(this).data('colonia');
+    const ciudad = $(this).data('ciudad');
+    const estado = $(this).data('estado');
+    const codigo_postal = $(this).data('codigo_postal');
+
+    $('#razon_social').val(razon_social);
+    $('#calle').val(calle);
+    $('#numero').val(numero);
+    $('#colonia').val(colonia);
+    $('#ciudad').val(ciudad);
+    $('#estado').val(estado);   
+    $('#codigo_postal').val(codigo_postal);
+        
     $('#ModalFormulario').modal('show');
 
     });
