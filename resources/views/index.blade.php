@@ -55,7 +55,7 @@
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="UserEmailTxt" name="UserEmailTxt" aria-describedby="emailHelp"
-                                                placeholder="Correo empresarial..." required>
+                                                placeholder="Correo empresarial..." onkeyup="this.value=correo(this.value)" required>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
@@ -84,6 +84,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
+
+    <script src="{{asset('js/Formularios/Validaciones.js')}}"></script>
 
 </body>
 
