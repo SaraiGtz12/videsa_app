@@ -142,7 +142,7 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>Teléfono</span>
-                                <input type="text" name="telefono" id="telefono" class="form-control" minlength="10" maxlength="10" required>
+                                <input type="text" name="telefono" id="telefono" class="form-control" minlength="10" maxlength="10" onkeyup="this.value=tel(this.value)" required>
                             </div>
                         </div>
                         <div class="col">
@@ -224,7 +224,7 @@
                     <div class="col">
                         <div class="mb-2">
                             <span>Nombre</span>
-                            <input type="text" name="nombre" id="nombre" class="form-control" required>
+                            <input type="text" name="nombre" id="nombre" onkeyup="this.value=nombre_cargo(this.value)" class="form-control" required>
                         </div>
                     </div>
                     <div class="col">
@@ -240,7 +240,7 @@
                         <div class="col">
                         <div class="mb-2">
                             <span>Calle</span>
-                            <input type="text" name="calle" id="calle" class="form-control" required>
+                            <input type="text" name="calle" id="calle" class="form-control" onkeyup="this.value=nombre_cargo(this.value)" required>
                         </div>
                     </div>
                     <div class="col">
@@ -257,14 +257,14 @@
                     <div class="col">
                         <div class="mb-2">
                             <span>Colonia</span>
-                            <input type="text" name="colonia" id="colonia" class="form-control" required>
+                            <input type="text" name="colonia" id="colonia" class="form-control" onkeyup="this.value=nombre_cargo(this.value)" required>
                         </div>
                     </div>
                     
                     <div class="col">
                         <div class="mb-2">
                             <span>Alcaldia o Municipio</span>
-                            <input type="text" name="ciudad" id="alcaldia" class="form-control" required>
+                            <input type="text" name="ciudad" id="alcaldia" class="form-control" onkeyup="this.value=nombre_cargo(this.value)" required>
                         </div>
                     </div>
                     
@@ -275,7 +275,7 @@
                         <div class="col">
                         <div class="mb-2">
                             <span>Estado</span>
-                            <input type="text" name="estado" id="estado" class="form-control" required>
+                            <input type="text" name="estado" id="estado" class="form-control" onkeyup="this.value=nombre_cargo(this.value)" required>
                         </div>
                     </div>
                     <div class="col">
@@ -293,7 +293,7 @@
                     <div class="col">
                         <div class="mb-2">
                             <span>Teléfono</span>
-                            <input type="text" name="telefono" id="telefono" class="form-control" minlength="10" maxlength="10" required>
+                            <input type="text" name="telefono" id="telefono" class="form-control" minlength="10" maxlength="10" onkeyup="this.value=tel(this.value)" required>
                         </div>
                     </div>
                     

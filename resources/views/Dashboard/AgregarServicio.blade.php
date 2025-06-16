@@ -51,19 +51,19 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label class="form-label">Nombre del Responsable</label>
-                                <input type="text" name="nombre_responsable" id="nombre_responsable" class="form-control" required>
+                                <input type="text" name="nombre_responsable" id="nombre_responsable" class="form-control" onkeyup="this.value=nombre_cargo(this.value)" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label class="form-label">Cargo del Responsable</label>
-                                <input type="text" name="cargo_responsable" id="cargo_responsable" class="form-control" required>
+                                <input type="text" name="cargo_responsable" id="cargo_responsable" class="form-control" onkeyup="this.value=nombre_cargo(this.value)" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label class="form-label">Numero de telefono</label>
-                                <input type="text" name="telefono" id="telefono" class="form-control" required>
+                                <input type="text" name="telefono" id="telefono" class="form-control" onkeyup="this.value=tel(this.value)" maxlength="10" minlength="10" required>
                             </div>
                         </div>
                     </div>
@@ -134,6 +134,7 @@
     <script src="{{asset('js/Formularios/script.js')}}"></script>
     <script src="{{asset('js/Alertas/confirmaciones.js')}}"></script>
     <script src="{{asset('js/Alertas/Errores.js')}}"></script>
+    <script src="{{asset('js/Formularios/Validaciones.js')}}"></script>
 
     <script src="{{asset('js/Formularios/selectEmpresas.js')}}"></script>
 

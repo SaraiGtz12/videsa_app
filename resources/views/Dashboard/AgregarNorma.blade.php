@@ -82,17 +82,17 @@
                 </div>
                 <div class="modal-body">
                 <div class="row">
-                      <input type="hidden" name="id" id="id_norma">
+                    <input type="hidden" name="id" id="id_norma">
                     <div class="col">
                         <div class="mb-2">
                             <span>Código</span>
-                            <input type="text" name="codigo" id="codigo" class="form-control" required>
+                            <input type="text" name="codigo" id="codigo" class="form-control" onkeyup="this.value=numeros(this.value)" required>
                         </div>
                     </div>
                     <div class="col">
                         <div class="mb-2">
                             <span>Nombre</span>
-                            <input type="text" name="nombre" id="nombre" class="form-control" required>
+                            <input type="text" name="nombre" id="nombre" class="form-control" onkeyup="this.value=normas(this.value)" required>
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                     <div class="col">
                         <div class="mb-2">
                             <span>Descripción</span>
-                            <input type="text" name="descripcion" id="descripcion" class="form-control" required>
+                            <input type="text" name="descripcion" id="descripcion" class="form-control" onkeyup="this.value=textos(this.value)" required>
                         </div>
                     </div>
                 </div>
@@ -126,7 +126,9 @@
     <script src="{{asset('js/DataTables/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('js/DataTables/datatables-demo.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     <script>
+    <script src="{{asset('js/Formularios/Validaciones.js')}}"></script>
+
+    <script>
         const RUTA_UPDATE_NORMA = "{{ route('norma.update') }}";
          const CSRF_TOKEN = "{{ csrf_token() }}";
     </script>
