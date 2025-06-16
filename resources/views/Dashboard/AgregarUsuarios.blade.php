@@ -35,7 +35,7 @@
                             </div>
                             <div class="mb-2">
                                 <span>RFC</span>
-                                <input type="text" name="rfcUsuario" id="rfcUsuario" class="form-control" required>
+                                <input type="text" name="rfcUsuario" id="rfcUsuario" class="form-control" maxlength="13" required>
                             </div>
                         </div>
                         <div class="col">
@@ -54,7 +54,7 @@
                             </div>
                             <div class="mb-2">
                                 <span>Contraseña</span>
-                                <input type="password" name="ContrasenaP" id="ContrasenaP" class="form-control" required>
+                                <input type="password" name="ContrasenaP" id="ContrasenaP" class="form-control" minlength="6" required>
                             </div>
                         </div>
                     </div>

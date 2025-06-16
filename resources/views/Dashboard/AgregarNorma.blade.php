@@ -1,6 +1,7 @@
 @extends('../Layout/Layout')
 @section('DataTablecss')
     <link href="{{asset('css/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection
 @section('AgregarNorma')
    

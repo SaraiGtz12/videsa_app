@@ -140,9 +140,9 @@ class Nom_085_Campo_Controller extends Controller
 
         $concentracion_promedio = number_format(($concentracion_ppm1 + $concentracion_ppm2 + $concentracion_ppm3) / 3, 2);
 
-        $estratificacion1 = number_format(($concentracion_promedio == 0) ? 0 : abs(($concentracion_promedio - $concentracion_ppm1) / $concentracion_promedio) * 100, 2);
-        $estratificacion2 = number_format(($concentracion_promedio == 0) ? 0 : abs(($concentracion_promedio - $concentracion_ppm2) / $concentracion_promedio) * 100, 2);
-        $estratificacion3 = number_format(($concentracion_promedio == 0) ? 0 : abs(($concentracion_promedio - $concentracion_ppm3) / $concentracion_promedio) * 100, 2);
+        $estratificacion_1 = number_format(($concentracion_promedio == 0) ? 0 : abs(($concentracion_promedio - $concentracion_ppm1) / $concentracion_promedio) * 100, 2);
+        $estratificacion_2 = number_format(($concentracion_promedio == 0) ? 0 : abs(($concentracion_promedio - $concentracion_ppm2) / $concentracion_promedio) * 100, 2);
+        $estratificacion_3 = number_format(($concentracion_promedio == 0) ? 0 : abs(($concentracion_promedio - $concentracion_ppm3) / $concentracion_promedio) * 100, 2);
 
         $ppm1 = number_format(abs($concentracion_promedio - $concentracion_ppm1), 2);
         $ppm2 = number_format(abs($concentracion_promedio - $concentracion_ppm2), 2);
@@ -150,9 +150,9 @@ class Nom_085_Campo_Controller extends Controller
 
         return [
             'concentraciones' => [
-                'concentracion_1' => $concentracion_ppm_1,
-                'concentracion_2' => $concentracion_ppm_2,
-                'concentracion_3' => $concentracion_ppm_3,
+                'concentracion_1' => $concentracion_ppm1,
+                'concentracion_2' => $concentracion_ppm2,
+                'concentracion_3' => $concentracion_ppm3,
                 'promedio' => $concentracion_promedio
             ],
             'estratificacion' => [
@@ -170,7 +170,7 @@ class Nom_085_Campo_Controller extends Controller
         ];
     }
 
-    private function determincacion_conclusiones($estra_max, $ppm_max){
+    private function determincacion_conclusiones($estrat_max, $ppm_max){
         // Puntos para estratificación
         $puntos_estrat = ($estrat_max <= 5) ? 1 : 
                     (($estrat_max <= 10) ? 3 : 12);

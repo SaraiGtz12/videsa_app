@@ -5,9 +5,34 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection
 
 @section('AgregarEmpresa')
+
+@if (session('success'))
+    <input id="ConfirmacionEmpresa" value="true" type="hidden">
+@endif
+
+@if ($errors->has('error'))
+    <input id="errorEmpresa" value="true" type="hidden">
+@endif
+
+@if (session('success_sucursal'))
+    <input id="ConfirmacionSucursal" value="true" type="hidden">
+@endif
+
+@if (session('success_up_suc'))
+    <input id="ConfirmacionUpSucursal" value="true" type="hidden">
+@endif
+
+@if (session('success_up_emp'))
+    <input id="ConfirmacionUpEmpresa" value="true" type="hidden">
+@endif
+
+
+
 
 <div class="mb-3 text-right">
     <button id="btnMostrarFormulario" class="btn btn-success" data-toggle="modal" data-target="#modalFormularioCliente">
@@ -92,14 +117,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                <div class="row">
-                    <div class="col">
-                        <div class="mb-2">
-                            <span>Razón Social</span>
-                            <input type="text" name="razon_social" id="razon_social" class="form-control" required>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-2">
+                                <span>Razón Social</span>
+                                <input type="text" name="razon_social" id="razon_social" class="form-control" onkeyup="this.value=Razon_Social(this.value)" required>
+                            </div>
                         </div>
                     </div>
-                </div>
                 
                 <div class="row">
                     <input type="hidden" name="id" id="id">
@@ -107,7 +132,7 @@
                     <div class="col">
                         <div class="mb-2">  
                             <span>RFC</span>
-                            <input type="text" name="rfc" id="rfc" class="form-control" required>
+                            <input type="text" name="rfc" id="rfc" class="form-control" minlength="12" onkeyup="this.value=rfc(this.value)" maxlength="13" required>
                         </div>
                     </div>
                     
@@ -117,7 +142,7 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>Teléfono</span>
-                                <input type="text" name="telefono" id="telefono" class="form-control" required>
+                                <input type="text" name="telefono" id="telefono" class="form-control" minlength="10" maxlength="10" required>
                             </div>
                         </div>
                         <div class="col">
@@ -256,7 +281,7 @@
                     <div class="col">
                         <div class="mb-2">
                             <span>C.P</span>
-                            <input type="text" name="codigo_postal" id="cp" class="form-control" required>
+                            <input type="number" name="codigo_postal" id="cp" class="form-control" maxlength="5" minlength="5" required>
                         </div>
                     </div>
                     
@@ -268,7 +293,7 @@
                     <div class="col">
                         <div class="mb-2">
                             <span>Teléfono</span>
-                            <input type="text" name="telefono" id="telefono" class="form-control" required>
+                            <input type="text" name="telefono" id="telefono" class="form-control" minlength="10" maxlength="10" required>
                         </div>
                     </div>
                     
@@ -292,10 +317,14 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script src="{{asset('js/Formularios/script.js')}}"></script>
+    <script src="{{asset('js/Formularios/Validaciones.js')}}"></script>
     <script src="{{asset('js/DataTables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('js/DataTables/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('js/DataTables/datatables-demo.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="{{asset('js/Alertas/confirmaciones.js')}}"></script>
+    <script src="{{asset('js/Alertas/Errores.js')}}"></script>
 
     <script>
         const RUTA_UPDATE_SUCURSAL = "{{ route('empresa.updateSucursal') }}";

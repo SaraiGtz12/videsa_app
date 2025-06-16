@@ -3,14 +3,15 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     {{-- <link rel="stylesheet" href="/path/to/select2.css"> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection
 @section('AgregarServicio')
     @if (session('success'))
-        <input id="ConfirmacionEmpresa" value="true" type="hidden">
+        <input id="ConfirmacionOrden" value="true" type="hidden">
     @endif
 
     @if ($errors->has('error'))
-        <input id="errorEmpresa" value="true" type="hidden">
+        <input id="errorOrden" value="true" type="hidden">
     @endif
 
     <div class="container rounded shadow p-4 mb-4 bg-white">

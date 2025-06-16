@@ -69,13 +69,13 @@ class EmpresaController extends Controller
         ]);
 
 
-        return redirect()->back()->with('success', 'Cliente actualizada correctamente.');
+        return redirect()->back()->with('success_up_emp', 'Cliente actualizada correctamente.');
     }
 
 //para sucursales
     public function obtenerSucursales($id)
     {
-         Log::info('Llegue');
+        Log::info('Llegue');
         $sucursales = Sucursal::where('id_cliente', $id)->get();
         return response()->json($sucursales);
     }
@@ -120,7 +120,7 @@ class EmpresaController extends Controller
         }
 
 
-        return redirect()->route('empresa.create')->with('success', 'Sucursal registrada correctamente.');
+        return redirect()->route('empresa.create')->with('success_sucursal', 'Sucursal registrada correctamente.');
     }
     
 
@@ -164,7 +164,7 @@ class EmpresaController extends Controller
         }
 
 
-        return redirect()->back()->with('success', 'sucursal actualizada correctamente.');
+        return redirect()->back()->with('success_up_suc', 'sucursal actualizada correctamente.');
     }
 
     public function eliminarSucursal($id)
