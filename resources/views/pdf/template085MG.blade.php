@@ -88,7 +88,7 @@
             border: 1px solid #000;
             border-collapse: collapse;
             margin-top: 20px;
-            margin-bottom: 50px;
+            margin-bottom: 25px;
             font-size: 9px;
         }
 
@@ -109,7 +109,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 9x;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .result-table th,
@@ -124,47 +124,47 @@
 <body>
 
     <main>
-        @php
+         @php
             $tabla_resultados = null;
             $capacidad = $detalle->cpacidad_termica_nominal;
             if ($capacidad >= 15 && $capacidad < 150) {
                  $tipo_comb = null;
                  $tipo= $detalle->tipo;
-                     if ($tipo == 'Gaseoso') {
+                     if ($tipo == 'Liquido') {
                         $tabla_resultados = 1;
-                     }elseif ($tipo == 'Liquido') {
+                     }elseif ($tipo == 'Gaseoso') {
                         $tabla_resultados = 2;
                      } 
             } elseif ($capacidad >= 150 && $capacidad < 1200) {
                 $tipo_comb = null;
                  $tipo= $detalle->tipo;
-                     if ($tipo == 'Gaseoso') {
+                     if ($tipo == 'Liquido') {
                         $tabla_resultados = 3;
-                     }elseif ($tipo == 'Liquido') {
+                     }elseif ($tipo == 'Gaseoso') {
                         $tabla_resultados = 4;
                      } 
             } elseif ($capacidad >= 1200 && $capacidad < 3000) {
                 $tipo_comb = null;
                  $tipo= $detalle->tipo;
-                     if ($tipo == 'Gaseoso') {
+                     if ($tipo == 'Liquido') {
                         $tabla_resultados = 5;
-                     }elseif ($tipo == 'Liquido') {
+                     }elseif ($tipo == 'Gaseoso') {
                         $tabla_resultados = 6;
                      } 
             }elseif ($capacidad >= 3000 && $capacidad < 15000) {
                 $tipo_comb = null;
                  $tipo= $detalle->tipo;
-                     if ($tipo == 'Gaseoso') {
+                     if ($tipo == 'Liquido') {
                         $tabla_resultados = 7;
-                     }elseif ($tipo == 'Liquido') {
+                     }elseif ($tipo == 'Gaseoso') {
                         $tabla_resultados = 8;
                      } 
             }  elseif ($capacidad >= 15000) {
                $tipo_comb = null;
                  $tipo= $detalle->tipo;
-                     if ($tipo == 'Gaseoso') {
+                     if ($tipo == 'Liquido') {
                         $tabla_resultados = 9;
-                     }elseif ($tipo == 'Liquido') {
+                     }elseif ($tipo == 'Gaseoso') {
                         $tabla_resultados = 10;
                      } 
             }
@@ -172,7 +172,7 @@
          
         @endphp
 
-        @include('pdf.recursos.headerCaratula')
+@include('pdf.recursos.headerCaratula')
       
         <div > 
             Comparación con la Norma Oficial Mexicana {{$detalle->nombre}}, {{$detalle->descripcion}}
@@ -189,7 +189,6 @@
                 <td class="col-1">
                     {{$detalle->calle}} {{$detalle->numero}}, {{$detalle->colonia}},<br>
                     {{$detalle->ciudad}}, {{$detalle->estado}}, C.P. {{$detalle->codigo_postal}}<br>
-                    {{$detalle->codigo}}<br>
                     @switch($detalle->codigo)
                         @case('ZMG')
                             Zona Metropolitana de Guadalajara
@@ -206,6 +205,7 @@
                         @default
                             {{$detalle->codigo}} {{-- Mostrar el código si no coincide con ningún caso --}}
                     @endswitch
+                    (  {{$detalle->codigo}})
                 </td>
                 <td class="col-2">
                     Número de informe:<br>
@@ -244,39 +244,347 @@
             </tr>
             
         </table>
+            @if ($tabla_resultados === 4)
+                    <table class="result-table">
+                        <tr>
+                            <th colspan="5" style = "text-align: center">RESULTADOS</th>
+                        </tr>
+                        <tr>
+                            <td>Parámetros Evaluados</td>
+                            <td>Cconcentración (ppmv)</td>
+                            <td>Limite Máximo Permisible (ppmv)</td>
+                            <td>Comparación (L.M.P.)</td>
+                            <td>&plusmn; uE (ppmv)</td>
+                        </tr>
+                        <tr>
+                            <td>Monoxido de Carbono (CO)</td>
+                            <td>20.08</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.37</td>
+                        </tr>
+                        <tr>
+                            <td>Óxido de Nitrógeno (NOx)</td>
+                            <td>21.73</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.12</td>
+                        </tr>
+                        
+                    </table>
+                @elseif ($tabla_resultados === 1)
+                    <table class="result-table ">
+                        <tr>
+                            <th colspan="5" style = "text-align: center">RESULTADOS</th>
+                        </tr>
+                        <tr>
+                            <td>Parámetros Evaluados</td>
+                            <td>Cconcentración (ppmv)</td>
+                            <td>Limite Máximo Permisible (ppmv)</td>
+                            <td>Comparación (L.M.P.)</td>
+                            <td>&plusmn; uE (ppmv)</td>
+                        </tr>
+                        <tr>
+                            <td>Bioxido de azufre,ppmv</td>
+                            <td>7.45</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.14</td>
+                        </tr>
+                        <tr>
+                            <td>Monoxido de Carbono (CO)</td>
+                            <td>7.45</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.14</td>
+                        </tr>
+                        
+                        
+                    </table>
 
+                @elseif ($tabla_resultados === 2)
+                    <table class="result-table ">
+                        <tr>
+                            <th colspan="5" style = "text-align: center">RESULTADOS</th>
+                        </tr>
+                        <tr>
+                            <td>Parámetros Evaluados</td>
+                            <td>Cconcentración (ppmv)</td>
+                            <td>Limite Máximo Permisible (ppmv)</td>
+                            <td>Comparación (L.M.P.)</td>
+                            <td>&plusmn; uE (ppmv)</td>
+                        </tr>
+                        <tr>
+                            <td>Monoxido de Carbono (CO)</td>
+                            <td>7.80</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.15</td>
+                        </tr>
+                    </table>
 
+                @elseif ($tabla_resultados === 3)
+                    <table class="result-table ">
+                        <tr>
+                            <th colspan="5" style = "text-align: center">RESULTADOS</th>
+                        </tr>
+                        <tr>
+                            <td>Parámetros Evaluados</td>
+                            <td>Cconcentración (ppmv)</td>
+                            <td>Limite Máximo Permisible (ppmv)</td>
+                            <td>Comparación (L.M.P.)</td>
+                            <td>&plusmn; uE (ppmv)</td>
+                        </tr>
+                        <tr>
+                            <td>Particulas, mg/m3</td>
+                            <td>7.80</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.15</td>
+                        </tr>
+                        <tr>
+                            <td>Bióxido de azufre ppmv</td>
+                            <td>8.59</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.16</td>
+                        </tr>
+                        <tr>
+                            <td>Óxido de Nitrógeno (NOx)</td>
+                            <td>8.59</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.16</td>
+                        </tr>
+                        <tr>
+                            <td>Monoxido de Carbono (CO)</td>
+                            <td>7.80</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.15</td>
+                        </tr>
+                    
 
-        <table class="result-table ">
-            <tr>
-                <th colspan="5" style = "text-align: center">RESULTADOS</th>
-            </tr>
-            <tr>
-                <td>Parámetros Evaluados</td>
-                <td>Cconcentración (ppmv)</td>
-                <td>Limite Máximo Permisible (ppmv)</td>
-                <td>Comparación (L.M.P.)</td>
-                <td>&plusmn; uE (ppmv)</td>
-            </tr>
-            <tr>
-                <td>Monoxido de Carbono (CO)</td>
-                <td>20.08</td>
-                <td>No Aplica</td>
-                <td>No Aplica</td>
-                <td>0.37</td>
-            </tr>
-            <tr>
-                <td>Óxido de Nitrógeno (NOx)</td>
-                <td>21.73</td>
-                <td>No Aplica</td>
-                <td>No Aplica</td>
-                <td>0.12</td>
-            </tr>
-        </table>
+                    </table>
 
-        <div style="margin-top: 20px; font-size: 7px;">
+                @elseif ($tabla_resultados === 5)
+                    <table class="result-table ">
+                        <tr>
+                            <th colspan="5" style = "text-align: center">RESULTADOS</th>
+                        </tr>
+                        <tr>
+                            <td>Parámetros Evaluados</td>
+                            <td>Cconcentración (ppmv)</td>
+                            <td>Limite Máximo Permisible (ppmv)</td>
+                            <td>Comparación (L.M.P.)</td>
+                            <td>&plusmn; uE (ppmv)</td>
+                        </tr>
+                        <tr>
+                            <td>Particulas, mg/m3</td>
+                            <td>7.80</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.15</td>
+                        </tr>
+                        <tr>
+                            <td>Bióxido de azufre ppmv</td>
+                            <td>8.59</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.16</td>
+                        </tr>
+                        <tr>
+                            <td>Óxido de Nitrógeno (NOx)</td>
+                            <td>8.59</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.16</td>
+                        </tr>
+                        <tr>
+                            <td>Monoxido de Carbono (CO)</td>
+                            <td>7.80</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.15</td>
+                        </tr>
+
+                    </table>
+
+                @elseif ($tabla_resultados === 6)
+                    <table class="result-table ">
+                        <tr>
+                            <th colspan="5" style = "text-align: center">RESULTADOS</th>
+                        </tr>
+                        <tr>
+                            <td>Parámetros Evaluados</td>
+                            <td>Cconcentración (ppmv)</td>
+                            <td>Limite Máximo Permisible (ppmv)</td>
+                            <td>Comparación (L.M.P.)</td>
+                            <td>&plusmn; uE (ppmv)</td>
+                        </tr>
+                        <tr>
+                            <td>Óxido de Nitrógeno (NOx)</td>
+                            <td>8.59</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.16</td>
+                        </tr>
+                        <tr>
+                            <td>Monóxido de carbono, ppmv</td>
+                            <td>8.59</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.16</td>
+                        </tr>
+
+                    </table>
+
+                @elseif ($tabla_resultados === 7)
+                    <table class="result-table ">
+                        <tr>
+                            <th colspan="5" style = "text-align: center">RESULTADOS</th>
+                        </tr>
+                        <tr>
+                            <td>Parámetros Evaluados</td>
+                            <td>Cconcentración (ppmv)</td>
+                            <td>Limite Máximo Permisible (ppmv)</td>
+                            <td>Comparación (L.M.P.)</td>
+                            <td>&plusmn; uE (ppmv)</td>
+                        </tr>
+                        <tr>
+                            <td>Particulas, mg/m3</td>
+                            <td>7.80</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.15</td>
+                        </tr>
+                        <tr>
+                            <td>Bióxido de azufre ppmv</td>
+                            <td>8.59</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.16</td>
+                        </tr>
+                        <tr>
+                            <td>Óxido de Nitrógeno (NOx)</td>
+                            <td>8.59</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.16</td>
+                        </tr>
+                        <tr>
+                            <td>Monoxido de Carbono (CO)</td>
+                            <td>7.80</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.15</td>
+                        </tr>
+
+                    </table>
+
+                @elseif ($tabla_resultados === 8)
+                    <table class="result-table ">
+                        <tr>
+                            <th colspan="5" style = "text-align: center">RESULTADOS</th>
+                        </tr>
+                        <tr>
+                            <td>Parámetros Evaluados</td>
+                            <td>Cconcentración (ppmv)</td>
+                            <td>Limite Máximo Permisible (ppmv)</td>
+                            <td>Comparación (L.M.P.)</td>
+                            <td>&plusmn; uE (ppmv)</td>
+                        </tr>
+                        <tr>
+                            <td>Óxido de Nitrógeno (NOx)</td>
+                            <td>8.59</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.16</td>
+                        </tr>
+                        <tr>
+                            <td>Monóxido de carbono, ppmv</td>
+                            <td>8.59</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.16</td>
+                        </tr>
+                    </table>
+                @elseif ($tabla_resultados === 9)
+                    <table class="result-table ">
+                        <tr>
+                            <th colspan="5" style = "text-align: center">RESULTADOS</th>
+                        </tr>
+                        <tr>
+                            <td>Parámetros Evaluados</td>
+                            <td>Cconcentración (ppmv)</td>
+                            <td>Limite Máximo Permisible (ppmv)</td>
+                            <td>Comparación (L.M.P.)</td>
+                            <td>&plusmn; uE (ppmv)</td>
+                        </tr>
+                        <tr>
+                            <td>Particulas, mg/m3</td>
+                            <td>7.80</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.15</td>
+                        </tr>
+                        <tr>
+                            <td>Bióxido de azufre ppmv</td>
+                            <td>8.59</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.16</td>
+                        </tr>
+                        <tr>
+                            <td>Óxido de Nitrógeno (NOx)</td>
+                            <td>8.59</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.16</td>
+                        </tr>
+                        <tr>
+                            <td>Monoxido de Carbono (CO)</td>
+                            <td>7.80</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.15</td>
+                        </tr>
+
+                    </table>
+
+                @elseif ($tabla_resultados === 10)
+                    <table class="result-table ">
+                        <tr>
+                            <th colspan="5" style = "text-align: center">RESULTADOS</th>
+                        </tr>
+                        <tr>
+                            <td>Parámetros Evaluados</td>
+                            <td>Cconcentración (ppmv)</td>
+                            <td>Limite Máximo Permisible (ppmv)</td>
+                            <td>Comparación (L.M.P.)</td>
+                            <td>&plusmn; uE (ppmv)</td>
+                        </tr>
+                        <tr>
+                            <td>Óxido de Nitrógeno (NOx)</td>
+                            <td>8.59</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.16</td>
+                        </tr>
+                        <tr>
+                            <td>Monóxido de carbono, ppmv</td>
+                            <td>8.59</td>
+                            <td>No Aplica</td>
+                            <td>No Aplica</td>
+                            <td>0.16</td>
+                        </tr>
+                    </table>
+            
+            @endif
+
+        <div style="margin-top: 20px; font-size: 9px;">
             NOTA 1: La incertidumbre estimada UE para CO es 1.86% y para NOx es 0.54%, se expresa con un factor de cobertura k=2 que corresponde aproximadamente 
-            a un nivel de confianza del 95%. Se calcula basandose en la guia para la expresion de incertidumbre en los resultados de las mediciones (NMX-CH-140-IMNC-202)
+            a un nivel de &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;confianza del 95%. Se calcula basandose en la guia para la expresion de incertidumbre en los resultados de las mediciones (NMX-CH-140-IMNC-202)
             <br>
             NOTA 2: Para este caso, la zona geografica para el Monoxido de Carbono (CO) se considera: Resto del Pais (RP).
             <br>
@@ -284,12 +592,16 @@
             <br>
             NOTA 4: ppmv Partes por millon volumen, igual a micromol por mol 
             <br>
-            GJ/has      Giga Joules por hora
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GJ/has      Giga Joules por hora
             <br>
-            C.C         Caballos Caldera 
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C.C         Caballos Caldera 
             <br>
             *Para este caso de CO NOx los limites se establecen como concentraciones en volumen y 
             base seca, en condiciones de refrencia de 25&deg;C, 101 325 pascales (1 atm) y 5% de (O2)
+             <br>
+             Se emplea una *Regla de decisión de aceptación simple* como lo establece el documento  *Guidelineson DEcision Rules and Statements of Conformity*<br>
+             Este informe representa las caracteristicas de la muestra sometida a prueba, este no podrá ser alterado o reproducido en su totalidad con la aprobación por escrito de 
+             Verificaciones Industriales y Desarrollo de Proyectos Ecologicos S.A de C.V. (VIDESA).
         </div>
 
 
@@ -308,36 +620,44 @@
         
         </table>
 
-        <div style="text-align: center; margin-top: 30px;">
-            <p>Firma Electrónica</p>
-         
-            <p>Escanea para verificar</p>
+        <div style="padding-bottom: 120px;"> 
+            {{-- Firma --}}
+            <div style="text-align: center; margin-top: 100px;">
+                <div style="border-top: 1px solid #000; width: 300px; margin: 0 auto;"></div>
+                <p style="margin: 5px 0 0 0; font-weight: bold;">Nombre de la Persona</p>
+                <p style="margin: 0;">Cargo o Puesto</p>
+            </div>
         </div>
 
-    @include('pdf.recursos.footerCaratula')
-
-        <!-- esto iria en mi segunda pagina  -->
+@include('pdf.recursos.footerCaratula')
+    
+<!-- Pgina 2 -->
     <div style="page-break-before: always;"></div>
-    @include('pdf.recursos.headerCaratula')
-
-        <table style="margin-top: 40px;margin-left: auto;">
+@include('pdf.recursos.headerCaratula')
+        <div > 
+            Comparación con la Norma Oficial Mexicana {{$detalle->nombre}}, {{$detalle->descripcion}}
+            <br>
+            Para equipos con capacidad térmica nominal mayor de 5.3 G/J o 150 C.C combustible gaseoso
+        </div>
+        <table style="margin-top: 20px;margin-left: auto;">
             <tr>
-            
-                <td class="col-1">
-                    Número de informe:<br>
-                    Orden de servicio:<br>
-                    Fecha de evaluación:<br>
-                    Recepción:<br>
-                    Fecha de informe:
-                </td>
-                <td class="col-2">
-                    {{$detalle->numero_informe}}<br>
-                    {{$detalle->numero_servicio}}<br>
-                    {{$detalle->fecha_muestreo}}<br>
-                    {{$detalle->fecha_muestreo}}<br>
-                  
-                </td>
-        
+                <td class="col-1"> Número de informe:<br></td>
+                <td class="col-2"> {{$detalle->numero_informe}}<br></td>
+            <tr>
+                <td class="col-1">Orden de servicio:<br></td>
+                <td class="col-2"> {{$detalle->numero_servicio}}<br></td>
+            </tr>
+            <tr>
+                <td class="col-1">Fecha de evaluación:<br></td>
+               <td class="col-2">{{$detalle->fecha_muestreo}}<br> </td>
+            </tr> 
+            <tr>
+               <td class="col-1"> Recepción:<br></td>
+               <td class="col-2">{{$detalle->fecha_muestreo}}<br></td>
+            </tr>
+            <tr>
+               <td class="col-1"> Fecha de informe:<br></td>
+               <td class="col-2">{{$fecha_informe}}<br></td>
             </tr>
         </table>
         <table class="result-table " >
@@ -377,25 +697,39 @@
                 <td>N/A</td>
             </tr>
         </table>
-        <table style="margin: 20px auto; text-align: center;">
+        <table style="margin: 20px auto; text-align: center; font-family: 'Courier New', monospace; font-size: 14px;">
             <tr>
-                <td class="col-1">
-                    C_R=20.9-0-R/<br>
-                    20.9-0_M*C_M<br>
+                <td style="padding: 0 15px;">C<sub>R</sub> =</td>
+                <td>
+                    <div>
+                        <div style="border-bottom: 1px solid #000; display: inline-block; padding: 0 5px;">
+                            20.9 - O<sub>R</sub>
+                        </div>
+                        <div style="margin-top: 2px;">
+                            20.9 - O<sub>M</sub>
+                        </div>
+                    </div>
+                    <td style="padding: 0 15px;">×</td>
+                    <td><div style="padding: 0 15px;"> C<sub>M</sub></div></td>
                 </td>
-                <td class="col-2">
-                    CR=&nbsp; 20.9-5.0<br>
-                    &nbsp;--------------<br>
-                    &nbsp; 20.9-15.00<br>
+                <td style="padding: 0 15px;">C<sub>R</sub> =</td>
+                <td>
+                    <div>
+                        <div style="border-bottom: 1px solid #000; display: inline-block; padding: 0 5px;">
+                            20.9 - 5.0
+                        </div>
+                        <div style="margin-top: 2px;">
+                            20.9 - 15.00
+                        </div>
+                    </div>
                 </td>
-                <td class="col-2">
-                    *
-                </td>
-                <td class="col-2">
-                    8.06 = 21.73 ppmv
+                <td style="padding: 0 15px;">×</td>
+                <td>
+                    <strong>8.06 = 21.73 ppmv</strong>
                 </td>
             </tr>
         </table>
+
 
 
         <table class="evaluated-equipment-table">

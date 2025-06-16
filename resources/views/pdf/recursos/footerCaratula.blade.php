@@ -10,7 +10,6 @@
         }
 </style>
 <div class="footer">
-        
     <div>
         <div style="text-align: left;">
             FC-AAR-006<br>
@@ -20,10 +19,6 @@
             Página <span class="page"></span> de <span class="topage"></span>
         </div>
     </div>
-
-    <hr style="border: 0; border-top: 2px solid black; margin: 10px 0;">
-    <hr style="border: 0; border-top: 2px solid black; margin: 0 0 10px 0;">
-
     <div >
                  <img src="{{ public_path('img/footer.png') }}" width="100%" alt="footer">
 
