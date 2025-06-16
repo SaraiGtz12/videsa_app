@@ -5,7 +5,7 @@ $(document).ready(function(){
         $('#sucursal').show();
         $.ajax({
             method: 'get',
-            url: 'http://127.0.0.1:8000/getSucursales/'+empresa,
+            url: '/getSucursales/'+empresa,
             success: function(res){
                 if(res.status == 'success'){
                     let opciones = "<option value=''>Selecciona una sucursal</option>";

@@ -42,8 +42,8 @@
 
     
 @endsection
-@section('Scripts')
+@push('Scripts')
     <script src="{{asset('js/DataTables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('js/DataTables/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('js/DataTables/datatables-demo.js')}}"></script>
-@endsection
+@endpush
