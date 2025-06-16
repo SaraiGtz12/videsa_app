@@ -21,8 +21,10 @@ public function generarPDF($id)
         ->join('sucursales as s', 'c.id_cliente', '=', 's.id_cliente')
         ->join('zonas_geograficas as zg', 'informes.id_zona_geografica', '=', 'zg.id_zona_geografica')
         ->join('tipos_combustibles as tc', 'informes.combustible_utilizado', '=', 'tc.id_tipo_combustible')
+        ->join('normas AS n','informes.id_norma','n.id_norma')
         ->where('os.id_orden_servicio', $id)
         ->select(
+            'n.nombre','n.descripcion',
             'os.numero_servicio',
             'os.fecha_muestreo',
             'c.razon_social as cliente',
