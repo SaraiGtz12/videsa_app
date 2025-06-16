@@ -3,14 +3,14 @@ if(document.getElementById('ConfirmacionUser')){
         icon: "success",
         title: "¡Usuario Registrado!",
         showConfirmButton: false,
-        timer: 1500
+        timer: 2000
     });
 }
 if(document.getElementById('ConfirmacionEmpresa')){
     Swal.fire({
         icon: "success",
-        title: "¡Usuario Registrado!",
+        title: "¡Servicio Registrado!",
         showConfirmButton: false,
-        timer: 1500
+        timer: 2000
     });
 }

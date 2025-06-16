@@ -453,7 +453,7 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Core plugin JavaScript-->

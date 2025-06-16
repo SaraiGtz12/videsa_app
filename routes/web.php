@@ -14,6 +14,8 @@ use App\Http\Controllers\NormaController;
 use App\Http\Controllers\nom085_Controller;
 
 use App\Http\Controllers\Nom_085_Campo_Controller;
+use App\Http\Controllers\OrdenServicio_Controller;
+
 #--- Ruta Login ---#
 Route::get('/', [Vistas_Controller::class, 'Login'])->name('login');
 Route::post('/check_login', [LoginController::class, 'IniciarSesion'])->name('IniciarSesion');
@@ -51,7 +53,7 @@ Route::post('/register_user', [UsersController::class, 'RegistrarUsuarios'])->na
 
 //Rutas para la optención de datos
 Route::get('/getMuestreadores', [FormsController::class, 'getMuestreadores']);
-
+Route::get('/getSucursales/{id}', [OrdenServicio_Controller::class, 'obtener_sucursal'])->name('get_sucursales');
 Route::get('/prueba_puntos', [Nom_085_Campo_Controller::class, 'distribucion_puntos_estratificacion'])->name('Prueba');
 
 

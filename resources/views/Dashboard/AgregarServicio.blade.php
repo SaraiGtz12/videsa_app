@@ -1,8 +1,8 @@
 @extends('../Layout/Layout')
 @section('DataTablecss')
-    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/path/to/select2.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css"> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
 @endsection
 @section('AgregarServicio')
     @if (session('success'))
@@ -24,7 +24,28 @@
                     <h6 class="m-0 font-weight-bold text-primary">Datos del Cliente</h6>
                 </div>
                 <div class="card-body">
-                    <livewire:sucursales-empresas />
+                    {{-- <livewire:sucursales-empresas /> --}}
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <span>Seleccionar Cliente</span>
+                                <select name="empresa" id="empresa" class="form-select select2" required>
+                                    <option value="">Selecciona un cliente</option>
+                                    @foreach ($clientes as $cliente)
+                                        <option value="{{$cliente->id_cliente}}">{{$cliente->razon_social}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <span>Seleccionar una Sucursal</span>
+                                <select name="sucursal" id="sucursal" class="form-select select2" required>
+                                    <option value="">Selecciona una sucursal</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
@@ -34,7 +55,7 @@
                         </div>
                         <div class="col">
                             <div class="mb-3">
-                                <label class="form-label">Cargo del resposable</label>
+                                <label class="form-label">Cargo del Responsable</label>
                                 <input type="text" name="cargo_responsable" id="cargo_responsable" class="form-control" required>
                             </div>
                         </div>
@@ -85,7 +106,7 @@
                         </div>
                         <div class="col">
                             <span>Muestrador</span>
-                            <select name="Muestreador" id="Muestreador" class="form-select" required>
+                            <select name="Muestreador" class="form-select select2" required>
                                 <option value="">Seleccione un muestreador</option>
                                 @foreach ($muestreadores as $usuario)
                                     <option value="{{ $usuario->id_usuario }}">{{ $usuario->nombre }}</option>
@@ -93,7 +114,6 @@
                             </select>
                         </div>
                     </div>
-                    <div id="Muestreadores"></div>
                     
                     <div class="d-grid mt-4">
                         <input type="submit" value="Registrar" class="btn btn-primary">
@@ -106,30 +126,28 @@
 @endsection
 
 @push('Scripts')
-    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         const normas = @json($normas);
     </script>
     <script src="{{asset('js/Formularios/script.js')}}"></script>
-    
-    {{-- <script>
-        $('#empresa').select2({
-            theme: 'bootstrap4',
-        });
-
-        $('#Muestreador').select2({
-            theme: 'bootstrap4',
-        });
-
-        document.addEventListener('livewire:load', function () {
-            initSelect2();
-
-            Livewire.hook('message.processed', (message, component) => {
-                initSelect2();
-            });
-        });
-    </script> --}}
     <script src="{{asset('js/Alertas/confirmaciones.js')}}"></script>
     <script src="{{asset('js/Alertas/Errores.js')}}"></script>
+
+    <script src="{{asset('js/Formularios/selectEmpresas.js')}}"></script>
+
+    @stack('select2')
+
+    <script>
+        $(document).ready(function(){
+            $('.select2').select2({
+                theme: 'bootstrap4'
+            });
+
+            $('.empresa').select2({
+                theme: 'bootstrap4'
+            });
+        });
+    </script>
 
 @endpush
