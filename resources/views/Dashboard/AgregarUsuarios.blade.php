@@ -68,7 +68,7 @@
     </div>
 @endsection
 
-@section('Scripts')
+@push('Scripts')
     <script src="{{asset('js/Alertas/confirmaciones.js')}}"></script>
     <script src="{{asset('js/Alertas/Errores.js')}}"></script>
-@endsection
+@endpush
