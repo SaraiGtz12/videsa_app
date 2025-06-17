@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id('id_orden_servicio');
             $table->date('fecha_muestreo');
             $table->string('numero_servicio', 15);
+            $table->string('responsable', 100)->nullable();
+            $table->string('cargo', 50)->nullable();
+            $table->string('telefono', 15)->nullable();
+            $table->foreignId('muestreador_asignado')->references('id_usuario')->on('usuarios');
             $table->foreignId('id_estatus')->nullable()->references('id_estatus')->on('estatus')->onDelete('set null');
             $table->foreignId('id_cliente')->nullable()->references('id_cliente')->on('clientes')->onDelete('set null');
             $table->foreignId('id_sucursal')->nullable()->references('id_sucursal')->on('sucursales')->onDelete('set null');
-            $table->foreignId('muestreador_asignado')->references('id_usuario')->on('usuarios');
             $table->timestamps();
         });
     }

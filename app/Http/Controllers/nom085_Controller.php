@@ -212,7 +212,8 @@ class nom085_Controller extends Controller
                 $detalles_medicion_nom085->promedio_concentracion = $resultados_estratifciacion['concentraciones']['promedio'];
                 $detalles_medicion_nom085->max_estratificacion = $resultados_estratifciacion['estratificacion']['estratMaxima'];
                 $detalles_medicion_nom085->max_ppm = $resultados_estratifciacion['ppm']['ppmMaxima'];
-                //$detalles_medicion_nom085->conclusion = $determinacion_conclusiones['conclusion'];
+                $detalles_medicion_nom085->conclusion = $determinacion_conclusiones['conclusion'];
+                $detalles_medicion_nom085->puntos_finales = $determinacion_conclusiones['puntosFinales'];
 
                 $detalles_medicion_nom085->save();
 
@@ -376,11 +377,23 @@ class nom085_Controller extends Controller
         ];
     }
 
-    public function d_p_e($puntos_finales = 12, $tipo_conducto = "Circular") {
-        if($puntos_finales == 12 && $tipo_conducto == "Circular") {
-            return [
-                'factores' => $this->factores_longuitud_kl
-            ];
+    public function d_p_e($puntos_finales = 12, $tipo_conducto = "Circular", $diametro_equ="10", $diametro, $conclusion) {
+        if($puntos_finales == 12) {
+
+            $resultados = [];
+
+            if($tipo_conducto == "Circular"){
+
+            }elseif($tipo_conducto == "Cuadrado" || $tipo_conducto == "Rectangular"){
+                if($conclusion == 'Estratificada'){
+
+                }
+            }
+
+            
+            // return [
+            //     'factores' => $this->factores_longuitud_kl
+            // ];
         }
         
         return [

@@ -3,14 +3,15 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     {{-- <link rel="stylesheet" href="/path/to/select2.css"> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection
 @section('AgregarServicio')
     @if (session('success'))
-        <input id="ConfirmacionEmpresa" value="true" type="hidden">
+        <input id="ConfirmacionOrden" value="true" type="hidden">
     @endif
 
     @if ($errors->has('error'))
-        <input id="errorEmpresa" value="true" type="hidden">
+        <input id="errorOrden" value="true" type="hidden">
     @endif
 
     <div class="container rounded shadow p-4 mb-4 bg-white">
@@ -50,19 +51,19 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label class="form-label">Nombre del Responsable</label>
-                                <input type="text" name="nombre_responsable" id="nombre_responsable" class="form-control" required>
+                                <input type="text" name="nombre_responsable" id="nombre_responsable" class="form-control" onkeyup="this.value=nombre_cargo(this.value)" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label class="form-label">Cargo del Responsable</label>
-                                <input type="text" name="cargo_responsable" id="cargo_responsable" class="form-control" required>
+                                <input type="text" name="cargo_responsable" id="cargo_responsable" class="form-control" onkeyup="this.value=nombre_cargo(this.value)" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label class="form-label">Numero de telefono</label>
-                                <input type="text" name="telefono" id="telefono" class="form-control" required>
+                                <input type="text" name="telefono" id="telefono" class="form-control" onkeyup="this.value=tel(this.value)" maxlength="10" minlength="10" required>
                             </div>
                         </div>
                     </div>
@@ -133,6 +134,7 @@
     <script src="{{asset('js/Formularios/script.js')}}"></script>
     <script src="{{asset('js/Alertas/confirmaciones.js')}}"></script>
     <script src="{{asset('js/Alertas/Errores.js')}}"></script>
+    <script src="{{asset('js/Formularios/Validaciones.js')}}"></script>
 
     <script src="{{asset('js/Formularios/selectEmpresas.js')}}"></script>
 

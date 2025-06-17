@@ -27,15 +27,15 @@
                         <div class="col">
                             <div class="mb-2">
                                 <span>Nombre(s)</span>
-                                <input type="text" name="nombreP" id="nombreP" class="form-control" required>
+                                <input type="text" name="nombreP" id="nombreP" class="form-control" onkeyup="this.value=nombre_cargo(this.value)" required>
                             </div>
                             <div class="mb-2">
                                 <span>Apellido Paterno</span>
-                                <input type="text" name="apellidos" id="apellidos" class="form-control" required>
+                                <input type="text" name="apellidos" id="apellidos" class="form-control" onkeyup="this.value=nombre_cargo(this.value)" required>
                             </div>
                             <div class="mb-2">
                                 <span>RFC</span>
-                                <input type="text" name="rfcUsuario" id="rfcUsuario" class="form-control" required>
+                                <input type="text" name="rfcUsuario" id="rfcUsuario" class="form-control" onkeyup="this.value=rfc(this.value)" maxlength="13" required>
                             </div>
                         </div>
                         <div class="col">
@@ -50,11 +50,11 @@
                             </div>
                             <div class="mb-2">
                                 <span>Correo de la Empresa</span>
-                                <input type="text" name="UsuarioP" id="UsuarioP" class="form-control" required>
+                                <input type="text" name="UsuarioP" id="UsuarioP" class="form-control" onkeyup="this.value=correo(this.value)" required>
                             </div>
                             <div class="mb-2">
                                 <span>Contraseña</span>
-                                <input type="password" name="ContrasenaP" id="ContrasenaP" class="form-control" required>
+                                <input type="password" name="ContrasenaP" id="ContrasenaP" class="form-control" minlength="6" required>
                             </div>
                         </div>
                     </div>
@@ -71,4 +71,5 @@
 @push('Scripts')
     <script src="{{asset('js/Alertas/confirmaciones.js')}}"></script>
     <script src="{{asset('js/Alertas/Errores.js')}}"></script>
+    <script src="{{asset('js/Formularios/Validaciones.js')}}"></script>
 @endpush

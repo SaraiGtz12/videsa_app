@@ -52,5 +52,7 @@ class informe extends Model
         'max_estratificacion',
         'max_ppm',
         'id_zona_geografica',
+        'conclusiones',
+        'puntos_finales'
     ];
 }
