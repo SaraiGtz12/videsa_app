@@ -45,7 +45,7 @@ function tel(string){
 function correo(string){
     var out ='';
 
-    var filtro = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@.';
+    var filtro = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@.0123456789';
 
     for(var i =0; i < string.length; i++){
         if(filtro.indexOf(string.charAt(i)) != -1){

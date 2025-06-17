@@ -377,11 +377,23 @@ class nom085_Controller extends Controller
         ];
     }
 
-    public function d_p_e($puntos_finales = 12, $tipo_conducto = "Circular", $diametro_equ="10", $largo_trans, $ancho_trans) {
-        if($puntos_finales == 12 && $tipo_conducto == "Circular") {
-            return [
-                'factores' => $this->factores_longuitud_kl
-            ];
+    public function d_p_e($puntos_finales = 12, $tipo_conducto = "Circular", $diametro_equ="10", $diametro, $conclusion) {
+        if($puntos_finales == 12) {
+
+            $resultados = [];
+
+            if($tipo_conducto == "Circular"){
+
+            }elseif($tipo_conducto == "Cuadrado" || $tipo_conducto == "Rectangular"){
+                if($conclusion == 'Estratificada'){
+
+                }
+            }
+
+            
+            // return [
+            //     'factores' => $this->factores_longuitud_kl
+            // ];
         }
         
         return [
