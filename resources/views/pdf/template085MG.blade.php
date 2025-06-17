@@ -982,7 +982,7 @@
            <table style="width: 100%; border: none;">
             <tr>
                 <td style="width: 50%; ">
-                    <table style=" border: none;">
+                    <table style="width: 100%; border: none;">
                         <tr>
                             <td style=" vertical-align: top;">
                                 <table style=" border-collapse: collapse; text-align: center;" border="1">
@@ -1049,9 +1049,6 @@
                                         <td>50%</td>
                                         <td>Distancia en porcentaje donde se tomará la segunda medición para la determincación de la estratifición</td>
                                     </tr>
-
-                                    
-
                                 </table>
                             </td>
                         </tr>
@@ -1087,24 +1084,90 @@
                             <td >b) > 1 ppmv</td>
                         </tr>
                     </table>
+                    <br>
                     Distribución de puntos para estratificación, Distancia (m)
-                    <table style="width: 100%; border-collapse: collapse; text-align: center;" border="1" >
+                    <table style="width: 100%; border-collapse: collapse; text-align: center;" border="1">
                         <tr>
-                            <td>Punto</td>
-                            <td>Estatificada</td>
-                            <td>Mínimamente</td>
-                            <td>No Estratificada</td>
+                            <th>Punto</th>
+                            <th>Estatificada</th>
+                            <th>Mínimamente</th>
+                            <th>No Estratificada</th>
                         </tr>
+
+                        @for ($i = 1; $i <= 12; $i++)
+                        <tr>
+                            <td>{{ $i }}</td>
+                            <td>N/A</td>
+                            <td>
+                                @if ($i <= 3)
+                                    N/A
+                                @endif
+                            </td>
+                            <td>
+                                @if ($i === 1)
+                                    N/A
+                                @endif
+                            </td>
+                        </tr>
+                        @endfor
                     </table>
-
-
+                    <label style="font-weight: bold;">D<sub>eq</sub> = </label>
+                                <table style="display: inline-table; vertical-align: middle;">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #000; padding: 0 5px;">
+                                            2 x  L<sub>1</sub> x L<sub>2</sub>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            L<sub>1</sub> + L<sub>2</sub>
+                                        </td>
+                                    </tr>
+                                </table>
                 </td>
             </tr>
-            
-
-
            </table>
-           
+
+           <strong>Método 7E EPA-2008.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Determinación de óxidos de nitrógeno, en los gases que fluyen por un conducto. Método de quimiluminiscencia.</strong>
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 50%; vertical-align: top;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            @php
+                                $campos = [
+                                    'SIGNATARIO:' => $detalle->muestreador,
+                                    'INGENIERO DE SERVICIO:' => $detalle->muestreador,
+                                    'REVISIÓN:' => $detalle->muestreador,
+                                ];
+                            @endphp
+
+                            @foreach ($campos as $etiqueta => $valor)
+                                <tr>
+                                    <td style="width: 40%; padding: 2px;">
+                                        <label style="font-weight: bold;">{{ $etiqueta }}</label>
+                                    </td>
+                                    <td style="width: 60%; padding: 2px;">
+                                        <div style="border: 1px solid #000; padding: 3px;">{{ $valor }}</div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </td>
+
+                    <td style="width: 50%; vertical-align: top;">
+                        <table style="width: 100%;border-collapse: collapse;" border="1">
+                            <tr>
+                                <td">Observaciones</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 40%; padding: 8px; height: 70px">Ninguna</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+
             
         </div>
 

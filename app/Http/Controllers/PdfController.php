@@ -22,9 +22,11 @@ public function generarPDF($id)
         ->join('zonas_geograficas as zg', 'informes.id_zona_geografica', '=', 'zg.id_zona_geografica')
         ->join('tipos_combustibles as tc', 'informes.combustible_utilizado', '=', 'tc.id_tipo_combustible')
         ->join('normas AS n','informes.id_norma','n.id_norma')
+        ->join('usuarios AS u','os.muestreador_asignado','u.id_usuario')
         ->where('os.id_orden_servicio', $id)
         ->select(
-            'n.nombre','n.descripcion','os.responsable','os.cargo','os.telefono',
+            'u.nombre as muestreador',
+            'n.nombre','n.descripcion','os.responsable','os.cargo','os.telefono','os.muestreador_asignado',
             'os.numero_servicio',
             'os.fecha_muestreo',
             'c.razon_social as cliente',
