@@ -981,7 +981,7 @@
            <strong>Determinación de la estratificación</strong>
            <table style="width: 100%; border: none;">
             <tr>
-                <td style="width: 50%; ">
+                <td style="width: 50%; vertical-align: top;">
                     <table style="width: 100%; border: none;">
                         <tr>
                             <td style=" vertical-align: top;">
@@ -1031,7 +1031,7 @@
                             </td>
                         </tr>
                         <tr >
-                            <td style=" vertical-align: top;">
+                            <td style="vertical-align: top;">
                                 <table>
                                     <tr>
                                         <td>Cp</td>
@@ -1111,24 +1111,29 @@
                         </tr>
                         @endfor
                     </table>
-                    <label style="font-weight: bold;">D<sub>eq</sub> = </label>
-                                <table style="display: inline-table; vertical-align: middle;">
-                                    <tr>
-                                        <td style="border-bottom: 1px solid #000; padding: 0 5px;">
-                                            2 x  L<sub>1</sub> x L<sub>2</sub>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            L<sub>1</sub> + L<sub>2</sub>
-                                        </td>
-                                    </tr>
-                                </table>
+                    <div style="margin-top:20px;">
+                        <label style="font-weight: bold;">Estratificación = </label>
+                            <table style="display: inline-table; vertical-align: top;">
+                                <tr>
+                                    <td style="border-bottom: 1px solid #000; padding: 0 5px;">
+                                        C  L<sub>p</sub> - C<sub>m</sub>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;">
+                                      C<sub>p</sub>
+                                    </td>
+                                </tr>
+                            </table>
+
+                    </div>
+                    
                 </td>
             </tr>
            </table>
-
-           <strong>Método 7E EPA-2008.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Determinación de óxidos de nitrógeno, en los gases que fluyen por un conducto. Método de quimiluminiscencia.</strong>
+           <div style="margin-top:15px; margin-bottom:10px">
+                <strong>Método 7E EPA-2008.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Determinación de óxidos de nitrógeno, en los gases que fluyen por un conducto. Método de quimiluminiscencia.</strong>
+           </div>
             <table style="width: 100%; border-collapse: collapse;">
                 <tr>
                     <td style="width: 50%; vertical-align: top;">
@@ -1160,7 +1165,7 @@
                                 <td">Observaciones</td>
                             </tr>
                             <tr>
-                                <td style="width: 40%; padding: 8px; height: 70px">Ninguna</td>
+                                <td style="width: 40%; padding: 8px; height: 50px">Ninguna</td>
                             </tr>
                         </table>
                     </td>
@@ -1170,16 +1175,178 @@
 
             
         </div>
+@include('pdf.recursos.footerGeneral')  
 
-
-
-    
-    @include('pdf.recursos.footerGeneral')  
     <div style="page-break-before: always;"></div>
     <!-- paginas 5 -->
-    @include('pdf.recursos.headerGeneral')
+@include('pdf.recursos.headerGeneral')
 
-    @include('pdf.recursos.footerGeneral')  
+    <table style="width: 100%; border: none">
+        <tr>
+            <td style="width: 50%; vertical-align: top;">
+                Captura de Datos de Campo
+                <table style=" width: 100%; border-collapse: collapse; text-align:center; font-size:7px;" border="1">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>NOx (ppmv)</th>
+                            <th>CO (ppmv)</th>
+                            <th>O<sub>2</sub> (%)</th>
+                            <th>CO<sub>2</sub> (%)</th>
+                            <th>TEMPT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($datos_campo as $index => $dato)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $dato->nox ?? 'N/A' }}</td>
+                            <td>{{ $dato->co_ppmv ?? 'N/A' }}</td>
+                            <td>{{ $dato->o2 ?? 'N/A' }}</td>
+                            <td>{{ $dato->co2 ?? 'N/A' }}</td>
+                            <td>{{ $dato->temp ?? 'N/A' }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    @php
+                        $total = $datos_campo->count();
+                        $avg_nox = $datos_campo->avg('nox');
+                        $avg_co = $datos_campo->avg('co_ppmv');
+                        $avg_o2 = $datos_campo->avg('o2');
+                        $avg_co2 = $datos_campo->avg('co2');
+                        $avg_temp = $datos_campo->avg('temp');
+                    @endphp
+
+                    <tfoot>
+                        <tr>
+                            <th>Promedio</th>
+                            <th>{{ number_format($avg_nox, 2) }}</th>
+                            <th>{{ number_format($avg_co, 2) }}</th>
+                            <th>{{ number_format($avg_o2, 2) }}</th>
+                            <th>{{ number_format($avg_co2, 2) }}</th>
+                            <th>{{ number_format($avg_temp, 2) }}</th>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </td>
+            <td style="width: 50%; vertical-align: top;">
+                <table>
+                    <tr>
+                        <table style=" border-collapse: collapse; align-item:right; " border="1">
+                            <tr>
+                                <td>Numero Informe</td>
+                                <td>{{$detalle->numero_informe}}</td>
+                            <tr>
+                            
+                                <td>Orden de Servcio</td>
+                                <td>{{$detalle->numero_servicio}}</td>
+                            <tr>
+                            
+                                <td>Fecha de Evaluación</td>
+                                <td>{{$fecha_muestreo}}</td>
+                            <tr>
+                        </table>
+                    </tr>
+                    <tr>
+                        <table style=" width: 100%; border-collapse: collapse;  " border="1">
+                            <tr>
+                                <td></td>
+                                <th>2Tr(s)</th>
+                                <th>Flujo (L/min)</th>
+                                <th>T. sonda (F)</th>
+                            <tr>
+                                <td>Shimadzu</td>
+                                <td>70</td>
+                                <td>1.00</td>
+                                <td>240</td>
+                            <tr>
+                                <td>Testo</td>
+                                <td>70</td>
+                                <td>0.89</td>
+                                <td>N/A</td>
+                            <tr>
+                        </table>
+                    </tr>
+                    <tr>
+                        <table>
+                            <td style="width: 50%; vertical-align: top;">
+                                <img src="{{ $grafica_nox }}" alt="Gráfica NOx" width="100%">
+                                <img src="{{ $grafica_co }}" alt="Gráfica CO" width="100%">
+                                <img src="{{ $grafica_o2 }}" alt="Gráfica O2" width="100%">
+                                <img src="{{ $grafica_co2 }}" alt="Gráfica CO2" width="100%">
+                            </td>
+                        </table>
+                    </tr>
+                    
+                </table>
+            </td>
+        </tr>
+
+    </table>
+
+    <div>
+    <table>
+        <tr >
+            <td rowspan="6" style="vertical-align: top;" >NOTA:</td>
+        </tr>
+        <tr>
+            <td> Cuando la corriente se determine no estratificada, se tomarán las 60 lecturas en el mismo punto.</td>
+        </tr>
+        <tr>
+            <td>Cuando la corriente se determine mínimamente estratificada, se tomarán las 20 lecturas en el primer punto, 20 en el segundo y 20 en el tercero.</td>
+
+        </tr>
+        <tr>
+            <td> Las lecturas se realizarán cada minuto, al inicio de cada punto se debe esperar 2 veces el tiempo de respuesta para continuar con las mediciones.</td>
+
+        </tr>
+        <tr>
+            <td>Cuando la corriente se determine estratificada, se tomarán las 5 lecturas en cada uno de los 12 puntos.</td>
+
+        </tr>
+        <tr>
+            <td>Las concentraciones de CO2 que se registran son por medio de calculo, el cual lo realiza el analizador.</td>
+        </tr>
+        
+    </table>
+
+    <table>
+        <tr>
+            <td>Referencia:<br>{{$detalle->nombre}}</td>
+            <td style="item-align:center;">{{$detalle->descripcion}}</td>
+        <tr>
+    </table>
+    <table style="width: 50%; border-collapse: collapse;">
+        @php
+            $campos = [
+                'SIGNATARIO:' => $detalle->muestreador,
+                'INGENIERO DE SERVICIO:' => $detalle->muestreador,
+                'REVISIÓN:' => $detalle->muestreador,
+            ];
+        @endphp
+
+        @foreach ($campos as $etiqueta => $valor)
+            <tr>
+                <td style="width: 40%; padding: 2px;">
+                    <label style="font-weight: bold;">{{ $etiqueta }}</label>
+                </td>
+                <td style="width: 60%; padding: 2px;">
+                    <div style="border: 1px solid #000; padding: 3px;">{{ $valor }}</div>
+                </td>
+            </tr>
+        @endforeach
+    </table>
+
+        
+      
+       
+    </div>
+    
+
+
+
+@include('pdf.recursos.footerGeneral')  
     <div style="page-break-before: always;"></div>
 
      <!-- paginas 6 -->
