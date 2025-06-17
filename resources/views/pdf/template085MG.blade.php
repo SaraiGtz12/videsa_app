@@ -771,12 +771,227 @@
             Método 7 EPA-2008&nbsp;Determinación de óxidos de nitrógeno, en los gases que fluyen por un conducto.
             Método de quimiluminiscencia
         </div>
-     @include('pdf.recursos.footerCaratula')              
-    <div style="page-break-before: always;"></div>
- 
-    <div style="page-break-before: always;"></div>
-     <!-- paginas 4 -->
-    @include('pdf.recursos.headerGeneral')
+@include('pdf.recursos.footerCaratula')              
+     <div style="page-break-before: always;"></div>
+     <!-- paginas 3 -->
+@include('pdf.recursos.headerGeneral')
+        <table style="width: 100%; border: none;">
+            <tr>
+                <td style="width: 50%; vertical-align: top;">
+                    <table style="width: 100%;">
+                        @php
+                            $campos = [
+                                'Razón Social' => $detalle->cliente,
+                                'Calle y Número' => $detalle->calle,
+                                'Colonia' => $detalle->colonia,
+                                'Alcaldía' => $detalle->ciudad,
+                                'Estado' => $detalle->estado,
+                                'Código Postal' => $detalle->codigo_postal,
+                                'Responsable' => $detalle->responsable,
+                                'Cargo' => $detalle->cargo,
+                                'Teléfono' => $detalle->telefono,
+                                'Equipo Evaluado' => $equipo_evaluado,
+                                'Marca y Modelo' => $detalle->marca_modelo
+                            ];
+                        @endphp
+
+                        @foreach ($campos as $etiqueta => $valor)
+                            <tr>
+                                <td style="width: 40%; padding: 4px;">
+                                    <label style="font-weight: bold;">{{ $etiqueta }}:</label>
+                                </td>
+                                <td style="width: 60%; padding: 4px;">
+                                    <div style="border: 1px solid #000; padding: 3px;">{{ $valor }}</div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                    <table style="width: 100%; margin-top: 10px;">
+                        <tr>
+                            <!-- Primera columna -->
+                            <td style="width: 60%; vertical-align: top;">
+                                <table style="width: 100%;">
+                                    @php
+                                        $columna1 = [
+                                            'Combustible Utilizado' => $detalle->tipo,
+                                            'Capacidad Térmica' => $detalle->cpacidad_termica_nominal,
+                                            'Altura respecto al nivel del mar' => $detalle->altura_nivel_mar,
+                                            'Presión estatica:' => $detalle->precion_estatica
+                                        ];
+                                    @endphp
+
+                                    @foreach ($columna1 as $etiqueta => $valor)
+                                        <tr>
+                                            <td style="width: 60%; padding: 4px;">
+                                                <label style="font-weight: bold;">{{ $etiqueta }}:</label>
+                                            </td>
+                                            <td style="width: 40%; padding: 4px;">
+                                                <div style="border: 1px solid #000; padding: 3px;">{{ $valor }}</div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+                                   
+
+                                        
+                                        
+                                </table>
+                            </td>
+
+                            <!-- Segunda columna -->
+                            <td style="width: 40%; vertical-align: top;">
+                                <table style="width: 100%;">
+                                    @php
+                                        $columna2 = [
+                                            'Año' => $detalle->anio,
+                                            'Presión' => $detalle->presion_barometrica_1,
+                                        ];
+                                    @endphp
+
+                                    @foreach ($columna2 as $etiqueta => $valor)
+                                        <tr>
+                                            <td style="width: 60%; padding: 4px;">
+                                                <label style="font-weight: bold;">{{ $etiqueta }}:</label>
+                                            </td>
+                                            <td style="width: 40%; padding: 4px;">
+                                                <div style="border: 1px solid #000; padding: 3px;">{{ $valor }}</div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="padding: 2px;">
+                                <label style="font-weight: bold;">Zona geográfica:</label>
+                                <label style="border: 1px solid #000; padding: 3px; ">
+                                    @switch($detalle->codigo)
+                                        @case('ZMG')
+                                            Zona Metropolitana de Guadalajara
+                                        @break
+                                        @case('ZMM')
+                                            Zona Metropolitana de Monterrey
+                                        @break
+                                        @case('RP')
+                                            Resto del país
+                                        @break
+                                        @default
+                                        {{ $detalle->codigo }}
+                                    @endswitch
+                                </label>
+                            </td>
+                        </tr>
+                    </table>
+
+                </td>
+             
+                
+            
+
+                <!-- Segunda columna con tabla anidada con bordes -->
+                <td style="width: 50%; vertical-align: top;">
+                    <table style="width: 100%;">
+                        <td style="width: 50%; vertical-align: top;">
+                      
+                        </td>
+                        <td style="width: 50%; vertical-align: top;">
+                            <table style="width: 100%; border-collapse: collapse;" border="1">
+                                <tr>
+                                    <td>Número de Informe:</td>
+                                    <th>{{$detalle->numero_informe }}</th>
+                                </tr>
+                                <tr>
+                                    <td>Orden de Servicio: </td>
+                                    <th>{{$detalle->numero_servicio}}</th>
+                                </tr>
+                                <tr>
+                                    <td>Fecha de Evaluación:</td>
+                                    <th>{{$detalle->fecha_muestreo }}</th>
+                                </tr>
+                                <tr>
+                                    <td>Recepción: </td>
+                                    <th>{{$detalle->fecha_muestreo }}</th>
+                                </tr>
+                                 <tr>
+                                    <td>Fecha de Informe:</td>
+                                    <th>{{$fecha_informe}}</th>
+                                </tr>
+                            </table>
+                        </td>
+                    </table>
+
+                    <table style="width: 100%;">
+                        @php
+                            $campos = [
+                                'Geometría del conducto' => $detalle->geometria_conducto ?? 'N/A',
+                                'Diámetro interior del conducto, Dch' => $detalle->diametro_int ?? 'N/A',
+                                'Diámetro equivalente, Deq' => $detalle->diametro_eq ?? 'N/A',
+                                'Largo transversal, L1' => $detalle->largo_transversal ?? 'N/A',
+                                'Ancho transversal, L2' => $detalle->ancho_transversal ?? 'N/A',
+                                'Número de puertos' => $detalle->numero_puertos ?? 'N/A',
+                                'Distancia en A' => $detalle->distancia_a ?? 'N/A',
+                                'Distancia en B' => $detalle->distancia_b ?? 'N/A',
+                                'Distancia en C' => $detalle->distancia_c ?? 'N/A',
+                                'Extensión del puerto, epm' => $detalle->extencion_puerto ?? 'N/A',
+                                'Número de diámetros en A' => $detalle->num_diametros_a ?? 'N/A',
+                                'Número de diámetros en B' => $detalle->num_diametros_b ?? 'N/A',
+                                'Número de diámetros en C' => $detalle->num_diametros_c ?? 'N/A',
+                                'Número de puntos seleccionados para medición de gases' =>'1',
+                            ];
+                        @endphp
+
+                        @foreach ($campos as $etiqueta => $valor)
+                            <tr>
+                                <td style="width: 60%; padding: 4px;">
+                                    <label style="font-weight: bold;">{{ $etiqueta }}:</label>
+                                </td>
+                                <td style="width: 40%; padding: 4px;">
+                                    <div style="border: 1px solid #000; padding: 1px;">{{ $valor }}</div>
+                                </td>
+                            </tr>
+                        @endforeach
+
+                        <tr style="text-align: center;">
+                            <td>
+                                <label style="font-weight: bold;">D<sub>eq</sub> = </label>
+                                <table style="display: inline-table; vertical-align: middle;">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #000; padding: 0 5px;">
+                                            2 x  L<sub>1</sub> x L<sub>2</sub>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            L<sub>1</sub> + L<sub>2</sub>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                    </table>
+               
+                   
+                </td>
+               
+            </tr>
+        </table>
+        <div style="margin-top: 20px">
+           <strong>Determinación de la estratificación</strong>
+           <table style="width: 50%; border-collapse: collapse;" border="1">
+                <tr>
+                    <td>Analito</td>
+                    <td>Marcado de la sonda (m)</td>
+                    <td>Concentración (ppm o %vol.)</td>
+                    <td>% Estratificación </td>
+                    <td>ppm</td>
+                </tr>
+            </table>
+        </div>
+
+
+
+    
     @include('pdf.recursos.footerGeneral')  
     <div style="page-break-before: always;"></div>
     <!-- paginas 5 -->

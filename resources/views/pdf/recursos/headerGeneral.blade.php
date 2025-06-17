@@ -1,12 +1,12 @@
-<table width="100%" style="border-collapse: collapse; margin-bottom: 10px;">
+<table width="100%" style="border-collapse: collapse; margin-bottom: 0;">
     <tr>
-        <td style="width: 120px;">
-                <img style="width: 100px;" src="{{ public_path('img/logo.png') }}">
+        <td style="width: 80px;">
+                <img style="width: 50px;" src="{{ public_path('img/logo.png') }}">
         
         </td>
 
         <td style="vertical-align: top;">
-            <table style="font-size: 10px; border-collapse: collapse; width: 100%;">
+            <table style="font-size: 8px; border-collapse: collapse; width: 100%;">
                 <tr>
                     <td style="padding: 5px; border: 1px solid #000;">
                         <strong>Título:</strong><br>

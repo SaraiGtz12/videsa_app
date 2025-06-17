@@ -24,7 +24,7 @@ public function generarPDF($id)
         ->join('normas AS n','informes.id_norma','n.id_norma')
         ->where('os.id_orden_servicio', $id)
         ->select(
-            'n.nombre','n.descripcion',
+            'n.nombre','n.descripcion','os.responsable','os.cargo','os.telefono',
             'os.numero_servicio',
             'os.fecha_muestreo',
             'c.razon_social as cliente',
