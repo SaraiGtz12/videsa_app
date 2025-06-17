@@ -53,6 +53,12 @@ class informe extends Model
         'max_ppm',
         'id_zona_geografica',
         'conclusiones',
-        'puntos_finales'
+        'puntos_finales',
+        'imagen_ducto',
+        'observaciones_ducto',
+        'flujo_bomba',
+        'tiempo_medido',
+        'signatario',
+        'revison'
     ];
 }
