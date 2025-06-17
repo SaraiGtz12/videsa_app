@@ -119,6 +119,7 @@
             text-align: left;
         }
     </style>
+    <meta charset="UTF-8">
 </head>
 
 <body>
@@ -797,10 +798,10 @@
 
                         @foreach ($campos as $etiqueta => $valor)
                             <tr>
-                                <td style="width: 40%; padding: 4px;">
+                                <td style="width: 40%; padding: 2px;">
                                     <label style="font-weight: bold;">{{ $etiqueta }}:</label>
                                 </td>
-                                <td style="width: 60%; padding: 4px;">
+                                <td style="width: 60%; padding: 2px;">
                                     <div style="border: 1px solid #000; padding: 3px;">{{ $valor }}</div>
                                 </td>
                             </tr>
@@ -822,10 +823,10 @@
 
                                     @foreach ($columna1 as $etiqueta => $valor)
                                         <tr>
-                                            <td style="width: 60%; padding: 4px;">
+                                            <td style="width: 60%; padding: 1px;">
                                                 <label style="font-weight: bold;">{{ $etiqueta }}:</label>
                                             </td>
-                                            <td style="width: 40%; padding: 4px;">
+                                            <td style="width: 40%; padding: 1px;">
                                                 <div style="border: 1px solid #000; padding: 3px;">{{ $valor }}</div>
                                             </td>
                                         </tr>
@@ -850,10 +851,10 @@
 
                                     @foreach ($columna2 as $etiqueta => $valor)
                                         <tr>
-                                            <td style="width: 60%; padding: 4px;">
+                                            <td style="width: 60%; padding: 1px;">
                                                 <label style="font-weight: bold;">{{ $etiqueta }}:</label>
                                             </td>
-                                            <td style="width: 40%; padding: 4px;">
+                                            <td style="width: 40%; padding: 1px;">
                                                 <div style="border: 1px solid #000; padding: 3px;">{{ $valor }}</div>
                                             </td>
                                         </tr>
@@ -862,9 +863,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="padding: 2px;">
+                            <td colspan="2" style="padding: 4px;">
                                 <label style="font-weight: bold;">Zona geográfica:</label>
-                                <label style="border: 1px solid #000; padding: 3px; ">
+                                <label style="border: 1px solid #000; padding: 2px; ">
                                     @switch($detalle->codigo)
                                         @case('ZMG')
                                             Zona Metropolitana de Guadalajara
@@ -942,10 +943,10 @@
 
                         @foreach ($campos as $etiqueta => $valor)
                             <tr>
-                                <td style="width: 60%; padding: 4px;">
+                                <td style="width: 60%; padding: 2px;">
                                     <label style="font-weight: bold;">{{ $etiqueta }}:</label>
                                 </td>
-                                <td style="width: 40%; padding: 4px;">
+                                <td style="width: 40%; padding: 2px;">
                                     <div style="border: 1px solid #000; padding: 1px;">{{ $valor }}</div>
                                 </td>
                             </tr>
@@ -978,15 +979,133 @@
         </table>
         <div style="margin-top: 20px">
            <strong>Determinación de la estratificación</strong>
-           <table style="width: 50%; border-collapse: collapse;" border="1">
-                <tr>
-                    <td>Analito</td>
-                    <td>Marcado de la sonda (m)</td>
-                    <td>Concentración (ppm o %vol.)</td>
-                    <td>% Estratificación </td>
-                    <td>ppm</td>
-                </tr>
-            </table>
+           <table style="width: 100%; border: none;">
+            <tr>
+                <td style="width: 50%; ">
+                    <table style=" border: none;">
+                        <tr>
+                            <td style=" vertical-align: top;">
+                                <table style=" border-collapse: collapse; text-align: center;" border="1">
+                                    <tr>
+                                        <th style="width: 20%;">Analito</th>
+                                        <th rowspan="2" style="width: 20%;">Marcado de la sonda (m)</th>
+                                        <th rowspan="2" style="width: 20%;">Concentración (ppm o %vol.)</th>
+                                        <th rowspan="2" style="width: 20%;">% Estratificación</th>
+                                        <th rowspan="2" style="width: 20%;">ppm</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="1">NO<sub>x</sub></td>
+                                    </tr>
+                                    <tr>
+                                        <td>16.7% de longitud del diámetro</td>
+                                        <td>{{ $detalle->marcado_sonda_1 }}</td>
+                                        <td>{{ $detalle->concentracion_1 }}</td>
+                                        <td>{{ $detalle->estratificacion_1 }}</td>
+                                        <td>{{ $detalle->ppm_1 }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>50% de longitud del diámetro</td>
+                                        <td>{{ $detalle->marcado_sonda_2 }}</td>
+                                        <td>{{ $detalle->concentracion_2 }}</td>
+                                        <td>{{ $detalle->estratificacion_2 }}</td>
+                                        <td>{{ $detalle->ppm_2 }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>83.3% de longitud del diámetro</td>
+                                        <td>{{ $detalle->marcado_sonda_3 }}</td>
+                                        <td>{{ $detalle->concentracion_3 }}</td>
+                                        <td>{{ $detalle->estratificacion_3 }}</td>
+                                        <td>{{ $detalle->ppm_3 }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" rowspan="2">Promedio</td>
+                                        <td rowspan="2">{{ $detalle->promedio_concentracion}}</td>
+                                        <td colspan="2" >Máximo</td>
+                                
+                                    </tr>
+                                    <tr>
+                                        <td>{{ $detalle->max_estratificacion }}</td>
+                                        <td>{{ $detalle->max_ppm }}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr >
+                            <td style=" vertical-align: top;">
+                                <table>
+                                    <tr>
+                                        <td>Cp</td>
+                                        <td>Concentración promedio, (ppmv o %vol.)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cm</td>
+                                        <td>Concentración medida, (ppmv o %vol.) </td>
+                                    </tr>
+                                    <tr>
+                                        <td>16.7%</td>
+                                        <td>Distancia en porcentaje donde se tomará la primer medición para la determinación de la estratificación.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>50%</td>
+                                        <td>Distancia en porcentaje donde se tomará la segunda medición para la determincación de la estratifición</td>
+                                    </tr>
+
+                                    
+
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                </td>
+                <td style="width: 50%; ">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td rowspan="2"">No Estratificada</td>
+                            <td >a) &le; 5%</td>
+                            <td rowspan="2" style="text-align: center;">Se considera un solo punto de muestreo.</td>
+                        </tr>
+                        <tr>
+                            <td >b) &le; 0.5 ppmv</td>
+                        </tr>
+
+                         <tr>
+                            <td rowspan="2"">Mínimamente Estratificada</td>
+                            <td >a) > 5% y hasta el 10%</td>
+                            <td rowspan="2" style="text-align: center;">Se considera 3 puntos de muestreo.</td>
+                        </tr>
+                        <tr>
+                            <td >b) > 0.5 ppmv</td>
+                        </tr>
+
+                         <tr>
+                            <td rowspan="2"">Estratificada</td>
+                            <td >a) > 10%</td>
+                            <td rowspan="2" style="text-align: center;">Se considera 12 puntos de muestreo.</td>
+                        </tr>
+                        <tr>
+                            <td >b) > 1 ppmv</td>
+                        </tr>
+                    </table>
+                    Distribución de puntos para estratificación, Distancia (m)
+                    <table style="width: 100%; border-collapse: collapse; text-align: center;" border="1" >
+                        <tr>
+                            <td>Punto</td>
+                            <td>Estatificada</td>
+                            <td>Mínimamente</td>
+                            <td>No Estratificada</td>
+                        </tr>
+                    </table>
+
+
+                </td>
+            </tr>
+            
+
+
+           </table>
+           
+            
         </div>
 
 
