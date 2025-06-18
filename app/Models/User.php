@@ -25,7 +25,6 @@ class User extends Authenticatable
         'rfc',
         'correo',
         'contrasena',
-        'es_firmante',
         'id_rol',
         'id_estatus'
     ];
