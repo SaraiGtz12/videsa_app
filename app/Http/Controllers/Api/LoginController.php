@@ -18,7 +18,7 @@ class LoginController extends Controller
         ]);
 
         $usuario = User::where('correo', $request->correo)->first();
-
+ 
         if(!$usuario || Hash::check($request->input('UserPasswordTxt'), $usuario->contrasena)){
             throw ValidationException::withMessages([
                 'email' => ['Las credenciales proporcionadas son incorrectas.'],

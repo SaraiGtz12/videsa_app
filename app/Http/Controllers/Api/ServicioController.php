@@ -29,7 +29,7 @@ class ServicioController extends Controller
             's.colonia',
             's.ciudad',
             's.estado',
-            's.codigo_postal'
+            's.codigo_postal',
         )
         ->where('os.muestreador_asignado', $usuario->id_usuario)
         ->get();
