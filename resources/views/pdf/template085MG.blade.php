@@ -1229,23 +1229,23 @@
             <td style="width: 50%; vertical-align: top;">
                 <table>
                     <tr>
-                        <table style=" border-collapse: collapse; align-item:right; " border="1">
+                        <table style="border-collapse: collapse; border: 1px solid #000;  margin-left: auto; margin.bottom:30px" border="1">
                             <tr>
-                                <td>Numero Informe</td>
-                                <td>{{$detalle->numero_informe}}</td>
+                                <td>Número Informe</td>
+                                <td>{{ $detalle->numero_informe }}</td>
+                            </tr>
                             <tr>
-                            
-                                <td>Orden de Servcio</td>
-                                <td>{{$detalle->numero_servicio}}</td>
+                                <td>Orden de Servicio</td>
+                                <td>{{ $detalle->numero_servicio }}</td>
+                            </tr>
                             <tr>
-                            
                                 <td>Fecha de Evaluación</td>
-                                <td>{{$fecha_muestreo}}</td>
-                            <tr>
+                                <td>{{ $fecha_muestreo }}</td>
+                            </tr>
                         </table>
                     </tr>
                     <tr>
-                        <table style=" width: 100%; border-collapse: collapse;  " border="1">
+                        <table style=" width: 70%; border-collapse: collapse;  margin: 20px auto; " border="1">
                             <tr>
                                 <td></td>
                                 <th>2Tr(s)</th>
