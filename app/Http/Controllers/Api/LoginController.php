@@ -19,7 +19,7 @@ class LoginController extends Controller
     public function IniciarSesion(Request $request) 
     {
         // 1. Validación de los datos de entrada
-        // Campos 'email' y 'password' esperados del frontend React Native.
+        // Campos 'email' y 'password' esperados del frontend React  Native.
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string'
