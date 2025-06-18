@@ -831,11 +831,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
-
-                                   
-
-                                        
-                                        
+       
                                 </table>
                             </td>
 
