@@ -20,10 +20,14 @@ class LoginController extends Controller
     {
         // 1. Validación de los datos de entrada
         // Campos 'email' y 'password' esperados del frontend React  Native.
-        $request->validate([
+       try{
+         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string'
         ]);
+       }catch(Exception $e){
+        Log::error($e->getMessage());
+       }
 
         // Registrar los datos recibidos para depuración (opcional, pero útil)
         Log::info('Intento de login para email: ' . $request->input('email'));
