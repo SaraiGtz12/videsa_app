@@ -16,14 +16,13 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <link rel="shortcut icon" href="{{asset('img/logo.png')}}" type="image/x-icon">
     <!-- Custom styles for this template-->
     <script src="https://kit.fontawesome.com/e485076abf.js" crossorigin="anonymous"></script>
     <link href="{{asset('css/sb-admin-2.css')}}" rel="stylesheet">
 
 </head>
 
-<body class="bg-gradient-videsa">
+<body class="bg-gradient-primary">
 
     @if ($errors->has('Error'))
         <div class="alert alert-danger text-center">
@@ -42,27 +41,25 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image">
-
-                            </div>
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">¡Bienvenido de nuevo! ola ke ace</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">¡Bienvenido de nuevo!</h1>
                                     </div>
                                     <form action="{{route('IniciarSesion')}}" method="POST" class="user">
                                         @csrf
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="UserEmailTxt" name="UserEmailTxt" aria-describedby="emailHelp"
-                                                placeholder="Correo empresarial..." onkeyup="this.value=correo(this.value)" required>
+                                                placeholder="Correo empresarial..." required>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
                                                 id="UserPasswordTxt" name="UserPasswordTxt" placeholder="Contraseña" required>
                                         </div>
                                         
-                                        <input type="submit" value="Iniciar Sesión" class="btn btn-videsa btn-user btn-block">
+                                        <input type="submit" value="Iniciar Sesión" class="btn btn-primary btn-user btn-block">
                                         <hr>
                                     </form>
                                 </div>
@@ -84,8 +81,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
-
-    <script src="{{asset('js/Formularios/Validaciones.js')}}"></script>
 
 </body>
 
