@@ -10,7 +10,7 @@ class ServicioController extends Controller
    public function obtenerServicios()
 {
     // Simulación de usuario logueado
-    $usuario = (object) ['id_usuario' => 3];
+    $usuario = (object) ['id_usuario' => 2];
 
     $ordenes = DB::table('ordenes_servicios as os')
         ->join('datos_servicios as ds', 'os.id_orden_servicio', '=', 'ds.id_orden_servicio')
