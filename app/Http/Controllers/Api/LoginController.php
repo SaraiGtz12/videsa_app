@@ -36,12 +36,12 @@ class LoginController extends Controller
             // 2. Buscar al usuario por el correo
             // Asegúrate de que 'correo' sea la columna en tu tabla de usuarios
             $usuario = User::where('correo', $request->input('email'))->first();
-
+            Log::info('Datos: '.$usuario);
             // Si el usuario no existe
             if (!$usuario) {
                 Log::warning('Intento de login con correo no registrado: ' . $request->input('email'));
                 return response()->json([
-                    'message' => 'Credenciales incorrectas. Verifica tu correo y contraseña.'
+                    'message' => 'El usuario no existe'
                 ], 401); 
             }
 
@@ -50,7 +50,7 @@ class LoginController extends Controller
                 Log::warning('Intento de login con cuenta inactiva: ' . $usuario->correo);
                 return response()->json([
                     'message' => '¡Lo sentimos, tu cuenta ha sido desactivada! Contacta a soporte.'
-                ], 403); // 403 Forbidden
+                ], 403); 
             }
 
             // 4. Verificar la contraseña
@@ -58,7 +58,15 @@ class LoginController extends Controller
                 Log::warning('Intento de login con contraseña incorrecta para: ' . $usuario->correo);
                 return response()->json([
                     'message' => 'Credenciales incorrectas. Verifica tu correo y contraseña.'
-                ], 401); // 401 Unauthorized
+                ], 401); 
+            }
+
+            // 5. Verificar el rol del usuario
+            if($usuario -> id_rol != 3){
+                Log::warning('Intento de login en cuenta con un rol sin permisos' . $usuario->correo);
+                return response()-> json([
+                    'message' => '¡Lo sentimos su cuenta no tiene los permisos necesarios! Contacte a soporte'
+                ]);
             }
 
             // Autenticación exitosa.
