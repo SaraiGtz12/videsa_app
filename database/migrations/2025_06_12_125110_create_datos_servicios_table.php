@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_datos_servicio');
             $table->string('descripcion', 500);
             $table->foreignId('id_norma')->nullable()->references('id_norma')->on('normas')->onDelete('set null');
+            $table->foreignId('id_estatus')->nullable()->references('id_estatus')->on('estatus')->onDelete('set null');
             $table->foreignId('id_orden_servicio')->nullable()->references('id_orden_servicio')->on('ordenes_servicios')->onDelete('set null');
             $table->timestamps();
         });
