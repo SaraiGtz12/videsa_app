@@ -65,8 +65,10 @@ class ServiceOrdersController extends Controller
             for ($i = 0; $i < $request->input('Cantidad'); $i++) {
                 $datos_s = datos_servicio::create([
                     'descripcion' => $descripciones[$i],
+                    'id_estatus'=> 3,
                     'id_norma' =>  $servicios[$i],
                     'id_orden_servicio' => $id_orden
+                    
                 ]);
 
                 if($datos_s){
