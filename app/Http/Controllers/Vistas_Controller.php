@@ -27,14 +27,28 @@ class Vistas_Controller extends Controller
             // Redirige a otra página (por ejemplo, la página de inicio)
             return redirect()->route('login')->withErrors(['error' => 'No tienes permiso para acceder a esta página.', 'Titulo'=>'Acceso Denegado']);
         }
+         $total_registros_mes_actual = DB::table('datos_servicios')
+            ->whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('Y'))
+            ->count();
+        $total_servicios_activos = DB::table('datos_servicios')
+            ->whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->where('id_estatus', 5)
+            ->count();
+         $total_servicios_pendientes = DB::table('datos_servicios')
+            ->where('id_estatus', 3)
+            ->count();
+       
+
         $detalles = datos_servicio::join('ordenes_servicios','datos_servicios.id_orden_servicio','=','ordenes_servicios.id_orden_servicio')
         ->join('normas', 'normas.id_norma', '=', 'datos_servicios.id_norma')
         ->join('usuarios', 'usuarios.id_usuario', '=', 'ordenes_servicios.muestreador_asignado')
         ->join('clientes', 'clientes.id_cliente', '=', 'ordenes_servicios.id_cliente')
-        ->select('normas.nombre as nom', 'ordenes_servicios.*', 'datos_servicios.*', 'usuarios.nombre as muestreador', 'clientes.razon_social','datos_servicios.id_datos_servicio')
+        ->select('normas.nombre as nom', 'ordenes_servicios.*', 'datos_servicios.*', 'usuarios.nombre as muestreador', 'clientes.razon_social','datos_servicios.id_datos_servicio', 'datos_servicios.id_estatus as estatus' )
         ->orderBy('ordenes_servicios.fecha_muestreo', 'desc') 
         ->get();
-        return view('Dashboard.Home', compact('detalles'));
+        return view('Dashboard.Home', compact('detalles','total_registros_mes_actual','total_servicios_activos','total_servicios_pendientes'));
     }
 
     public function RegistrarCliente(){
