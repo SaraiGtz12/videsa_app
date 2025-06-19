@@ -30,6 +30,8 @@ class ServicioController extends Controller
             's.ciudad',
             's.estado',
             's.codigo_postal',
+            'os.responsable',
+            'os.cargo','os.telefono'
         )
         ->where('os.muestreador_asignado', $usuario->id_usuario)
         ->get();
@@ -40,7 +42,8 @@ class ServicioController extends Controller
             'nombre' => $item->nombre_norma,
             'cliente' => $item->razon_social,
             'descripcion' => $item->descripcion,
-            'direccion' => $item->calle . ' ' . $item->numero . ', ' . $item->colonia . ', ' . $item->ciudad
+            'direccion' => $item->calle . ' ' . $item->numero . ', ' . $item->colonia . ', ' . $item->ciudad,
+            'responsable' => $item->responsable . ', ' . $item->cargo . '. Tel: '. $item->telefono
         ];
     });
 
