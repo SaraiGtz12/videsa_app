@@ -66,7 +66,7 @@ class LoginController extends Controller
                 Log::warning('Intento de login en cuenta con un rol sin permisos' . $usuario->correo);
                 return response()-> json([
                     'message' => '¡Lo sentimos su cuenta no tiene los permisos necesarios! Contacte a soporte'
-                ]);
+                ], 403);
             }
 
             // Autenticación exitosa.
