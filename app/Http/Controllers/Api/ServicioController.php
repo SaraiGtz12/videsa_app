@@ -9,8 +9,11 @@ class ServicioController extends Controller
 {
    public function obtenerServicios()
 {
-    // Simulación de usuario logueado
-    $usuario = (object) ['id_usuario' => 3];
+    $usuario = auth()->user(); 
+    if (!$usuario) {
+        return response()->json(['message' => 'Usuario no autenticado'], 401);
+    }
+
 
     $ordenes = DB::table('ordenes_servicios as os')
         ->join('datos_servicios as ds', 'os.id_orden_servicio', '=', 'ds.id_orden_servicio')
