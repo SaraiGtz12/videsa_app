@@ -13,8 +13,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-
-    Route::get('/servicios', [ServicioController::class, 'obtenerServicios']);
-
-    Route::post('/logout', [LoginController::class, 'LogOut'])->name('logout_api');
+    Route::get('/logout', [LoginController::class, 'LogOut'])->name('logout_api');
+  
 });
+
+  Route::get('/servicios', [ServicioController::class, 'obtenerServicios']);
+  Route::get('/formulario-datos', [FormularioController::class, 'obtenerFormulario']);
+
