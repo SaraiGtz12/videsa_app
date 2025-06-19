@@ -54,7 +54,6 @@ Route::post('/register_user', [UsersController::class, 'RegistrarUsuarios'])->na
 //Rutas para la optención de datos
 Route::get('/getMuestreadores', [FormsController::class, 'getMuestreadores']);
 Route::get('/getSucursales/{id}', [OrdenServicio_Controller::class, 'obtener_sucursal'])->name('get_sucursales');
-Route::get('/prueba_puntos', [Nom_085_Campo_Controller::class, 'distribucion_puntos_estratificacion'])->name('Prueba');
 
 
 Route::get('/empresa/nueva', [EmpresaController::class, 'create'])->name('empresa.create');

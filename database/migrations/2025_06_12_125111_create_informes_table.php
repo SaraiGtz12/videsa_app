@@ -51,6 +51,12 @@ return new class extends Migration
             $table->decimal('promedio_concentracion');
             $table->decimal('max_estratificacion');
             $table->decimal('max_ppm');
+            $table->string('imagen_ducto', 300)->nullable();
+            $table->string('observaciones_ducto')->nullable();
+            $table->decimal('flujo_bomba')->nullable();
+            $table->integer('tiempo_medido')->nullable();
+            $table->integer('signatario')->nullable();
+            $table->integer('revison')->nullable();
             $table->foreignId('id_zona_geografica')->references('id_zona_geografica')->on('zonas_geograficas');
             $table->foreignId('id_norma')->nullable()->references('id_norma')->on('normas')->onDelete('set null');
             $table->foreignId('id_datos_servicio')->nullable()->references('id_datos_servicio')->on('datos_servicios')->onDelete('set null');
