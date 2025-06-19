@@ -42,6 +42,10 @@
                                             data-ciudad="{{ $orden->ciudad }}"
                                             data-estado="{{ $orden->estado }}"
                                             data-codigo_postal="{{ $orden->codigo_postal }}"
+                                            data-responsable="{{ $orden->responsable }}"
+                                            data-cargo="{{ $orden->cargo }}"
+                                            data-tel="{{ $orden->tel }}"
+                                            data-codigo_norma="{{ $orden->codigo_norma}}"
                   
                                             title="Abrir Formulario"085
                                         ><i class="fas fa-edit"></i>
@@ -77,6 +81,12 @@
                         <div class="card mb-2">
                             <div class="card-body">
                                 <div class="row">
+                                    <div class="col">
+                                        <div class="mb-2">
+                                            <span>Numero de informe</span>
+                                            <input type="text" name="numero_informe" id="numero_informe"  class="form-control" required readonly>
+                                        </div>
+                                    </div>
                                     <div class="col">
                                         <div class="mb-2">
                                             <span>Fecha de Evaluación</span>
@@ -119,16 +129,16 @@
 
                                      <div class="row mb-2">
                                         <div class="col-md-4">
-                                            <label for="calle">Alcaldía</label>
+                                            <label for="ciudad">Alcaldía</label>
                                             <input type="text" name="ciudad" id="ciudad" class="form-control" required readonly>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="numero">Estado</label>
+                                            <label for="estado">Estado</label>
                                             <input type="text" name="estado" id="estado" class="form-control" required readonly>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="colonia">Código Postal</label>
-                                            <input type="text" name="codigo_postal" id="codigo_postal" class="form-control" required readonly>
+                                            <label for="codigo_postal">Código Postal</label>
+                                            <input type="number" name="codigo_postal" id="codigo_postal" class="form-control" required readonly>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
@@ -141,8 +151,8 @@
                                             <input type="text" name="cargo" id="cargo" class="form-control"required readonly>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="numero">Telefono</label>
-                                            <input type="text" name="telefono" id="telefono" class="form-control"required readonly>
+                                            <label for="tel">Telefono</label>
+                                            <input type="number" name="tel" id="tel" class="form-control"required readonly>
                                         </div>
                                     </div>
                                 </div>
