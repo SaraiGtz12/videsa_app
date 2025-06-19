@@ -15,5 +15,6 @@ class datos_servicio extends Model
         'descripcion',
         'id_norma',
         'id_orden_servicio',
+        'id_estatus'
     ];
 }

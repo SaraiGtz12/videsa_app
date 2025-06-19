@@ -10,6 +10,7 @@
 
 <!-- Content Row -->
 <div class="row">
+    
 
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
@@ -18,12 +19,13 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Servicios Registrados (Mes)</div>
+                            Servicios Registrados</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                     </div>
-                    <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        {{ $total_registros_mes_actual }}
                     </div>
+
                 </div>
             </div>
         </div>
@@ -39,8 +41,8 @@
                             Servicios Activos</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                     </div>
-                    <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                     <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        {{ $total_servicios_activos }}
                     </div>
                 </div>
             </div>
@@ -69,31 +71,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                     <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        {{ $total_servicios_pendientes }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
 
-    <!-- Pending Requests Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-warning shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Servicios Inactivos</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+ 
 </div>
 
 <!-- Content Row -->
@@ -131,15 +118,15 @@
                                     <td>{{$detalle->fecha_muestreo}}</td>
                                     <td>{{$detalle->muestreador}}</td>
                                     <td>
-                                        @if ($detalle->id_estatus == 5)
+                                        @if ($detalle->estatus == 5)
                                             <span class="badge badge-success">
                                                 Completado
                                             </span>
-                                        @elseif ($detalle->id_estatus == 3)
+                                        @elseif ($detalle->estatus == 3)
                                             <span class="badge badge-warning">
                                                 En proceso
                                             </span>
-                                        @elseif ($detalle->id_estatus == 2)
+                                        @elseif ($detalle->estatus == 2)
                                             <span class="badge badge-danger">
                                                 Cancelado
                                             </span>
@@ -148,20 +135,23 @@
                                     </td>
                                     <td>
                                         <button class="btn btn-primary btn-sm btn-circle" title="Ver">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-sm btn-circle" title="Eliminar">
+                                            <i class="fas fa-edit"></i>
+                                        </button> 
+                                        <!-- <button class="btn btn-danger btn-sm btn-circle" title="Eliminar">
                                             <i class="fas fa-trash-alt"></i>
-                                        </button>
+                                        </button> -->
 
-                                         <a 
-                                            href="{{ route('pdf.generar', ['id' => $detalle->id_orden_servicio]) }}" 
-                                            class="btn btn-success btn-sm btn-circle" 
-                                            title="Generar PDF" 
-                                            target="_blank"
-                                        >
-                                            <i class="fas fa-file-pdf"></i>
-                                        </a>
+                                         @if ($detalle->estatus == 5)
+                                            <a 
+                                                href="{{ route('pdf.generar', ['id' => $detalle->id_orden_servicio]) }}" 
+                                                class="btn btn-success btn-sm btn-circle" 
+                                                title="Generar PDF" 
+                                                target="_blank"
+                                            >
+                                                <i class="fas fa-file-pdf"></i>
+                                            </a>
+                                        @endif
+
 
                                     </td>
                                 </tr>
