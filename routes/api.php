@@ -14,7 +14,9 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
     Route::get('/logout', [LoginController::class, 'LogOut'])->name('logout_api');
-    Route::get('/servicios', [ServicioController::class, 'obtenerServicios']);
-    Route::get('/formulario-datos', [FormularioController::class, 'obtenerFormulario']);
+  
 });
+
+  Route::get('/servicios', [ServicioController::class, 'obtenerServicios']);
+  Route::get('/formulario-datos', [FormularioController::class, 'obtenerFormulario']);
 
