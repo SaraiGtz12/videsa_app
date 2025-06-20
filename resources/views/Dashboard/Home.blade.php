@@ -115,7 +115,7 @@
                                     <td>{{$detalle->razon_social}}</td>
                                     <td>{{$detalle->nom}}</td>
                                     <td>{{$detalle->numero_servicio}}</td>
-                                    <td>{{$detalle->fecha_muestreo}}</td>
+                                    <td>{{ $detalle->created_at->format('d/m/Y') }}</td>
                                     <td>{{$detalle->muestreador}}</td>
                                     <td>
                                         @if ($detalle->estatus == 5)

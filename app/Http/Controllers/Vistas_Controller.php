@@ -46,7 +46,7 @@ class Vistas_Controller extends Controller
         ->join('usuarios', 'usuarios.id_usuario', '=', 'ordenes_servicios.muestreador_asignado')
         ->join('clientes', 'clientes.id_cliente', '=', 'ordenes_servicios.id_cliente')
         ->select('normas.nombre as nom', 'ordenes_servicios.*', 'datos_servicios.*', 'usuarios.nombre as muestreador', 'clientes.razon_social','datos_servicios.id_datos_servicio', 'datos_servicios.id_estatus as estatus' )
-        ->orderBy('ordenes_servicios.fecha_muestreo', 'desc') 
+        ->orderBy('ordenes_servicios.created_at', 'desc') 
         ->get();
         return view('Dashboard.Home', compact('detalles','total_registros_mes_actual','total_servicios_activos','total_servicios_pendientes'));
     }
